@@ -1,0 +1,26 @@
+{
+  "name": "spring",
+  "version": "1.0.0",
+  "description": "教学辅助平台",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "dependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-pug": "*",
+    "gulp-util": "*",
+    "gulp-watch": "*",
+    "gulp-jshint":"*",
+    "gulp-replace":"*",
+    "gulp-html2jade":"*"
+  },
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "王耀冲",
+  "license": "ISC"
+}
