@@ -1,0 +1,30 @@
+<script src="../js/lib/angular.js"></script>
+<body ng-app="myApp" >
+<p ng-controller="myController">
+<div my-directive="I have to leave." ></div>
+{{myDirective}}
+</p>
+<input type="text" ng-model="content">
+<p ng-controller="myController" >
+<div my-directive="{{content}}" ></div>
+{{content}}
+</p>
+</body>
+<script type="text/javascript">
+    var myApp = angular.module('myApp', [])
+            .directive('myDirective', function($rootScope) {
+                $rootScope.myDirective = 'from rootScope';
+                return {
+                    priority:1000,
+                    restrict: 'A',
+                    replace: true,
+                    scope: {
+                        myDirective: '@',
+                    },
+                    template: '<p>{{myDirective}}</p>'
+                };
+            })
+            .controller('myController',function($scope){
+                $scope.myDirective = 'from controller';
+            });
+</script>

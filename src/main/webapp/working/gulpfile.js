@@ -1,63 +1,67 @@
-var gulpModules={
-    gulp:require('gulp'),
-    gulpUtil:require('gulp-util'),
-    gulpJade:require('gulp-pug'),
-    gulpConcat:require('gulp-concat'),
-    gulpJshint:require('gulp-jshint'),
-    gulpReplace:require('gulp-replace'),
-    gulpHtml2jade:require('gulp-html2jade')
+var gulpModules = {
+    gulp: require('gulp'),
+    gulpUtil: require('gulp-util'),
+    gulpJade: require('gulp-jade'),
+    gulpConcat: require('gulp-concat'),
+    gulpJshint: require('gulp-jshint'),
+    gulpReplace: require('gulp-replace'),
+    gulpHtml2jade: require('gulp-html2jade'),
+    gulpPlumber: require('gulp-plumber')
 }
-var processPath={
-    jadePath:"../raw/jade/*.jade",
-    jade2htmlPath:'../view/html/',
-    jsPath:'../raw/js/*.js',
-    js2onePath:'../view/js/',
-    html2jadeHtmlPath:'../view/html2jade/*.html',
-    html2jadeJadePath:'../raw/jade/'
+var processPath = {
+    js2oneSrcPath: ['../raw/js/begin.js', '../raw/js/state/*.js', '../raw/js/end.js', '../view/directiveJs/*.js'],
+    js2onePath: '../view/js/',
+    js2oneLibPath: ['../raw/jslib/jquery-3.1.0.js', '../raw/jslib/bootstrap.js', '../raw/jslib/angular.js', '../raw/jslib/angular-ui-router.js'],
+    css2oneLibPath: ['../raw/csslib/bootstrap.min.css'],
+    css2onePath: '../view/css/',
+    appJsPath: "../view/js/*.js"
 }
-var taskNames={
-    jade2html:'jade2html',
-    watch:'watch',
-    js2one:'js2one',
-    html2jade:'html2jade'
+var taskNames = {
+    watch: 'watch',
+    many2one: 'many2one',
+    replaceContent: 'replaceContent'
 }
-var optionsForJade={
-    pretty:true
+
+var optionsForReplace = {
+    beginToReplace: '{"##begin##"})',
+    beginAfterReplace: '{',
+    endToReplace: '{"##end##"}',
+    endAfterReplace: '})'
 }
-var optionsForReplace={
-    toReplace:'hhhh',
-    afterReplace:"script(src='view/js/app.js')"
+var optionsForPlumber = {
+    errorHandler: true
 }
-gulpModules.gulp.task(taskNames.html2jade,function () {
-    return gulpModules.gulp.src(processPath.html2jadeHtmlPath)
-        .pipe(gulpModules.gulpHtml2jade())
-        .pipe(gulpModules.gulp.dest(processPath.html2jadeJadePath))
+function many2one(jsPath, onePath, fileName) {
+    gulpModules.gulp.src(jsPath)
+        .pipe(gulpModules.gulpPlumber(optionsForPlumber))
+        .pipe(gulpModules.gulpConcat(fileName))
+        .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
+        .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
+        .pipe(gulpModules.gulp.dest(onePath))
+}
+// gulpModules.gulp.task(taskNames.replaceContent, function () {
+//     console.log('replaceContent')
+//     gulpModules.gulp.src(processPath.appJsPath)
+//         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
+//         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
+//         .pipe(gulpModules.gulp.dest("../view/js/"))
+// })
+
+gulpModules.gulp.task(taskNames.many2one, function () {
+    many2one(processPath.js2oneSrcPath, processPath.js2onePath, 'app.js')//把多个源码js合成一个app.js
+    many2one(processPath.js2oneLibPath, processPath.js2onePath, 'lib.js')//把多个库合成一个lib.js
+    many2one(processPath.css2oneLibPath, processPath.css2onePath, 'lib.css')//把多个css库合成一个
 })
-gulpModules.gulp.task(taskNames.jade2html, function () {
-    return gulpModules.gulp.src(processPath.jadePath)
-        .pipe(gulpModules.gulpReplace(optionsForReplace.toReplace,optionsForReplace.afterReplace))
-        .pipe(gulpModules.gulpJade(optionsForJade))
-        .pipe(gulpModules.gulp.dest(processPath.jade2htmlPath))
-      
-});
-gulpModules.gulp.task(taskNames.js2one,function () {
-    return gulpModules.gulp.src(processPath.jsPath)
-        .pipe(gulpModules.gulpJshint())
-        .pipe(gulpModules.gulpJshint.reporter('default'))
-        .pipe(gulpModules.gulpConcat("app.js"))
-        .pipe(gulpModules.gulp.dest(processPath.js2onePath))
-})
-gulpModules.gulp.task(taskNames.watch,function () {
+
+gulpModules.gulp.task(taskNames.watch, function () {
     //监视jade路径下的文件是否有修改
-    gulpModules.gulp.watch(processPath.html2jadeHtmlPath,[taskNames.html2jade])
-    gulpModules.gulp.watch(processPath.jadePath,[taskNames.jade2html]);
-    gulpModules.gulp.watch(processPath.jsPath,[taskNames.js2one]);
+    gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.js2oneLibPath], [taskNames.many2one]);//js2one流程
     //如果是监听多个文件，使用一个数组就可以
-    gulpModules.gulp.watch([processPath.jadePath,processPath.jsPath,processPath.html2jadeHtmlPath],function (event) {
+    gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.appJsPath], function (event) {
         //console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-        gulpModules.gulpUtil.log("File-->"+event.path);
-        gulpModules.gulpUtil.log("Event:"+event.type);
+        gulpModules.gulpUtil.log("File-->" + event.path);
+        gulpModules.gulpUtil.log("Event:" + event.type);
     });
 })
-gulpModules.gulp.task('default', [taskNames.watch,taskNames.jade2html,taskNames.js2one]);
+gulpModules.gulp.task('default', [taskNames.watch, taskNames.many2one]);
 

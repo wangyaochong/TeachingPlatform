@@ -10,12 +10,13 @@
   "dependencies": {
     "gulp": "*",
     "gulp-concat": "*",
-    "gulp-pug": "*",
+    "gulp-jade": "*",
     "gulp-util": "*",
     "gulp-watch": "*",
     "gulp-jshint":"*",
     "gulp-replace":"*",
-    "gulp-html2jade":"*"
+    "gulp-html2jade":"*",
+    "gulp-plumber":"*"
   },
 
   "scripts": {

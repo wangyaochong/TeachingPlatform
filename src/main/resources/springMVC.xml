@@ -8,11 +8,19 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.3.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
-       "
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd"
 >
-
-    <context:component-scan base-package="controllers"></context:component-scan>
+    <context:component-scan base-package="controller,urlBean"></context:component-scan>
+    <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties"></context:property-placeholder>
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>-->
+            <!--<bean class="util.JsonConverter"></bean>-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <!--&lt;!&ndash;设置为utf-8的编码格式&ndash;&gt;-->
+                <constructor-arg value="utf-8"></constructor-arg>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>
