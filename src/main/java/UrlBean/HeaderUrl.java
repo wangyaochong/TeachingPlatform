@@ -1,6 +1,4 @@
 package urlBean;
-
-import com.alibaba.fastjson.JSONObject;
 import urlBean.urlDef.UrlDefinition;
 import java.util.ArrayList;
 import java.util.Arrays;
