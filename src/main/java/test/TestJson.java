@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MyTest {
+public class TestJson {
     @Test
     public void testJson(){
         Map<String,String> json=new HashMap<String, String>();

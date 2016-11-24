@@ -12,10 +12,7 @@ public class HeaderUrl  {
     private UrlDefinition headerDropDownTitle;//网站下拉菜单标题
     private List<UrlDefinition> headerDropDownList;//网站下拉菜单
     public HeaderUrl(Locale locale) {
-
         webTitle=new UrlDefinition("header.标题","#/home",locale);//首页大标题
-
-
         headerNavLeft=new ArrayList<UrlDefinition>(Arrays.asList(//导航栏左侧菜单
                 new UrlDefinition("header.navLeft.作业","#/assignment",locale),
                 new UrlDefinition("header.navLeft.文档","#/document",locale),
@@ -26,13 +23,11 @@ public class HeaderUrl  {
         ));
         headerDropDownTitle=new UrlDefinition("header.navDrop","#",locale);//下拉菜单的标题
         headerDropDownList=new ArrayList<UrlDefinition>(Arrays.asList(//下拉菜单具体选项
-                new UrlDefinition("header.navDrop.baidu","http://www.baidu.com",locale),
-                new UrlDefinition("header.navRight.tengxun","http://www.qq.com",locale)
+                new UrlDefinition("header.navDrop.个人中心","#/personCenter",locale),
+                new UrlDefinition("header.navRight.语言设置","#/languageSetting",locale),
+                new UrlDefinition("header.navRight.搜索","#/search",locale)
         ));
     }
-
-
-
     @Override
     public String toString() {
         return "HeaderUrl{" +

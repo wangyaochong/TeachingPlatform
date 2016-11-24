@@ -36,7 +36,6 @@ public class UrlDefinition {
         this.name= resourceBundleMessageSource.getMessage(id+".name", null, locale);
         this.description=resourceBundleMessageSource.getMessage(id+".desc",null,locale);
     }
-
     public String getName() {
         return name;
     }
