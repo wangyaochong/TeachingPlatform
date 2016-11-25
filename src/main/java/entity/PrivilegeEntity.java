@@ -6,41 +6,41 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class PrivileageEntity {
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"frontMessage","document","video","assignment","personalInfomation"})})
+//@UniqueConstraint()注解，可以让多个列组成的联合属性唯一
+public class PrivilegeEntity {
     //每一种权限对应一个模块的所有权限
     //当老师给一个用户授权时，如果该权限组合没有在数据库中存在，则新增一种一条记录
     //然后该用户指向该权限id
     @Id
-    @GenericGenerator(name="generator",strategy = "uuid")
-    @GeneratedValue(generator = "generator")
-    String id;
+    @GenericGenerator(name="generator",strategy = "org.hibernate.id.UUIDGenerator")//id的生成策略
+    @GeneratedValue(generator = "generator")//指定使用哪一个主键生成器
 
+    String id;
     Boolean frontMessage;//对首页消息的权限
     Boolean document;//对文档的权限
     Boolean video;//对视频的权限
     Boolean assignment;//对作业的权限，包括对作业批改等
     Boolean personalInfomation;//对个人信息权限，包括修改用户密码等
 
-    @OneToMany(cascade = CascadeType.ALL)
-    Set<PersonEntity> personEntities;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    Set<PersonEntity> personEntities;
 
-    public PrivileageEntity() {
+    public PrivilegeEntity() {
     }
 
     @Override
     public String toString() {
-        return "PrivileageEntity{" +
+        return "PrivilegeEntity{" +
                 "id='" + id + '\'' +
                 ", frontMessage=" + frontMessage +
                 ", document=" + document +
                 ", video=" + video +
                 ", assignment=" + assignment +
                 ", personalInfomation=" + personalInfomation +
-                ", personEntities=" + personEntities +
                 '}';
     }
-
-    public PrivileageEntity(Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation) {
+    public PrivilegeEntity( Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation) {
         this.frontMessage = frontMessage;
         this.document = document;
         this.video = video;
@@ -94,13 +94,5 @@ public class PrivileageEntity {
 
     public void setPersonalInfomation(Boolean personalInfomation) {
         this.personalInfomation = personalInfomation;
-    }
-
-    public Set<PersonEntity> getPersonEntities() {
-        return personEntities;
-    }
-
-    public void setPersonEntities(Set<PersonEntity> personEntities) {
-        this.personEntities = personEntities;
     }
 }

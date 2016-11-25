@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class PersonEntity {
     @Id
-    @GenericGenerator(name="generator",strategy = "uuid")
+    @GenericGenerator(name="generator",strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
     String number;//学生就是学号，教师就是工号，管理员可以没有号码
@@ -18,18 +18,19 @@ public class PersonEntity {
     String email;//邮箱账号
 
     @ManyToOne(cascade = CascadeType.ALL)
-    PrivileageEntity privileageEntity;//所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
+    PrivilegeEntity privilegeEntity;//所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
 
     public PersonEntity() {
     }
 
-    public PersonEntity(String number, String name, String age, String gender, String phone, String email) {
+    public PersonEntity(String number, String name, String age, String gender, String phone, String email, PrivilegeEntity privilegeEntity) {
         this.number = number;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
+        this.privilegeEntity = privilegeEntity;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class PersonEntity {
                 ", gender='" + gender + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", privileageEntity=" + privileageEntity +
+                ", privilegeEntity=" + privilegeEntity +
                 '}';
     }
 
@@ -102,11 +103,11 @@ public class PersonEntity {
         this.email = email;
     }
 
-    public PrivileageEntity getPrivileageEntity() {
-        return privileageEntity;
+    public PrivilegeEntity getPrivilegeEntity() {
+        return privilegeEntity;
     }
 
-    public void setPrivileageEntity(PrivileageEntity privileageEntity) {
-        this.privileageEntity = privileageEntity;
+    public void setPrivilegeEntity(PrivilegeEntity privilegeEntity) {
+        this.privilegeEntity = privilegeEntity;
     }
 }

@@ -24,7 +24,7 @@
         <!--<property name="annotatedClasses">-->
             <!--<list>-->
                 <!--<value>entity.PersonEntity</value>-->
-                <!--<value>entity.PrivileageEntity</value>-->
+                <!--<value>entity.PrivilegeEntity/value>-->
             <!--</list>-->
         <!--</property>-->
         <property name="annotatedPackages" value="entity"></property>
