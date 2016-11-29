@@ -2,4 +2,7 @@ target
 .idea
 *.iml
 node_modules
-app.js
+
+/src/main/webapp/view/js/lib.js
+/src/main/webapp/view/js/app.js
+
