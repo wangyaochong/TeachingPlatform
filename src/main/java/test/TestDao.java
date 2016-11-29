@@ -1,10 +1,10 @@
 package test;
 
+import dao.BaseDao;
 import dao.PersonDao;
 import entity.PersonEntity;
 import entity.PrivilegeEntity;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.After;
@@ -14,7 +14,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import util.SqlStatementConstructor;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,6 +22,7 @@ import java.util.Properties;
 public class TestDao {
     SessionFactory sessionFactory;
     Session session;
+    ApplicationContext applicationContext;
     @Before
     public void before() throws IOException {
         DriverManagerDataSource datasource = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/teachingplatform?useUnicode=true&characterEncoding=UTF-8", "wangyaochong", "qwerqwer");
@@ -42,7 +42,7 @@ public class TestDao {
         sessionFactory=localSessionFactoryBean.getObject();
         session=sessionFactory.openSession();
         session.beginTransaction();
-        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("classpath:springMVC.xml","classpath:bean.xml");
+        applicationContext = new ClassPathXmlApplicationContext("classpath:springMVC.xml", "classpath:bean.xml");
         SessionFactory bean = applicationContext.getBean(SessionFactory.class);
         System.out.println(bean);
     }
@@ -79,9 +79,24 @@ public class TestDao {
 
     }
     @Test
-    public void testDeletePerson(){
+    public void testDeletePersonHql() {
+        session = new BaseDao().getSession();
+        String hql = "delete from entity.PersonEntity where name='哈哈哈'";
+        Query query = session.createQuery(hql);
+//        query.setParameter(1;
+        int i = query.executeUpdate();
+        System.out.println("count:" + i);
+    }
+
+    @Test
+    public void testDeletePerson() throws InterruptedException {
         PersonDao personDao=new PersonDao();
         personDao.simpleDelete(new PersonEntity(null,"哈哈哈",null,null,null,null,null));
+//        String hql="delete from PersonEntity where name=?";
+//        Query query=session.createQuery(hql);
+//        query.setString(0,"哈哈哈");
+//        int i = query.executeUpdate();
+//        System.out.println("count:"+i);
     }
     @Test
     public void testAddPerson(){
@@ -92,16 +107,21 @@ public class TestDao {
                 "privilege.assignment=? and " +
                 "privilege.personalInfomation=?";
         Query query = session.createQuery(hql);
-        query.setBoolean(0,false);
-        query.setBoolean(1,false);
-        query.setBoolean(2,false);
-        query.setBoolean(3,false);
-        query.setBoolean(4,false);
+        query.setParameter(0, false);
+        query.setParameter(1, false);
+        query.setParameter(2, false);
+        query.setParameter(3, false);
+        query.setParameter(4, false);
+//        query.setBoolean(0,false);
+//        query.setBoolean(1,false);
+//        query.setBoolean(2,false);
+//        query.setBoolean(3,false);
+//        query.setBoolean(4,false);
         List<PrivilegeEntity> list = query.list();
         System.out.println(list);
         PersonEntity personEntity=new PersonEntity(
                 "201399252",
-                "哦哦哦",
+                "哈哈哈",
                 "22",
                 "男",
                 "18840838242",

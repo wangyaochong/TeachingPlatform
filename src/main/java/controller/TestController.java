@@ -1,5 +1,9 @@
 package controller;
 
+import dao.BaseDao;
+import dao.PersonDao;
+import entity.PersonEntity;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +25,16 @@ public class TestController {
         Locale locale = requestContext.getLocale();
         System.out.println(locale);
         return "王耀冲";
+    }
+
+    @RequestMapping("/testDeletePerson")
+    @ResponseBody
+    public String test() {
+        BaseDao baseDao = new BaseDao();
+        SessionFactory sessionFactory = baseDao.getSessionFactory();
+        PersonDao personDao = new PersonDao();
+        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, null, null, null, null));
+        return delete.toString();
     }
 
 }
