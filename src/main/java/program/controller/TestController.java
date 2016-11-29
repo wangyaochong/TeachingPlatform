@@ -1,8 +1,8 @@
-package controller;
+package program.controller;
 
-import dao.BaseDao;
-import dao.PersonDao;
-import entity.PersonEntity;
+import program.dao.BaseDao;
+import program.dao.PersonDao;
+import program.entity.PersonEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.Locale;
  */
 @Controller
 public class TestController {
-    @RequestMapping("/test")
+    @RequestMapping("/src/main/test")
     @ResponseBody
     public String test(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse ){
         RequestContext requestContext=new RequestContext(httpServletRequest);

@@ -1,6 +1,6 @@
-package urlBean;
+package program.urlBean;
 
-import urlBean.urlDef.UrlDefinition;
+import program.urlBean.urlDef.UrlDefinition;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,9 +1,10 @@
 package test;
 
-import dao.BaseDao;
-import dao.PersonDao;
-import entity.PersonEntity;
-import entity.PrivilegeEntity;
+import org.springframework.transaction.annotation.Transactional;
+import program.dao.BaseDao;
+import program.dao.PersonDao;
+import program.entity.PersonEntity;
+import program.entity.PrivilegeEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,7 +37,7 @@ public class TestDao {
         properties.setProperty("hibernate.format_sql","true");
         localSessionFactoryBean.setHibernateProperties(properties);
         localSessionFactoryBean.setAnnotatedClasses(PersonEntity.class, PrivilegeEntity.class);
-        localSessionFactoryBean.setAnnotatedPackages("entity");
+        localSessionFactoryBean.setAnnotatedPackages("program/entity");
         //localSessionFactoryBean.setAnnotatedClasses(PersonEntity.class);
         localSessionFactoryBean.afterPropertiesSet();
         sessionFactory=localSessionFactoryBean.getObject();
@@ -46,12 +47,12 @@ public class TestDao {
         SessionFactory bean = applicationContext.getBean(SessionFactory.class);
         System.out.println(bean);
     }
-    @After
-    public void after(){
-        session.getTransaction().commit();
-        this.session.close();
-        this.sessionFactory.close();
-    }
+//    @After
+//    public void after(){
+//        session.getTransaction().commit();
+//        this.session.close();
+//        this.sessionFactory.close();
+//    }
     @Test
     public void testAddPrivileage(){
         PrivilegeEntity privilegeEntity =new PrivilegeEntity(false,false,false,false,false);
@@ -59,7 +60,7 @@ public class TestDao {
     }
     @Test
     public void testSearchPerson(){
-        String hql="from entity.PersonEntity as person where person.email=?";
+        String hql="from program.entity.PersonEntity as person where person.email=?";
         Query query=session.createQuery(hql);
         query.setString(0,"1162025261@qq");
         List list = query.list();
@@ -69,7 +70,7 @@ public class TestDao {
 
     @Test
     public void deletePrivilege(){
-        String hql="delete from entity.PrivilegeEntity as privilege where privilege.frontMessage=? and privilege.document=? and privilege.video=? ";
+        String hql="delete from program.entity.PrivilegeEntity as privilege where privilege.frontMessage=? and privilege.document=? and privilege.video=? ";
         Query query=session.createQuery(hql);
         query.setBoolean(0,false);
         query.setBoolean(1,false);
@@ -81,7 +82,7 @@ public class TestDao {
     @Test
     public void testDeletePersonHql() {
         session = new BaseDao().getSession();
-        String hql = "delete from entity.PersonEntity where name='哈哈哈'";
+        String hql = "delete from program.entity.PersonEntity where name='哈哈哈'";
         Query query = session.createQuery(hql);
 //        query.setParameter(1;
         int i = query.executeUpdate();
@@ -99,8 +100,9 @@ public class TestDao {
 //        System.out.println("count:"+i);
     }
     @Test
+    @Transactional
     public void testAddPerson(){
-        String hql = "from entity.PrivilegeEntity as privilege where " +
+        String hql = "from program.entity.PrivilegeEntity as privilege where " +
                 "privilege.frontMessage=? and " +
                 "privilege.document=? and " +
                 "privilege.video=? and " +
@@ -135,9 +137,9 @@ public class TestDao {
     }
     @Test
     public void testDao() throws IOException {
-        String hql="from entity.PersonEntity,entity.PrivilegeEntity as person";
-        Query query = session.createQuery(hql);
-        List list = query.list();
-        System.out.println(list);
+//        String hql="from entity.PersonEntity,entity.PrivilegeEntity as person";
+//        Query query = session.createQuery(hql);
+//        List list = query.list();
+//        System.out.println(list);
     }
 }

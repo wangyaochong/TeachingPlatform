@@ -1,4 +1,4 @@
-package util;
+package program.util;
 
 import javafx.util.Pair;
 import org.hibernate.Query;

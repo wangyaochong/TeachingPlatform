@@ -2,7 +2,7 @@ package test;
 
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import urlBean.HeaderUrl;
+import program.urlBean.HeaderUrl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +19,7 @@ public class TestJson {
         jsonlist.add(json);
         HeaderUrl headerUrl=new HeaderUrl(null);
         System.out.println(JSONObject.toJSONString(headerUrl));
+
         System.out.println(headerUrl);
     }
 }

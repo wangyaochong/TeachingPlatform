@@ -1,4 +1,4 @@
-package aop;
+package program.aop;
 
 public class AopSession {
     public void openSession(){

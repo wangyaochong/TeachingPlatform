@@ -1,4 +1,4 @@
-package urlBean.urlDef;
+package program.urlBean.urlDef;
 
 import org.springframework.context.support.ResourceBundleMessageSource;
 
