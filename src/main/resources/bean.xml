@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-4.3.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+          http://www.springframework.org/schema/aop
+          http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
     <!--数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
+        <property name="url"
+                  value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
         <property name="username" value="wangyaochong"></property>
         <property name="password" value="qwerqwer"></property>
     </bean>
@@ -20,21 +31,36 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
+                <prop key="current_session_context_class">thread</prop>
             </props>
         </property>
         <property name="packagesToScan" value="program.entity"></property>
         <!--packagesToScan可以代替annotateClasses属性-->
         <!--<property name="annotatedClasses">-->
-            <!--&lt;!&ndash;说明使用注解的entity，不写此属性会导致无法识别对应的表&ndash;&gt;-->
-            <!--<list>-->
-                <!--<value>program.entity.PersonEntity</value>-->
-                <!--<value>program.entity.PrivilegeEntity</value>-->
-            <!--</list>-->
+        <!--&lt;!&ndash;说明使用注解的entity，不写此属性会导致无法识别对应的表&ndash;&gt;-->
+        <!--<list>-->
+        <!--<value>program.entity.PersonEntity</value>-->
+        <!--<value>program.entity.PrivilegeEntity</value>-->
+        <!--</list>-->
         <!--</property>-->
         <!--<property name="annotatedPackages" value="program.entity"></property>-->
     </bean>
+
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
 
+    </bean>
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <!--注意，此处需要配置aspectJ的pom依赖，不然会报错：提示找不到aspectJweaver-->
+        <aop:pointcut id="txAop" expression="execution(* program.dao.GenericDao.*(*))"></aop:pointcut>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="txAop"></aop:advisor>
+    </aop:config>
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <!--如果使用上面这句，就可以不用配置事务切面，
+    在每一个方法中自己使用@Transactional标记，可以进行事务操作-->
 </beans>

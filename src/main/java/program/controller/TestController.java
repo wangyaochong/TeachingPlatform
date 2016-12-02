@@ -1,5 +1,6 @@
 package program.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import program.dao.BaseDao;
 import program.dao.PersonDao;
 import program.entity.PersonEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -18,6 +20,9 @@ import java.util.Locale;
  */
 @Controller
 public class TestController {
+    @Autowired
+    PersonDao personDao;
+
     @RequestMapping("/src/main/test")
     @ResponseBody
     public String test(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse ){
@@ -31,10 +36,16 @@ public class TestController {
     @ResponseBody
     public String test() {
         BaseDao baseDao = new BaseDao();
-        SessionFactory sessionFactory = baseDao.getSessionFactory();
-        PersonDao personDao = new PersonDao();
-        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, null, null, null, null));
+//        SessionFactory sessionFactory = baseDao.getSessionFactory();
+//        PersonDao personDao = new PersonDao();
+        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, "男", null, null, null));
         return delete.toString();
     }
+    @RequestMapping("/testQueryPerson")
+    @ResponseBody
+    public List<PersonEntity> testQuery(){
+        return personDao.simpleQueryList(new PersonEntity());//查询所有的用户
+    }
+
 
 }

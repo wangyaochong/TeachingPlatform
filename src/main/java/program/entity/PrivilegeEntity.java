@@ -4,6 +4,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/**
+ * privilegeEntity是所有的权限entity，用户可以自定义自己的权限
+ * 目前不考虑添加拥有不同权限的角色，用户自身直接与权限绑定
+ * 除了id，权限的各个字段的各种组合唯一
+ */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"frontMessage","document","video","assignment","personalInfomation"})})
 //@UniqueConstraint()注解，可以让多个列组成的联合属性唯一
@@ -39,6 +44,7 @@ public class PrivilegeEntity {
                 ", personalInfomation=" + personalInfomation +
                 '}';
     }
+
     public PrivilegeEntity( Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation) {
         this.frontMessage = frontMessage;
         this.document = document;

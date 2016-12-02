@@ -4,6 +4,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/**
+ * PersonEntity是所有的用户，包括教师，学生，管理员等，但只用一个表来表示，不同用户的区别有权限分隔
+ */
 @Entity
 public class PersonEntity {
     @Id
@@ -30,6 +33,20 @@ public class PersonEntity {
         this.phone = phone;
         this.email = email;
         this.privilegeEntity = privilegeEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonEntity{" +
+                "id='" + id + '\'' +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", privilegeEntity=" + privilegeEntity +
+                '}';
     }
 
     public String getId() {
@@ -94,20 +111,6 @@ public class PersonEntity {
 
     public void setPrivilegeEntity(PrivilegeEntity privilegeEntity) {
         this.privilegeEntity = privilegeEntity;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonEntity{" +
-                "id='" + id + '\'' +
-                ", number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", privilegeEntity=" + privilegeEntity +
-                '}';
     }
 
 }
