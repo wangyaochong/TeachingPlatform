@@ -15,7 +15,7 @@ public class PersonEntity {
     String id;
     String number;//学生就是学号，教师就是工号，管理员可以没有号码
     String name;//名字
-    String age;//年龄
+    Integer age;//年龄
     String gender;//性别，男或女
     String phone;//手机号码
     String email;//邮箱账号
@@ -25,7 +25,7 @@ public class PersonEntity {
     public PersonEntity() {
     }
 
-    public PersonEntity(String number, String name, String age, String gender, String phone, String email, PrivilegeEntity privilegeEntity) {
+    public PersonEntity(String number, String name, Integer age, String gender, String phone, String email, PrivilegeEntity privilegeEntity) {
         this.number = number;
         this.name = name;
         this.age = age;
@@ -73,11 +73,11 @@ public class PersonEntity {
         this.name = name;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

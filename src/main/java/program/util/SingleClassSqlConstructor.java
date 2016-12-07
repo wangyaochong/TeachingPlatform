@@ -11,13 +11,13 @@ import java.util.Map.Entry;
 public class SingleClassSqlConstructor {//单表sql语句构造器
     public static final String type_DELETE="delete";
     public static final String type_QUERY="from";
-    public void setParam(Query query, Map<String, Object> valueMap) {
+    public static void setParam(Query query, Map<String, Object> valueMap) {
         for (Entry<String, Object> e : valueMap.entrySet()) {
             query.setParameter(e.getKey(), e.getValue());
         }
     }
 
-    public <T> Pair<String, Map<String, Object>> createQuestionMarkSql_and(T condition,String operateType) {//返回的是sql字符串以及依次的值
+    public static <T> Pair<String, Map<String, Object>> createQuestionMarkSql_and(T condition,String operateType) {//返回的是sql字符串以及依次的值
         Field[] declaredFields = condition.getClass().getDeclaredFields();
         Map<String, Object> valueMap = new HashMap<String, Object>();
         //String sqlParam="delete "+condition.getClass().getName()+" as "+condition.getClass().getSimpleName()+" where ";

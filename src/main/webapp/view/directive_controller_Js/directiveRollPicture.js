@@ -1,7 +1,7 @@
-app.directive('rollPictureDirective', function () {
+app.directive('directiveRollPicture', function () {
     return {
         restrict: 'E',
-        templateUrl: 'view/directiveHtml/rollPictureDirective.html',
+        templateUrl: 'view/directiveHtml/directiveRollPicture.html',
         replace: true,
         controller:function ($scope,$http) {
             $http.get("rollPictureUrl").success(function (data) {

@@ -3,6 +3,9 @@ target
 *.iml
 node_modules
 
-/src/main/webapp/view/js/lib.js
-/src/main/webapp/view/js/app.js
+lib.js
+app.js
+
+app.css
+lib.css
 

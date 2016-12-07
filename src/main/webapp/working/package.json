@@ -8,17 +8,18 @@
     "url": "git://github.com/"
   },
   "dependencies": {
+    "angular": "^1.5.9",
     "gulp": "*",
     "gulp-concat": "*",
+    "gulp-html2jade": "*",
     "gulp-jade": "*",
+    "gulp-jshint": "*",
+    "gulp-plumber": "*",
+    "gulp-replace": "*",
     "gulp-util": "*",
     "gulp-watch": "*",
-    "gulp-jshint":"*",
-    "gulp-replace":"*",
-    "gulp-html2jade":"*",
-    "gulp-plumber":"*"
+    "ng-table": "^2.2.0"
   },
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

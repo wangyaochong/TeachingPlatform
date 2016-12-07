@@ -15,6 +15,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import program.util.PageBean;
+import program.util.PageListWithSingleBean;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -42,7 +44,8 @@ public class TestDao {
     public void testAddItem() {
         List<ResourceEntity> list = session.createCriteria(ResourceEntity.class).list();
         System.out.println(list);
-        session.save(new ItemEntity("你好", "这是一条消息", ItemType.ANNOUNCEMENT.toString(), true, null));
+//        session.save(new ItemEntity("课前预习", "同学们，今天咱们讲解有关高斯定理部分的内容，难度较大，请同学们提前复习", ItemType.ANNOUNCEMENT.toString(), true, new Date(),null));
+//        session.save(new ItemEntity("课后作业", "本次作业的内容已经放到文档中心，请同学们下载查阅，并按时上交作业", ItemType.ANNOUNCEMENT.toString(), true, new Date(),null));
 
     }
 
@@ -57,6 +60,17 @@ public class TestDao {
     ApplicationContext applicationContext;
     GenericDao genericDao;
     BaseDao baseDao;
+
+    @Test
+    public void testPageList(){
+        PageListWithSingleBean<PersonEntity> pageListWithSingleBean=new PageListWithSingleBean<PersonEntity>(session,new PersonEntity(),3,5,"age",true);
+        PageBean<PersonEntity> pageBean = pageListWithSingleBean.getPageBean();
+        System.out.println("总共："+pageBean.getPageTotalCount()+"页");
+        for(PersonEntity p:pageBean.getPageList()){
+            System.out.println(p);
+        }
+
+    }
 
     @Before
     public void before() throws IOException {
@@ -168,7 +182,7 @@ public class TestDao {
         PersonEntity personEntity = new PersonEntity(
                 "201399252",
                 "哈哈哈",
-                "22",
+                12,
                 "男",
                 "18840838242",
                 "1162025261@qq", list.get(0));

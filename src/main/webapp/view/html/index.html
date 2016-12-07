@@ -4,13 +4,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="view/css/lib.css">
-
+    <link rel="stylesheet" href="view/css/app.css">
 </head>
 <body>
-<header-directive></header-directive>
-<roll-picture-directive></roll-picture-directive>
+<directive-header></directive-header>
+<directive-roll-picture></directive-roll-picture>
+
 <a href="testDeletePerson">testDeletePerson</a>
 <a href="testQueryPerson">testQueryPerson</a>
+
+<div ng-controller="controllerFrontMessage">
+    <table ng-table="tableParams" class="table" show-filter="true">
+        <tr ng-repeat="user in $data">
+            <td ng-cloak="" title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                {{user.name}}</td>
+            <td ng-cloak="" title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                {{user.age}}</td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>
 <script src="view/js/lib.js"></script>

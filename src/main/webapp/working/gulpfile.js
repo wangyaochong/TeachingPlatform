@@ -9,10 +9,12 @@ var gulpModules = {
     gulpPlumber: require('gulp-plumber')
 }
 var processPath = {
-    js2oneSrcPath: ['../raw/js/begin.js', '../raw/js/state/*.js', '../raw/js/end.js', '../view/directiveJs/*.js'],
+    js2oneSrcPath: ['../raw/js/begin.js', '../raw/js/state/*.js', '../raw/js/end.js', '../view/directive_controller_Js/*.js'],
     js2onePath: '../view/js/',
-    js2oneLibPath: ['../raw/jslib/jquery-3.1.0.js', '../raw/jslib/bootstrap.js', '../raw/jslib/angular.js', '../raw/jslib/angular-ui-router.js'],
-    css2oneLibPath: ['../raw/csslib/bootstrap.min.css'],
+    js2oneLibPath: ['../raw/jslib/jquery-3.1.0.js', '../raw/jslib/bootstrap.js',
+        '../raw/jslib/angular.js','../raw/jslib/ng-table.js','../raw/jslib/angular-ui-router.js'],
+    css2oneLibPath: ['../raw/csslib/bootstrap.min.css','../raw/csslib/ng-table.css'],
+    css2oneSrcPath:['../raw/css/*.css'],
     css2onePath: '../view/css/',
     appJsPath: "../view/js/*.js"
 }
@@ -51,6 +53,7 @@ gulpModules.gulp.task(taskNames.many2one, function () {
     many2one(processPath.js2oneSrcPath, processPath.js2onePath, 'app.js')//把多个源码js合成一个app.js
     many2one(processPath.js2oneLibPath, processPath.js2onePath, 'lib.js')//把多个库合成一个lib.js
     many2one(processPath.css2oneLibPath, processPath.css2onePath, 'lib.css')//把多个css库合成一个
+    many2one(processPath.css2oneSrcPath,processPath.css2onePath,'app.css')
 })
 
 gulpModules.gulp.task(taskNames.watch, function () {

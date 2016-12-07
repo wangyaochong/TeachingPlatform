@@ -3,6 +3,7 @@ package program.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -22,17 +23,24 @@ public class ItemEntity {
     String description;//描述
     String type;//类型
     Boolean isOpen;//是否公开
+    Date createDate;//生成的时间
     @OneToMany(cascade = CascadeType.ALL)//当item删除后，对应文件也应该删除
     List<ResourceEntity> resources;//资源可以有一个、多个或者零个
 
-    public ItemEntity(String title, String description, String type, Boolean isOpen, List<ResourceEntity> resources) {
+    public ItemEntity(String title, String description, String type, Boolean isOpen, Date createDate, List<ResourceEntity> resources) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.isOpen = isOpen;
+        this.createDate = createDate;
         this.resources = resources;
     }
-
+    public Date getCreateDate() {
+        return createDate;
+    }
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
     public String getId() {
         return id;
     }
@@ -73,6 +81,7 @@ public class ItemEntity {
                 ", description='" + description + '\'' +
                 ", type='" + type + '\'' +
                 ", isOpen=" + isOpen +
+                ", createDate=" + createDate +
                 ", resources=" + resources +
                 '}';
     }
