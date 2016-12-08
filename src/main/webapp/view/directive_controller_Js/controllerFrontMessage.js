@@ -4,19 +4,19 @@ app.controller("controllerFrontMessage",function ($scope,NgTableParams) {
         {name:"hello",age:18},
         {name:"hello",age:18},
         {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18}
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18},
+        // {name:"hello",age:18}
         /*,*/];
     // $scope.tableParams = new NgTableParams({}, { dataset: data});
     /*
@@ -41,7 +41,7 @@ app.controller("controllerFrontMessage",function ($scope,NgTableParams) {
      total
      url
      */
-    $scope.tableParams = new NgTableParams({count:5}, { getData:function (params) {
+    $scope.tableParams = new NgTableParams({count:5}, { counts:[3,10],getData:function (params) {
         var count=params.count();
         // var data=params.data();
         var filter=params.filter();
@@ -61,6 +61,8 @@ app.controller("controllerFrontMessage",function ($scope,NgTableParams) {
         var sorting=params.sorting();
         var total=params.total();
         var url=params.url();
+
+        params.total(101);
         return data;
     }});
 })
