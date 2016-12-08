@@ -57,7 +57,7 @@
     </tx:advice>
     <aop:config>
         <!--注意，此处需要配置aspectJ的pom依赖，不然会报错：提示找不到aspectJweaver-->
-        <aop:pointcut id="txAop" expression="execution(* program.dao.GenericDao.*(*))"></aop:pointcut>
+        <aop:pointcut id="txAop" expression="execution(* program.dao.*.*(*))"></aop:pointcut>
         <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="txAop"></aop:advisor>
     </aop:config>
     <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->

@@ -12,7 +12,7 @@ public class TestPage {
         List<Integer> list=new ArrayList<Integer>();
         list.add(1);
         list.add(2);
-        PageBean pageBean=new PageBean(0,5,10,"hello",true,list);
-        System.out.println(pageBean);
+//        PageBean pageBean=new PageBean(0,5,10,"hello",true,list);
+//        System.out.println(pageBean);
     }
 }

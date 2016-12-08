@@ -25,7 +25,7 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 classpath:springMVC.xml,
-                classpath:bean.xml
+                classpath:hibernate.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>  <!-- tomcat启动后立即加载 -->

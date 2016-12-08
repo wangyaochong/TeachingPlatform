@@ -17,7 +17,7 @@ public class PersonEntity {
     String name;//名字
     Integer age;//年龄
     String gender;//性别，男或女
-    String phone;//手机号码
+    String phoneNumber;//手机号码
     String email;//邮箱账号
     @ManyToOne(cascade = CascadeType.ALL)
     PrivilegeEntity privilegeEntity;//所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
@@ -25,12 +25,12 @@ public class PersonEntity {
     public PersonEntity() {
     }
 
-    public PersonEntity(String number, String name, Integer age, String gender, String phone, String email, PrivilegeEntity privilegeEntity) {
+    public PersonEntity(String number, String name, Integer age, String gender, String phoneNumber, String email, PrivilegeEntity privilegeEntity) {
         this.number = number;
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.privilegeEntity = privilegeEntity;
     }
@@ -41,9 +41,9 @@ public class PersonEntity {
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
                 ", name='" + name + '\'' +
-                ", age='" + age + '\'' +
+                ", ag='" + age + '\'' +
                 ", gender='" + gender + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", privilegeEntity=" + privilegeEntity +
                 '}';
@@ -89,12 +89,12 @@ public class PersonEntity {
         this.gender = gender;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

@@ -5,7 +5,7 @@ import java.util.List;
 public class PageBean<T>{
     Integer pageCurrentIndex;//当前页码
     Integer pageRowSize;//每页显示条数
-    Integer pageTotalCount;//在当前页面大小的前提下，总共有多少页
+    Long pageTotalCount;//在当前页面大小的前提下，总共有多少页
     String orderBy;//按照哪个字段排序
     Boolean orderAsc;//是否升序排序
     List<T> pageList;//页面包含的列表
@@ -13,7 +13,7 @@ public class PageBean<T>{
     public PageBean() {
     }
 
-    public PageBean(Integer pageCurrentIndex, Integer pageRowSize, Integer pageTotalCount, String orderBy, Boolean orderAsc, List<T> pageList) {
+    public PageBean(Integer pageCurrentIndex, Integer pageRowSize, Long pageTotalCount, String orderBy, Boolean orderAsc, List<T> pageList) {
         this.pageCurrentIndex = pageCurrentIndex;
         this.pageRowSize = pageRowSize;
         this.pageTotalCount = pageTotalCount;
@@ -50,11 +50,11 @@ public class PageBean<T>{
         this.pageRowSize = pageRowSize;
     }
 
-    public Integer getPageTotalCount() {
+    public Long getPageTotalCount() {
         return pageTotalCount;
     }
 
-    public void setPageTotalCount(Integer pageTotalCount) {
+    public void setPageTotalCount(Long pageTotalCount) {
         this.pageTotalCount = pageTotalCount;
     }
 

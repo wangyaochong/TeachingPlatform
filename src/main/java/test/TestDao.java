@@ -19,7 +19,6 @@ import program.util.PageBean;
 import program.util.PageListWithSingleBean;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -63,7 +62,11 @@ public class TestDao {
 
     @Test
     public void testPageList(){
-        PageListWithSingleBean<PersonEntity> pageListWithSingleBean=new PageListWithSingleBean<PersonEntity>(session,new PersonEntity(),3,5,"age",true);
+        PersonEntity condition=new PersonEntity();
+//        condition.setAge(24);
+//        condition.setEmail("");
+        condition.setPhoneNumber("18840838242");
+        PageListWithSingleBean<PersonEntity> pageListWithSingleBean=new PageListWithSingleBean<PersonEntity>(session,condition,1,5,"ag",true);
         PageBean<PersonEntity> pageBean = pageListWithSingleBean.getPageBean();
         System.out.println("总共："+pageBean.getPageTotalCount()+"页");
         for(PersonEntity p:pageBean.getPageList()){
@@ -74,7 +77,7 @@ public class TestDao {
 
     @Before
     public void before() throws IOException {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml", "springMVC.xml");
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("hibernate.xml", "springMVC.xml");
         genericDao = (GenericDao) applicationContext.getBean("GenericDao");
         baseDao = (BaseDao) applicationContext.getBean("BaseDao");
         DriverManagerDataSource datasource = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/teachingplatform?useUnicode=true&characterEncoding=UTF-8", "wangyaochong", "qwerqwer");
@@ -95,7 +98,7 @@ public class TestDao {
         sessionFactory = localSessionFactoryBean.getObject();
         session = sessionFactory.openSession();
         session.beginTransaction();
-        applicationContext = new ClassPathXmlApplicationContext("classpath:springMVC.xml", "classpath:bean.xml");
+        applicationContext = new ClassPathXmlApplicationContext("classpath:springMVC.xml", "classpath:hibernate.xml");
         SessionFactory bean = applicationContext.getBean(SessionFactory.class);
         System.out.println(bean);
 

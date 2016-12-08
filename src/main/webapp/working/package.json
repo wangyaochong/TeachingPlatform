@@ -18,6 +18,7 @@
     "gulp-replace": "*",
     "gulp-util": "*",
     "gulp-watch": "*",
+    "mocha": "^3.2.0",
     "ng-table": "^2.2.0"
   },
   "scripts": {
