@@ -3,9 +3,9 @@ app.directive('directiveHeader', function () {
         restrict: 'E',
         templateUrl: 'view/directiveHtml/directiveHeader.html',
         replace: true,
-        controller:function ($scope,$http) {
-            $http.get("headerUrl").success(function (data) {
-                $scope.header=data
+        controller:function ($scope,$http,$q) {
+            $http.get("headerUrl").then(function (data) {
+                $scope.header=data.data
             })
         }
     }

@@ -4,8 +4,8 @@ app.directive('directiveRollPicture', function () {
         templateUrl: 'view/directiveHtml/directiveRollPicture.html',
         replace: true,
         controller:function ($scope,$http) {
-            $http.get("rollPictureUrl").success(function (data) {
-                $scope.pictures=data
+            $http.get("rollPictureUrl").then(function (data) {
+                $scope.pictures=data.data
             })
         }
     }

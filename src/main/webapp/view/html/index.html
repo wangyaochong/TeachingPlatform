@@ -9,20 +9,36 @@
 <body>
 <directive-header></directive-header>
 <directive-roll-picture></directive-roll-picture>
-
-<a href="testDeletePerson">testDeletePerson</a>
-<a href="testQueryPerson">testQueryPerson</a>
-
-<div ng-controller="controllerFrontMessage">
-    <table ng-table="tableParams" class="table" show-filter="true">
-        <tr ng-repeat="user in $data">
-            <td ng-cloak="" title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                {{user.name}}</td>
-            <td ng-cloak="" title="'Age'" filter="{ age: 'number'}" sortable="'age'">
-                {{user.age}}</td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="row">
+        <a href="testDeletePerson">testDeletePerson</a>
+        <a href="testQueryPerson">testQueryPerson</a>
+    </div>
 </div>
+
+<div class="container-fluid" >
+    <div class="row" >
+        <div class="col-md-1 col-lg-1"></div>
+        <div class="col-md-10 col-lg-10">
+            <div ng-controller="controllerFrontMessage">
+                <table ng-table="tableParams" class="table" show-filter="false">
+                    <tr ng-repeat="user in $data">
+                        <td ng-cloak="" title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                            {{user.name}}
+                        </td>
+                        <td ng-cloak="" title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                            {{user.age}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-1"></div>
+    </div>
+</div>
+
+
+
 
 </body>
 </html>

@@ -4,8 +4,8 @@ app.directive('directiveFoot', function () {
         templateUrl: 'view/directiveHtml/directiveFoot.html',
         replace: true,
         controller:function ($scope,$http) {
-            $http.get("headerUrl").success(function (data) {
-                $scope.header=data
+            $http.get("headerUrl").then(function (data) {
+                $scope.header=data.data
             })
         }
     }
