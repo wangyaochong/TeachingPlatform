@@ -2,13 +2,12 @@ package program.dao;
 
 import javafx.util.Pair;
 import org.hibernate.Query;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import program.util.SingleClassSqlConstructor;
 
 import java.util.List;
 import java.util.Map;
-@Repository(value="GenericDao")
+@Repository(value="GenericDao")//这个value是bean的名字
 public class GenericDao extends BaseDao {
     SingleClassSqlConstructor singleClassSqlConstructor=new SingleClassSqlConstructor();
     public <T> Integer simpleDelete(T condition){//返回通过一个查询条件【删除的列数】
