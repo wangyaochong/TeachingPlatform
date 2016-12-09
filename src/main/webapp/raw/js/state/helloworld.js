@@ -1,4 +1,5 @@
 
+//如果是直接调用$stateProvider，则有两个参数，第一个是state的名字，第二个是state的定义
 $stateProvider.state('hello',{
         url: '/hello',
         templateUrl:'view/html/index.hello.html',

@@ -57,8 +57,8 @@ gulpModules.gulp.task(taskNames.many2one, function () {
 })
 
 gulpModules.gulp.task(taskNames.watch, function () {
-    //监视jade路径下的文件是否有修改
-    gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.js2oneLibPath], [taskNames.many2one]);//js2one流程
+    //监视源码是否有修改，并执行相应的任务
+    gulpModules.gulp.watch([processPath.js2oneSrcPath,processPath.css2oneSrcPath], [taskNames.many2one]);//js2one流程
     //如果是监听多个文件，使用一个数组就可以
     gulpModules.gulp.watch([processPath.js2oneSrcPath,processPath.js2oneLibPath,processPath.css2oneSrcPath,processPath.css2oneLibPath], function (event) {
         //console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');

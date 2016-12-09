@@ -1,9 +1,9 @@
 app.controller("controllerFrontMessage",function ($scope,NgTableParams) {
     var data = [{name: "Moroni", age: 50},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
-        {name:"hello",age:18},
+        {name:"hello",age:19},
+        {name:"hello",age:20},
+        {name:"hello",age:19},
+        {name:"hello",age:15},
         // {name:"hello",age:18},
         // {name:"hello",age:18},
         // {name:"hello",age:18},

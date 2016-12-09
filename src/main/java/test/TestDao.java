@@ -152,7 +152,8 @@ public class TestDao {
     @Test
     public void testDeletePerson() throws InterruptedException {
         PersonDao personDao = new PersonDao();
-        personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, null, null, null, null));
+        PersonEntity condition=new PersonEntity(null,null,"哈哈哈",null,null,null,null,null);
+        personDao.simpleDelete(condition);
 //        String hql="delete from PersonEntity where name=?";
 //        Query query=session.createQuery(hql);
 //        query.setString(0,"哈哈哈");
@@ -163,6 +164,7 @@ public class TestDao {
     @Test
     @Transactional
     public void testAddPerson() {
+        PersonEntity test=new PersonEntity();
         String hql = "from program.entity.PrivilegeEntity as privilege where " +
                 "privilege.frontMessage=? and " +
                 "privilege.document=? and " +
@@ -184,6 +186,7 @@ public class TestDao {
         System.out.println(list);
         PersonEntity personEntity = new PersonEntity(
                 "201399252",
+                "qwerqwer",
                 "哈哈哈",
                 12,
                 "男",

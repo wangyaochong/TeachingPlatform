@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{x.href}}">{{x.name}}</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}} <span class="caret"></span></a>
+                    <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-cloak="" ng-repeat="x in header.headerDropDownList"><a ng-href="{{x.href}}">{{x.name}}</a></li>
                     </ul>

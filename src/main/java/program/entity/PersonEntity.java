@@ -14,6 +14,7 @@ public class PersonEntity {
     @GeneratedValue(generator = "generator")
     String id;
     String number;//学生就是学号，教师就是工号，管理员可以没有号码
+    String password;//用户名密码
     String name;//名字
     Integer age;//年龄
     String gender;//性别，男或女
@@ -25,14 +26,12 @@ public class PersonEntity {
     public PersonEntity() {
     }
 
-    public PersonEntity(String number, String name, Integer age, String gender, String phoneNumber, String email, PrivilegeEntity privilegeEntity) {
-        this.number = number;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.privilegeEntity = privilegeEntity;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -40,13 +39,25 @@ public class PersonEntity {
         return "PersonEntity{" +
                 "id='" + id + '\'' +
                 ", number='" + number + '\'' +
+                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", ag='" + age + '\'' +
+                ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", privilegeEntity=" + privilegeEntity +
                 '}';
+    }
+
+    public PersonEntity(String number, String password, String name, Integer age, String gender, String phoneNumber, String email, PrivilegeEntity privilegeEntity) {
+        this.number = number;
+        this.password = password;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.privilegeEntity = privilegeEntity;
     }
 
     public String getId() {

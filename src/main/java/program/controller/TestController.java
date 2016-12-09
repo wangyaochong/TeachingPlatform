@@ -1,14 +1,13 @@
 package program.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import program.dao.BaseDao;
-import program.dao.PersonDao;
-import program.entity.PersonEntity;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
+import program.dao.BaseDao;
+import program.dao.PersonDao;
+import program.entity.PersonEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +37,9 @@ public class TestController {
         BaseDao baseDao = new BaseDao();
 //        SessionFactory sessionFactory = baseDao.getSessionFactory();
 //        PersonDao personDao = new PersonDao();
-        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, "男", null, null, null));
+//        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, "男", null, null, null));
+        PersonEntity newPerson=new PersonEntity("201392252","3497725","hello",18,"男","18840838242","1162025261@qq.com",null);
+        Integer delete=personDao.simpleDelete(newPerson);
         return delete.toString();
     }
     @RequestMapping("/testQueryPerson")
