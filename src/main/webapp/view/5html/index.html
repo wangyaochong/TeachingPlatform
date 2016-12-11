@@ -20,7 +20,7 @@
                 <div ng-controller="controllerFrontMessage" class="table-responsive">
                     <table ng-table="frontMessageTableParams" class="table " show-filter="false">
                         <tr ng-repeat="item in $data">
-                            <td ng-cloak="" title="'发布时间'" width="10%" align="left">
+                            <td ng-cloak="" title="'时间'" width="10%" align="left">
                                 {{item.createDate|date:"yyyy-MM-dd"}}
                                 <!--<textarea type="text" ng-bind="item.createDate|date:'yyyy-MM-dd'" ng-disabled="true" width="100%"></textarea>-->
                             </td>
