@@ -20,7 +20,7 @@ public class PersonEntity {
     String gender;//性别，男或女
     String phoneNumber;//手机号码
     String email;//邮箱账号
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     PrivilegeEntity privilegeEntity;//所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
 
     public PersonEntity() {

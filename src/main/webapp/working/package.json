@@ -10,6 +10,7 @@
   "dependencies": {
     "angular": "^1.5.9",
     "angular-ui-router": "^0.3.2",
+    "autosize": "^3.0.20",
     "gulp": "*",
     "gulp-concat": "*",
     "gulp-html2jade": "*",

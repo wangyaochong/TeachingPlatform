@@ -1,4 +1,5 @@
 package program.urlBean;
+import program.urlBean.urlConstant.UrlConstant;
 import program.urlBean.urlDef.UrlDefinition;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class HeaderUrl  {
                 new UrlDefinition("header.navLeft.视频","#/video",locale)
         ));
         headerNavRight=new ArrayList<UrlDefinition>(Arrays.asList(//导航栏右侧菜单
-                new UrlDefinition("header.navRight.登录","#/logIn",locale)
+                new UrlDefinition("header.navRight.注销", UrlConstant.WEBROOTURL+"logOut",locale)
         ));
         headerDropDownTitle=new UrlDefinition("header.navDrop","#",locale);//下拉菜单的标题
         headerDropDownList=new ArrayList<UrlDefinition>(Arrays.asList(//下拉菜单具体选项

@@ -14,7 +14,7 @@ public class AssignmentEntity {
     @OneToOne
     ItemEntity itemEntity;
     Date deadline;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     List<SolutionEntity> solutionEntities;
 
     public String getId() {

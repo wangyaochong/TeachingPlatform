@@ -12,7 +12,7 @@ public class SolutionEntity {
     String id;
     Integer mark;//得分
     String comment;//评语
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     List<ResourceEntity> resourceEntities;
 
     public SolutionEntity() {

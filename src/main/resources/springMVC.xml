@@ -10,7 +10,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
-    <context:component-scan base-package="program.controller,program.urlBean,program.entity,program.dao"></context:component-scan>
+    <context:component-scan base-package="program"></context:component-scan>
     <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties"></context:property-placeholder>
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
     <mvc:annotation-driven>

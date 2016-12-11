@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/TeachingPlatform/view/css/lib.css">
+    <link rel="stylesheet" href="/TeachingPlatform/view/css/app.css">
+</head>
+<body>
+<directive-header></directive-header>
+<ui-view></ui-view>
+<directive-roll-picture></directive-roll-picture>
+<div container-fluid>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="page-header"> <h1>公告</h1></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div ng-controller="controllerFrontMessage" class="table-responsive">
+                    <table ng-table="frontMessageTableParams" class="table " show-filter="false">
+                        <tr ng-repeat="item in $data">
+                            <td ng-cloak="" title="'发布时间'" width="10%" align="left">
+                                {{item.createDate|date:"yyyy-MM-dd"}}
+                                <!--<textarea type="text" ng-bind="item.createDate|date:'yyyy-MM-dd'" ng-disabled="true" width="100%"></textarea>-->
+                            </td>
+                            <td ng-cloak="" title="'标题'" width="15%" align="left">
+                                <textarea ng-model="item.title"  ng-disabled="true" width="100%" rows="1"></textarea>
+                            </td>
+                            <td ng-cloak="" title="'内容'" width="70%" align="left">
+                                <textarea ng-model="item.description" wrap="hard" ng-disabled="true" width="100%"
+                                          rows="1"    ></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--</div>-->
+
+</body>
+</html>
+<script src="/TeachingPlatform/view/js/lib.js"></script>
+<script src="/TeachingPlatform/view/js/app.js"></script>

@@ -4,7 +4,8 @@
         <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
         <!--&lt;!&ndash;<li data-target="#carousel-example-generic" data-slide-to="1"></li>&ndash;&gt;-->
         <!--&lt;!&ndash;<li data-target="#carousel-example-generic" data-slide-to="2"></li>&ndash;&gt;-->
-        <li ng-class="{true:'active',false:''}[$index==0]" data-target="#carousel-example-generic" data-slide-to="$index" ng-repeat="x in pictures.pictures"></li>
+        <li ng-class="{true:'active',false:''}[$index==0]" data-target="#carousel-example-generic" data-slide-to="{{$index}}"
+            ng-repeat="x in pictures.pictures"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
         <div  ng-class="{true:'item active',false:'item'}[$index==0]" ng-repeat="x in pictures.pictures">

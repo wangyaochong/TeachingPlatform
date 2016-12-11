@@ -6,16 +6,20 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class PageListWithSingleBean<T> {
     PageBean<T> pageBean=new PageBean();//分页的保存项
     Session session;//用来获取分页信息的session
     T condition;//查询条件
 
+    public PageListWithSingleBean(){
+
+    }
     //构造函数的公共方法
     private void init(Session session, T condition,Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc){
         this.condition=condition;

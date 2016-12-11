@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * itemEntity代表教学平台的单项信息
@@ -24,7 +23,7 @@ public class ItemEntity {
     String type;//类型
     Boolean isOpen;//是否公开
     Date createDate;//生成的时间
-    @OneToMany(cascade = CascadeType.ALL)//当item删除后，对应文件也应该删除
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
     List<ResourceEntity> resources;//资源可以有一个、多个或者零个
 
     public ItemEntity(String title, String description, String type, Boolean isOpen, Date createDate, List<ResourceEntity> resources) {

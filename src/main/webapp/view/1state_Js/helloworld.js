@@ -2,7 +2,7 @@
 //如果是直接调用$stateProvider，则有两个参数，第一个是state的名字，第二个是state的定义
 $stateProvider.state('hello',{
         url: '/hello',
-        templateUrl:'view/html/index.hello.html',
+        templateUrl:templateHtmlUrl+'index.hello.html',
         controller:function ($scope,$state,$rootScope) {
             $scope.name="wangyaochong";
             $scope.world="+++good";
@@ -12,7 +12,7 @@ $stateProvider.state('hello',{
     var aboutState ={
         name:'about',
         url: '/about?world',
-        templateUrl: 'view/html/index.world.html',
+        templateUrl: templateHtmlUrl+'index.world.html',
         controller:function ($scope,$stateParams,$rootScope) {
             $scope.world=$stateParams.world;
             $rootScope.rootWorld='rootWorld'
@@ -22,13 +22,13 @@ $stateProvider.state('hello',{
     var testState ={
         name:'about.test',
         url: '/test',
-        templateUrl: 'view/html/index.world.test.html',
+        templateUrl: templateHtmlUrl+'index.world.test.html',
     };
 
     var testState2={
         name:'about.test2',
         url: '/test2?world2',
-        templateUrl:'view/html/index.world.test2.html',
+        templateUrl:templateHtmlUrl+'index.world.test2.html',
         controller:function ($scope,$stateParams) {
             $scope.world=$stateParams.world2;
         }

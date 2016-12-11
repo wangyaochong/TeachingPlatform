@@ -1,10 +1,10 @@
 app.directive('directiveFoot', function () {
     return {
         restrict: 'E',
-        templateUrl: 'view/directiveHtml/directiveFoot.html',
+        templateUrl: directiveHtmlUrl+'directiveFoot.html',
         replace: true,
         controller:function ($scope,$http) {
-            $http.get("headerUrl").then(function (data) {
+            $http.get(webRootUrl+"headerUrl").then(function (data) {
                 $scope.header=data.data
             })
         }

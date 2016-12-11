@@ -9,12 +9,15 @@ var gulpModules = {
     gulpPlumber: require('gulp-plumber')
 }
 var processPath = {
-    js2oneSrcPath: ['../raw/js/begin.js', '../raw/js/state/*.js', '../raw/js/end.js', '../view/directive_controller_Js/*.js'],
+    js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2directive_controller_Js/*.js'],
     js2onePath: '../view/js/',
     js2oneLibPath: ['../raw/jslib/jquery.js', '../raw/jslib/bootstrap.js',
-        '../raw/jslib/angular.js','../raw/jslib/ng-table.js','../raw/jslib/angular-ui-router.js'],
-    css2oneLibPath: ['../raw/csslib/bootstrap.min.css','../raw/csslib/ng-table.css'],
-    css2oneSrcPath:['../raw/css/*.css'],
+        '../raw/jslib/angular.js','../raw/jslib/ng-table.js','../raw/jslib/angular-ui-router.js',
+        '../raw/jslib/bootstrap-datepicker.js','../raw/jslib/bootstrap-datepicker.zh-CN.min.js',
+        '../raw/jslib/autosize.js'
+    ],
+    css2oneLibPath: ['../raw/csslib/bootstrap.min.css','../raw/csslib/ng-table.css','../raw/csslib/bootstrap-datepicker3.css'],
+    css2oneSrcPath:['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',
     appJsPath: "../view/js/*.js"
 }

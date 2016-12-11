@@ -1,0 +1,53 @@
+/*td input {*/
+    /*border: 0px !important;*/
+    /*background-color: transparent;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*text-align: center;*/
+/*}*/
+
+.panel {
+    margin: 3px;
+}
+.panel-heading{
+    padding: 0px;
+}
+.panel-body{
+    padding: 20px;
+}
+.page-header{
+    overflow: auto;
+    /*margin:0px;*/
+    margin: 0px 0px 0px 0px;
+    padding-left: 10px;
+    /*margin-left: 10px;*/
+}
+/*td{*/
+    /*!*width: 15%;*!*/
+    /*height: 0px!important;*/
+    /*overflow: auto;*/
+/*}*/
+td textarea{
+    width: 100%;
+    /*height: 0px;*/
+    background-color: transparent;
+    border: 0px;
+    resize: none;
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+    text-align: left;
+    /*overflow: visible;*/
+    /*overflow-y: visible;*/
+    overflow: auto;
+}
+.ng-table-header{
+    text-align: left;
+    align:left;
+}
+
+/*table{*/
+/*align:center;*/
+/*}*/
+/*th{*/
+/*align:left!important;*/
+/*}*/

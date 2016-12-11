@@ -2,8 +2,10 @@ package test.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import program.dao.GenericDao;
 import program.entity.PersonEntity;
 import program.entity.PrivilegeEntity;
 
@@ -13,6 +15,13 @@ import java.util.Properties;
 public class TestDaoUtil {
     static Session session;
     private static SessionFactory sessionFactory;
+
+    public static GenericDao getGenericDao() {
+        return genericDao;
+    }
+
+
+    static GenericDao genericDao;
     static {
         DriverManagerDataSource datasource = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/teachingplatform?useUnicode=true&characterEncoding=UTF-8", "wangyaochong", "qwerqwer");
         datasource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -32,6 +41,9 @@ public class TestDaoUtil {
             e.printStackTrace();
         }
         sessionFactory = localSessionFactoryBean.getObject();
+        ClassPathXmlApplicationContext ctx=
+                new ClassPathXmlApplicationContext("classpath:hibernate.xml","classpath:springMVC.xml","classpath:springSecurity.xml");
+        genericDao = (GenericDao) ctx.getBean("GenericDao");
     }
     public static Session getSessionAndBeginTransaction() {
         session = sessionFactory.openSession();

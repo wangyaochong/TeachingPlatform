@@ -21,6 +21,9 @@ public class GenericDao extends BaseDao {
                 SingleClassSqlConstructor.createQuestionMarkSql_and(condition,SingleClassSqlConstructor.type_QUERY);
         Query query = getSession().createQuery(deleteQuestionMarkSql_and.getKey());
         SingleClassSqlConstructor.setParam(query,deleteQuestionMarkSql_and.getValue());
+        if(query.list().size()==0){
+            return null;
+        }
         return (T)query.list().get(0);
     }
     public <T> List<T> simpleQueryList(T condition){

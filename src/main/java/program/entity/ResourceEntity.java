@@ -14,7 +14,7 @@ public class ResourceEntity {
     @GenericGenerator(name="generator",strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;//资源id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     PersonEntity uploader;//上传者
     String filePath;//文件路径
     Date uploadTime;//上传时间
