@@ -4,5 +4,11 @@
     left: 50%;
     transform: translate(-50%,-50%);
     /*transform用于让登录框居中显示*/
-    display: block;
+    /*display: block;*/
 }
+/*input:-ms-input-placeholder{*/
+    /*text-align: center;*/
+/*}*/
+/*input::-webkit-input-placeholder{*/
+    /*text-align: center;*/
+/*}*/

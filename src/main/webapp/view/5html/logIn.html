@@ -9,14 +9,16 @@
 </head>
 <body>
 <div class="logInContent">
-    <form action="/TeachingPlatform/logIn" method="post" role="form">
+    <form action="/TeachingPlatform/logIn" method="post" role="form" autocomplete="off">
         <legend align="center">登录</legend>
         <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="请输入用户名">
-                <br>
-                <input type="password" class="form-control" name="password" placeholder="请输入密码">
-                <br>
-                <button type="submit" class="btn btn-primary btn-block">提交</button>
+            <input type="text" style="display:none">
+            <input type="text" class="form-control" name="username" placeholder="请输入用户名" autocomplete="off">
+            <br>
+            <input type="password" style="display:none">
+            <input type="password" class="form-control" name="password" placeholder="请输入密码" autocomplete="new-password">
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">提交</button>
         </div>
     </form>
 </div>
