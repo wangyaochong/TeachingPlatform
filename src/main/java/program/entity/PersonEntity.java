@@ -13,7 +13,11 @@ public class PersonEntity {
     @GenericGenerator(name="generator",strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
+
+    @Column(unique = true)
     String number;//学生就是学号，教师就是工号，管理员可以没有号码
+
+
     String password;//用户名密码
     String name;//名字
     Integer age;//年龄
