@@ -21,6 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         PersonEntity personEntity = new PersonEntity();
         personEntity.setNumber(s);
         PersonEntity result = genericDao.simpleQueryOne(personEntity);
-        return new AuthUserDetails(result);
+        return new AuthUserDetailsImpl(result);
     }
 }

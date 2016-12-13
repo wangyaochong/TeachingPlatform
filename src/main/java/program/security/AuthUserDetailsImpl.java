@@ -10,9 +10,9 @@ import java.util.Collection;
 /**
  * Created by【王耀冲】on 【2016/12/11】 at 【12:10】.
  */
-public class AuthUserDetails implements UserDetails {
+public class AuthUserDetailsImpl implements UserDetails {
     PersonEntity personEntity;
-    public AuthUserDetails(PersonEntity personEntity){
+    public AuthUserDetailsImpl(PersonEntity personEntity){
         this.personEntity=personEntity;
         if(this.personEntity==null){
             this.personEntity=new PersonEntity();//如果没有查询到用户，给一个不存在的person

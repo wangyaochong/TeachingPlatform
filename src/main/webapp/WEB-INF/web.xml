@@ -18,6 +18,15 @@
     <!--</context-param>-->
     <!--1.配置spring分发器(是总的控制中心  被拦截的url会汇聚到该servlet) -->
     <filter>
+        <filter-name>securityContextFilter</filter-name>
+        <filter-class>program.security.filter.SecurityContextFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityContextFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
