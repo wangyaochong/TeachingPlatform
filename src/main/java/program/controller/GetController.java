@@ -64,8 +64,12 @@ public class GetController {
     public PersonEntity getCurrentUser() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
+        String id = authentication.getName();
         AuthUserDetailsImpl principal = (AuthUserDetailsImpl) authentication.getPrincipal();
-        return principal.getPersonEntity();
+        PersonEntity personEntity=new PersonEntity();
+        personEntity.setId(principal.getUsername());
+        //由于用户是缓存在session中，所以如果当session有效时，用户权限发生更改，session缓存的用户信息不变，所以需要从数据库中查询
+        return genericDao.simpleQueryOne(personEntity) ;
     }
 
 }

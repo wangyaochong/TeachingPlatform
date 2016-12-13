@@ -42,6 +42,6 @@ public class AuthImpl implements Authentication {
 
     @Override
     public String getName() {
-        return authUserDetails.getUsername();
+        return authUserDetails.getPersonEntity().getId();
     }
 }

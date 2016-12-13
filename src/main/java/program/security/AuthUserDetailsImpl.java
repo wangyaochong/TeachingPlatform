@@ -38,7 +38,7 @@ public class AuthUserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return personEntity.getNumber();
+        return personEntity.getId();
     }//这里的用户编号，也就是学号之类的是用户登录名
 
     @Override

@@ -29,7 +29,15 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 $timeout(function () {
                     autosize(document.querySelectorAll('textarea'));
                 }, 0)
-                var user=UserService.getCurrentUser();
+                // var promise=UserService.getCurrentUser();
+                // promise.then(function (data) {
+                //     var test=data;
+                // })
+                var promise=UserService.hasFrontMessagePriv();
+                promise.then(function (data) {
+                    $scope.editable=data;
+                })
+
                 // angular.forEach(data.data.pageList,function (data,index) {
                 //     //要在另一个线程中给控件初始化
                 //     // $timeout(function () {
@@ -49,8 +57,7 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                     data.isEditing=false;//是否正在编辑为假
 
                 })
-                console.log(user)
-                $scope.editable=true;
+
                 $scope.pagelist=data.data.pageList;
                 return data.data.pageList;
             })
