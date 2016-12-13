@@ -7,19 +7,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a ng-cloak="" class="navbar-brand" ng-href="{{header.webTitle.href}}">{{header.webTitle.name}}</a>
+            <!--由于ui-sref不支持动态绑定，所以只能使用ng-href，使用全路径来进行路由切换-->
+            <a ng-cloak="" class="navbar-brand" ng-href="{{stateRootUrl+header.webTitle.href}}">{{header.webTitle.name}}</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li ng-cloak="" ng-repeat="x in header.headerNavLeft" ><a ng-href="{{x.href}}">{{x.name}}</a></li>
+                <li ng-cloak="" ng-repeat="x in header.headerNavLeft" ><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{x.href}}">{{x.name}}</a></li>
+                <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
                 <li class="dropdown">
                     <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-cloak="" ng-repeat="x in header.headerDropDownList"><a ng-href="{{x.href}}">{{x.name}}</a></li>
+                        <li ng-cloak="" ng-repeat="x in header.headerDropDownList"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
                     </ul>
                 </li>
             </ul>

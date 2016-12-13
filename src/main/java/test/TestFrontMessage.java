@@ -24,7 +24,7 @@ public class TestFrontMessage {
 
     @Test
     public void testAddFrontMessage(){
-        ItemEntity itemEntity=new ItemEntity("课前预习","今天咱们讲解线性代数第一个，请同学们做好预习", ItemType.ANNOUNCEMENT.toString(),true,new Date(),null);
+        ItemEntity itemEntity=new ItemEntity("通知","本周老师要出差，需要请假一天，缺下的课程周六找时间补上", ItemType.ANNOUNCEMENT.toString(),true,new Date(),null);
         thisSession.save(itemEntity);
     }
 }

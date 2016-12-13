@@ -3,12 +3,13 @@ package program.util;
 import java.util.List;
 
 public class PageBean<T>{
-    Integer pageCurrentIndex;//当前页码
-    Integer pageRowSize;//每页显示条数
-    Long pageTotalCount;//在当前页面大小的前提下，总共有多少页
-    String orderBy;//按照哪个字段排序
-    Boolean orderAsc;//是否升序排序
-    List<T> pageList;//页面包含的列表
+    private Integer pageCurrentIndex;//当前页码
+    private Integer pageRowSize;//每页显示条数
+    private Long pageTotalCount;//在当前页面大小的前提下，总共有多少页
+    private Long totalRowCount;//总共有多少行
+    private String orderBy;//按照哪个字段排序
+    private Boolean orderAsc;//是否升序排序
+    private List<T> pageList;//页面包含的列表
 
     public PageBean() {
     }
@@ -20,7 +21,9 @@ public class PageBean<T>{
         this.orderBy = orderBy;
         this.orderAsc = orderAsc;
         this.pageList = pageList;
+        this.pageTotalCount=pageTotalCount;
     }
+
 
     @Override
     public String toString() {
@@ -28,10 +31,18 @@ public class PageBean<T>{
                 "pageCurrentIndex=" + pageCurrentIndex +
                 ", pageRowSize=" + pageRowSize +
                 ", pageTotalCount=" + pageTotalCount +
+                ", totalRowCount=" + totalRowCount +
                 ", orderBy='" + orderBy + '\'' +
                 ", orderAsc=" + orderAsc +
                 ", pageList=" + pageList +
                 '}';
+    }
+    public Long getTotalRowCount() {
+        return totalRowCount;
+    }
+
+    public void setTotalRowCount(Long totalRowCount) {
+        this.totalRowCount = totalRowCount;
     }
 
     public Integer getPageCurrentIndex() {

@@ -9,7 +9,7 @@ var gulpModules = {
     gulpPlumber: require('gulp-plumber')
 }
 var processPath = {
-    js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2directive_controller_Js/*.js'],
+    js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2angular_component_Js/*.js'],
     js2onePath: '../view/js/',
     js2oneLibPath: ['../raw/jslib/jquery.js', '../raw/jslib/bootstrap.js',
         '../raw/jslib/angular.js','../raw/jslib/ng-table.js','../raw/jslib/angular-ui-router.js',

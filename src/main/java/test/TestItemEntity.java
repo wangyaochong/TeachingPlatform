@@ -12,7 +12,7 @@ import java.util.Date;
 public class TestItemEntity {
     @Test
     public void test(){
-        ItemEntity itemEntity=new ItemEntity("dsfds","sdfds", ItemType.ANNOUNCEMENT.toString(),true,new Date(),null);
+        ItemEntity itemEntity=new ItemEntity("通知","今天天气不好，老师可能会迟到，请同学们先自习。", ItemType.ANNOUNCEMENT.toString(),true,new Date(),null);
         Date s = itemEntity.getCreateDate();
         System.out.println(s);
     }

@@ -1,0 +1,1 @@
+这个文件夹放的是所有关于angularJs的组件，包括Service，Factory，Controller，Directive等

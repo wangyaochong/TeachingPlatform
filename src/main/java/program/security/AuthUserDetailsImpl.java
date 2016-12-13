@@ -11,7 +11,16 @@ import java.util.Collection;
  * Created by【王耀冲】on 【2016/12/11】 at 【12:10】.
  */
 public class AuthUserDetailsImpl implements UserDetails {
-    PersonEntity personEntity;
+    public PersonEntity getPersonEntity() {
+        return personEntity;
+    }
+
+    public void setPersonEntity(PersonEntity personEntity) {
+        this.personEntity = personEntity;
+    }
+
+    private PersonEntity personEntity;
+
     public AuthUserDetailsImpl(PersonEntity personEntity){
         this.personEntity=personEntity;
         if(this.personEntity==null){

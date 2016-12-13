@@ -18,17 +18,17 @@ public class AuthImpl implements Authentication {
 
     @Override
     public Object getCredentials() {
-        return authUserDetails;
+        return this.authUserDetails.getPersonEntity();
     }
 
     @Override
     public Object getDetails() {
-        return this.authUserDetails;
+        return this.authUserDetails.getPersonEntity();
     }
 
     @Override
     public Object getPrincipal() {
-        return this.authUserDetails;
+        return this.authUserDetails.getPersonEntity();
     }
 
     @Override
@@ -42,6 +42,6 @@ public class AuthImpl implements Authentication {
 
     @Override
     public String getName() {
-        return null;
+        return authUserDetails.getUsername();
     }
 }
