@@ -1,0 +1,15 @@
+:root{
+    --theme-basic-color: #337ab7;
+    --theme-light-color:#47adff;
+    --theme-white-color:white;
+}
+
+*{
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    white-space: normal!important;
+}
+

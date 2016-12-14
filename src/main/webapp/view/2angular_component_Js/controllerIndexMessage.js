@@ -1,5 +1,6 @@
-app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http, $filter, $timeout,UserService) {
-
+app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http, $filter, $timeout, UserService) {
+    $scope.pageList=[];
+    $scope.editable=false;
     $scope.frontMessageTableParams = new NgTableParams({count: 5}, {
         counts: [],//代表用户不可以切换每页显示的数量
         paginationMaxBlocks: 10,//最多显示的按钮
@@ -12,7 +13,7 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 thisOrderBy = (params.orderBy()[0]).substr(1);
             }
             return $http({
-                url: webRootUrl + "getItemEntityPage",
+                url: webRootUrl + "ItemEntity/getItemEntityPage",
                 method: "get",
                 params: {
                     pageCurrentIndex: params.page(),
@@ -33,9 +34,9 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 // promise.then(function (data) {
                 //     var test=data;
                 // })
-                var promise=UserService.hasFrontMessagePriv();
+                var promise = UserService.hasFrontMessagePriv();
                 promise.then(function (data) {
-                    $scope.editable=data;
+                    $scope.editable = data;
                 })
 
                 // angular.forEach(data.data.pageList,function (data,index) {
@@ -53,15 +54,15 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 //     // data.createDate=new Date(data.createDate)
                 //     data.createDate=$filter('date')(data.createDate,'yyyy-MM-dd');//将数字日期转换成为字符串日期
                 // })
-                angular.forEach(data.data.pageList,function (data, index) {
-                    data.isEditing=false;//是否正在编辑为假
-
+                angular.forEach(data.data.pageList, function (data) {
+                    data.isEditing = false;//是否正在编辑为假
+                    data.dataCopy = {};
+                    angular.copy(data, data.dataCopy);//保存编辑前的内容
                 })
-
-                $scope.pagelist=data.data.pageList;
+                $scope.pagelist = data.data.pageList;
                 return data.data.pageList;
             })
-
         }
     });
+
 })

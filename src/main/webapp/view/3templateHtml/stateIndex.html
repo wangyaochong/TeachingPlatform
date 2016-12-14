@@ -2,7 +2,7 @@
 <div container-fluid>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="page-header"><h1>公告</h1></div>
+            <div class="page-header"><h3>公告</h3></div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -10,22 +10,46 @@
                     <!--pagelist{{pagelist}}-->
                     <table ng-table="frontMessageTableParams" class="table " show-filter="false">
                         <tr ng-repeat="item in $data">
-                            <td ng-cloak="" title="'时间'" width="10%" align="left">
+                            <td ng-cloak="" title="'时间'" width="10%" align="left" style="min-width: 50px;">
                                 {{item.createDate|date:"yyyy-MM-dd"}}
                             </td>
-                            <td ng-cloak="" title="'标题'" width="10%" align="left">
+                            <td ng-cloak="" title="'标题'" width="10%" align="left" style="min-width: 50px;">
                                 <textarea ng-model="item.title" ng-disabled="!item.isEditing" width="100%" rows="1"></textarea>
                             </td>
-                            <td ng-cloak="" title="'内容'" width="75%" align="left">
+                            <td ng-cloak="" title="'内容'" align="left">
                                 <textarea ng-model="item.description" ng-disabled="!item.isEditing" width="100%"
                                           rows="1"></textarea>
                             </td>
-                            <td ng-cloak="" title="'编辑'" width="5%" ng-if="editable">
-                                <button type="button" class="btn btn-primary btn-sm" ng-click="item.isEditing=!item.isEditing">
+                            <td ng-cloak="" title="'编辑'" width="10%" ng-if="editable">
+                                <button ng-if="!item.isEditing" type="button" class="btn btn-primary btn-sm"
+                                        ng-click="item.isEditing=!item.isEditing">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm">
+                                <button ng-if="item.isEditing" type="button" class="btn btn-primary btn-sm"
+                                        ng-click="item.isEditing=!item.isEditing;saveItemEntity(item)">
+                                    <span class="glyphicon glyphicon-floppy-saved"></span>
+                                </button>
+                                <br class="visible-xs-block">
+                                <!--在超小屏幕换行-->
+                                <button ng-if="!item.isEditing" type="button" class="btn btn-danger btn-sm"
+                                        ng-click="item.isEditing=!item.isEditing;deleteItemEntity(item,$index,$data)">
                                     <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                                <button ng-if="item.isEditing" type="button" class="btn btn-danger btn-sm"
+                                        ng-click="item.isEditing=!item.isEditing;revertItemEntity(item);">
+                                    <span class="glyphicon glyphicon-floppy-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr ng-if="editable">
+                            <td colspan="3"></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    <div  class="hidden-xs hidden-sm" style="display: inline">
+                                        <br class="visible-xs-block">&nbsp;
+                                        <h6 style="display:inline-block; margin: 0px">新建</h6>
+                                    </div>
                                 </button>
                             </td>
                         </tr>

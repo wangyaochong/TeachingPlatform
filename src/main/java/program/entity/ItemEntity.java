@@ -21,12 +21,20 @@ public class ItemEntity {
     String title;//标题
     String description;//描述
     String type;//类型
+
+    public Boolean getIsOpen() {
+        return isOpen;
+    }
+    public void setIsOpen(Boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
     Boolean isOpen;//是否公开
-    Date createDate;//生成的时间
+    Long createDate;//生成的时间
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
     List<ResourceEntity> resources;//资源可以有一个、多个或者零个
 
-    public ItemEntity(String title, String description, String type, Boolean isOpen, Date createDate, List<ResourceEntity> resources) {
+    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, List<ResourceEntity> resources) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -34,10 +42,10 @@ public class ItemEntity {
         this.createDate = createDate;
         this.resources = resources;
     }
-    public Date getCreateDate() {
+    public Long getCreateDate() {
         return createDate;
     }
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Long createDate) {
         this.createDate = createDate;
     }
     public String getId() {
@@ -85,16 +93,12 @@ public class ItemEntity {
                 '}';
     }
 
-    public Boolean getOpen() {
-        return isOpen;
-    }
+
 
     public ItemEntity() {
     }
 
-    public void setOpen(Boolean open) {
-        isOpen = open;
-    }
+
 
     public List<ResourceEntity> getResources() {
         return resources;

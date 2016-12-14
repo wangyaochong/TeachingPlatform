@@ -11,7 +11,7 @@ app.factory('UserFactory', function ($http) {
     return {
         getCurrentUser:function () {
             $http({
-                url: webRootUrl + "getCurrentUser"
+                url: webRootUrl + "user/getCurrentUser"
             }).then(function (data) {
                 return data.data;
             })

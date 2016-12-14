@@ -1,10 +1,10 @@
 /**
  * Created by 【王耀冲】 on 【2016/12/13】 at 【19:20】.
  */
-app.service('UserService', function ($http,$q) {
+app.service('UserService', function ($http) {
     this.getCurrentUser = function () {
         return $http({
-            url: webRootUrl + "getCurrentUser"
+            url: webRootUrl + "User/getCurrent"
         }).then(function (data) {
             return data.data
         })
