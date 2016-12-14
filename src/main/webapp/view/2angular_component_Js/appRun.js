@@ -1,10 +1,13 @@
 /**
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
-app.run(function ($rootScope,ItemEntityService) {
+app.run(function ($rootScope,ItemEntityService,$timeout) {
     $rootScope.stateRootUrl="/TeachingPlatform/view/5html/index.html#!/";
     $rootScope.screenWidth=window.screen.width;
     $rootScope.screenHeight=window.screen.height;
+    $timeout(function () {//触发一下滚动大屏
+        $('.carousel').carousel('next')
+    },5000)
     $rootScope.revertItemEntity = function (data) {
         //取消编辑的内容
         angular.copy(data.dataCopy, data);
