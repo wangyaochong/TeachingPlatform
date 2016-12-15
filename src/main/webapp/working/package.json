@@ -11,6 +11,7 @@
     "angular": "^1.5.9",
     "angular-ui-router": "^0.3.2",
     "autosize": "^3.0.20",
+    "galleria": "^1.5.1",
     "gulp": "*",
     "gulp-concat": "*",
     "gulp-html2jade": "*",

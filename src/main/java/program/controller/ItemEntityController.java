@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.PersonDao;
 import program.entity.ItemEntity;
@@ -19,6 +18,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -46,12 +46,17 @@ public class ItemEntityController {
     }
 
     @RequestMapping("/updateItemEntity")
-    @ResponseBody
+    @ResponseBody//update操作，如果不带id，那么就保存
     public ResponseInfo updateItemEntity(@ModelAttribute ItemEntity itemEntity) {
         ItemEntity update = genericDao.getSession().get(ItemEntity.class, itemEntity.getId());
-        EntityUtil.updateEntity(update, itemEntity);
+        if(update==null){//如果是一个没有保存过的entity，则保存
+            update=new ItemEntity();
+            EntityUtil.updateEntity(update, itemEntity);
+            Serializable save = genericDao.getSession().save(update);
+            return new ResponseInfo(ResponseInfo.STATUS_OK,null,save);
+        }
         genericDao.getSession().update(update);
-        return new ResponseInfo(ResponseInfo.STATUS_OK);
+        return new ResponseInfo(ResponseInfo.STATUS_OK,null,null);
     }
 
     @RequestMapping("/deleteItemEntity")
@@ -60,6 +65,6 @@ public class ItemEntityController {
         ItemEntity itemEntity = new ItemEntity();
         itemEntity.setId(id);
         genericDao.getSession().delete(itemEntity);
-        return new ResponseInfo(ResponseInfo.STATUS_OK);
+        return new ResponseInfo(ResponseInfo.STATUS_OK,null,null);
     }
 }

@@ -7,4 +7,6 @@ $(document).ready(function () {
     angular.bootstrap(document, ['app']);//手动启动angular应用
     // autosize($('textarea'));
     // autosize(document.querySelectorAll('textarea'));
+
+
 });

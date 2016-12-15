@@ -32,7 +32,7 @@ h3{
     margin: 10px 0 0 0;
 }
 .panel {
-    margin: 3px;
+    margin: 1px;
 }
 .panel-heading{
     padding: 0px;
@@ -44,7 +44,8 @@ h3{
     overflow: auto;
     /*margin:0px;*/
     margin: 0px 0px 0px 0px;
-    padding-left: 10px;
+    padding: 0px!important;
+    /*padding-left: 10px;*/
     /*margin-left: 10px;*/
 }
 

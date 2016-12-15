@@ -14,9 +14,12 @@ var processPath = {
     js2oneLibPath: ['../raw/jslib/jquery.js', '../raw/jslib/bootstrap.js',
         '../raw/jslib/angular.js','../raw/jslib/ng-table.js','../raw/jslib/angular-ui-router.js',
         '../raw/jslib/bootstrap-datepicker.js','../raw/jslib/bootstrap-datepicker.zh-CN.min.js',
-        '../raw/jslib/autosize.js'
+        '../raw/jslib/autosize.js','../raw/jslib/galleria.js',
     ],
-    css2oneLibPath: ['../raw/csslib/bootstrap.min.css','../raw/csslib/ng-table.css','../raw/csslib/bootstrap-datepicker3.css'],
+    css2oneLibPath: ['../raw/csslib/bootstrap.min.css',
+        '../raw/csslib/ng-table.css',
+        '../raw/csslib/gelleria.classic.css',
+        '../raw/csslib/bootstrap-datepicker3.css'],
     css2oneSrcPath:['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',
     appJsPath: "../view/js/*.js"

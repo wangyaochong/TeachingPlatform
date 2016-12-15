@@ -11,17 +11,10 @@ public class ResponseInfo {
     String message="";
     Object data=null;
 
-    public ResponseInfo(String statusFlag, String message, String data){
+    public ResponseInfo(String statusFlag, String message, Object data){
         this.statusFlag = statusFlag;
         this.message=message;
         this.data=data;
-    }
-    public ResponseInfo(String statusFlag, String message){
-        this.statusFlag = statusFlag;
-        this.message=message;
-    }
-    public ResponseInfo(String statusFlag){
-        this.statusFlag = statusFlag;
     }
     public String getStatusFlag() {
         return statusFlag;

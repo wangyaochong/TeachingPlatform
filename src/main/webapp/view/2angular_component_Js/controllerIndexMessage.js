@@ -59,10 +59,9 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                     data.dataCopy = {};
                     angular.copy(data, data.dataCopy);//保存编辑前的内容
                 })
-                $scope.pagelist = data.data.pageList;
+                $scope.pageList = data.data.pageList;
                 return data.data.pageList;
             })
         }
     });
-
 })
