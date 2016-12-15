@@ -1,9 +1,12 @@
-<div id="galleria" style="width:100%; height: 100%">
-    <div  ng-repeat="x in pictures.pictures" class="galleria" width="100%" height="100%">
-        <img ng-src="{{x.href}}" ng-alt="" width="100%" height="100%">
-        <div class="carousel-caption">
-            <h3>标题</h3>
-            <p>内容</p>
+<div style="width:100%; height: 100px;background-color:red ">
+    <div style="width:100%; height: 100px;">
+        <div class="slick">
+            <div ng-repeat="x in pictures.pictures">
+                <a ng-href="{{x.href}}">
+                    <img ng-src="{{x.href}}" style="height: 100px;">
+                </a>
+            </div>
         </div>
     </div>
+
 </div>

@@ -13,7 +13,11 @@ public class RollPictureUrl {
     public RollPictureUrl(Locale locale) {
         pictures=new ArrayList<UrlDefinition>(Arrays.asList(
                 new UrlDefinition("pictures1", UrlConstant.WEBROOTURL+"files/picture/pic1.jpg",locale),
-                new UrlDefinition("pictures2",UrlConstant.WEBROOTURL+"files/picture/pic2.jpg",locale)
+                new UrlDefinition("pictures2",UrlConstant.WEBROOTURL+"files/picture/pic2.jpg",locale),
+                new UrlDefinition("pictures1", UrlConstant.WEBROOTURL+"files/picture/pic3.jpg",locale),
+                new UrlDefinition("pictures2",UrlConstant.WEBROOTURL+"files/picture/pic4.jpg",locale),
+                new UrlDefinition("pictures2",UrlConstant.WEBROOTURL+"files/picture/pic5.jpg",locale),
+                new UrlDefinition("pictures2",UrlConstant.WEBROOTURL+"files/picture/pic6.jpg",locale)
         ));
     }
     public List<UrlDefinition> getPictures() {

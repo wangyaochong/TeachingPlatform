@@ -2,7 +2,7 @@
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
 app.run(function ($rootScope, ItemEntityService, $timeout) {
-    
+
     $rootScope.stateRootUrl = "/TeachingPlatform/view/5html/index.html#!/";
     $rootScope.screenWidth = window.screen.width;
     $rootScope.screenHeight = window.screen.height;
