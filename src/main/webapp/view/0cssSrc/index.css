@@ -48,12 +48,22 @@ h3{
     /*padding-left: 10px;*/
     /*margin-left: 10px;*/
 }
+textarea.rollPictureTitle :disabled{
+    font-size: 2em;
+    display: block;
+    color: white;
+}textarea.rollPictureTitle :enabled{
+     font-size: 2em;
+     display: block;
+     color: black;
+ }
+
 
 td textarea{
-    width: 100%;
+    /*width: 100%;*/
     resize: none;
     text-align: left;
-    overflow: auto;
+    overflow: hidden!important;
     border-radius: 5px;
     /*background: #82d6ff;*/
     border: 1px dotted var(--theme-basic-color);
