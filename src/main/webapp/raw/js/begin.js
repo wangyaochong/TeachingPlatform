@@ -1,7 +1,7 @@
 var webRootUrl="/TeachingPlatform/"
 var templateHtmlUrl="/TeachingPlatform/view/3templateHtml/";
 var directiveHtmlUrl="/TeachingPlatform/view/4directiveHtml/";
-
+var maxPageRowSize=1000000000;
 //全局定义的itemEntity类型
 var ItemType={
     DOCUMENT:"DOCUMENT",
@@ -9,7 +9,8 @@ var ItemType={
     ANNOUNCEMENT:"ANNOUNCEMENT",
     VIDEO:"VIDEO",
     ASSIGNMENT:"ASSIGNMENT",
-    SOLUTION:"SOLUTION"
+    SOLUTION:"SOLUTION",
+    ROLLPICTURE:"ROLLPICTURE"
 }
 
 

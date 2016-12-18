@@ -1,4 +1,4 @@
-<div>
+<div controller="controllerRollPicture">
     <div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
         <!-- Indicators -->
         <div class="carousel-inner" role="listbox" width="100%">
@@ -9,24 +9,30 @@
                 <div class="carousel-caption">
                     <div width="50" class="" height="100%">
                         <table width="100%" cellpadding="20px" cellspacing="10px" align="center">
-                            <!--<tr>-->
-                            <!--<td align="center">-->
-                            <!--<div style="width: 90%">-->
-                            <!--<textarea class="rollPictureTitle" rows="1"  ng-model="x.name" style="text-align: center;"></textarea>-->
-                            <!--</div>-->
-                            <!--</td>-->
-                            <!--<td width="10%" ng-if="editable">-->
-                            <!--<button class="btn btn-primary btn-sm">你好</button>-->
-                            <!--</td>-->
-                            <!--</tr>-->
                             <tr>
                                 <td align="center">
                                     <div style="width: 90%">
                                         <textarea  class="rollPictureTitle" ng-disabled="x.isEditing" rows="1" ng-model="x.description" style="text-align: center;"></textarea>
                                     </div>
                                 </td>
-                                <td width="10%" ng-if="editable">
-                                    <button class="btn btn-primary btn-sm">你好</button>
+                                <td width="20%" ng-if="editable">
+                                    <button ng-if="!item.isEditing" type="button" class="btn btn-primary"
+                                            ng-click="item.isEditing=!item.isEditing">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button ng-if="item.isEditing" type="button" class="btn btn-primary"
+                                            ng-click="item.isEditing=!item.isEditing;saveItemEntity(item)">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                    </button>
+                                    <button ng-if="editable" type="button" class="btn btn-danger btn-sm"
+                                            style="display: inline-block;"
+                                            ng-click="addItemEntity(pageList,ItemType.ANNOUNCEMENT)">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <div class="hidden-xs hidden-sm" style="display: inline;">
+                                            <br class="visible-xs-block">&nbsp;
+                                            <h6 style="display:inline-block; margin: 0px">新建</h6>
+                                        </div>
+                                    </button>
                                 </td>
                             </tr>
                         </table>

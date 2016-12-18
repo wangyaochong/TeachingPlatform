@@ -15,11 +15,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import program.util.PageBean;
+import program.util.bean.PageBean;
 import program.util.PageListWithSingleBean;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -32,16 +31,16 @@ public class TestDao {
 //        Session session = baseDao.getSession();
 //        Session session1 = genericDao.getSession();
 //        System.out.println(objects);
-//        baseDao.getSession().save(new ResourceEntity(objects.get(0),"sdfsdff",new Date()));
+//        baseDao.getSession().save(new FileEntity(objects.get(0),"sdfsdff",new Date()));
         List<PersonEntity> list = session.createCriteria(PersonEntity.class).list();
         System.out.println(list);
-        session.save(new ResourceEntity(list.get(0), "sdsdfsdfsaaadfsdffsdff", new Date()));
+//        session.save(new FileEntity(list.get(0), "sdsdfsdfsaaadfsdffsdff", new Date()));
 
     }
 
     @Test
     public void testAddItem() {
-        List<ResourceEntity> list = session.createCriteria(ResourceEntity.class).list();
+        List<FileEntity> list = session.createCriteria(FileEntity.class).list();
         System.out.println(list);
 //        session.save(new ItemEntity("课前预习", "同学们，今天咱们讲解有关高斯定理部分的内容，难度较大，请同学们提前复习", ItemType.ANNOUNCEMENT.toString(), true, new Date(),null));
 //        session.save(new ItemEntity("课后作业", "本次作业的内容已经放到文档中心，请同学们下载查阅，并按时上交作业", ItemType.ANNOUNCEMENT.toString(), true, new Date(),null));

@@ -10,6 +10,11 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxInMemorySize" value="4194304"></property>
+        <property name="maxUploadSizePerFile" value="1048576"></property>
+    </bean>
     <context:component-scan base-package="program"></context:component-scan>
     <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties"></context:property-placeholder>
     <mvc:default-servlet-handler></mvc:default-servlet-handler>

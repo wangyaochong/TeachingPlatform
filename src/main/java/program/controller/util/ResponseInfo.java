@@ -4,9 +4,6 @@ package program.controller.util;
  * Created by【王耀冲】on 【2016/12/15】 at 【3:02】.
  */
 public class ResponseInfo {
-
-    public final static String STATUS_OK="ok";
-    public final static String STATUS_BAD="bad";
     String statusFlag="";
     String message="";
     Object data=null;

@@ -15,12 +15,9 @@ import java.util.Properties;
 public class TestDaoUtil {
     static Session session;
     private static SessionFactory sessionFactory;
-
     public static GenericDao getGenericDao() {
         return genericDao;
     }
-
-
     static GenericDao genericDao;
     static {
         DriverManagerDataSource datasource = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/teachingplatform?useUnicode=true&characterEncoding=UTF-8", "wangyaochong", "qwerqwer");

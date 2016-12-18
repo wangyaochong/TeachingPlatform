@@ -6,5 +6,6 @@ public enum ItemType {
     ANNOUNCEMENT,
     VIDEO,
     ASSIGNMENT,
-    SOLUTION
+    SOLUTION,
+    ROLLPICTURE
 }

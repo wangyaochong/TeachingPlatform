@@ -63,7 +63,7 @@
             #..可以匹配任意个参数
             #在配置了transactionManager的条配件下，如果需要调用getCurrentSession，aop一定要配置到相关的方法
         -->
-        <aop:pointcut id="txAop" expression=" execution(* program.controller.*.*(..)) or execution(* program.dao.*.*(..))"></aop:pointcut>
+        <aop:pointcut id="txAop" expression=" execution(* program.controller.*.*(..)) or  execution(* program.dao.*.*(..))"></aop:pointcut>
         <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="txAop"></aop:advisor>
     </aop:config>
     <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->

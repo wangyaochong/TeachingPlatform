@@ -1,4 +1,4 @@
-app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http, $filter, $timeout, UserService) {
+app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http, $filter, $timeout, UserService,ItemEntityService) {
     $scope.pageList=[];
     $scope.editable=false;
     $scope.frontMessageTableParams = new NgTableParams({count: 5}, {
@@ -12,17 +12,25 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
             } else {
                 thisOrderBy = (params.orderBy()[0]).substr(1);
             }
-            return $http({
-                url: webRootUrl + "ItemEntity/getItemEntityPage",
-                method: "get",
-                params: {
-                    pageCurrentIndex: params.page(),
-                    pageRowSize: params.count(),
-                    orderBy: "createDate"
-                    // orderBy:params.sorting(),
-                }
-            }).then(function (data) {
-                params.total(data.data.totalRowCount)
+            return  ItemEntityService.getItemEntityPage(
+                {type:ItemType.ANNOUNCEMENT},
+                params.page(),
+                params.count(),
+                "createDate"
+            )
+            // $http({
+            //     url: webRootUrl + "ItemEntity/getItemEntityPage",
+            //     method: "get",
+            //     params: {
+            //         type:ItemType.ANNOUNCEMENT,//获取所有关于首页消息的page
+            //         pageCurrentIndex: params.page(),
+            //         pageRowSize: params.count(),
+            //         orderBy: "createDate"
+            //         // orderBy:params.sorting(),
+            //     }
+            // })
+                .then(function (data) {
+                params.total(data.totalRowCount)
                 // params.
                 var orderBy = params.orderBy();
                 var sorting = params.sorting();
@@ -34,11 +42,6 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 // promise.then(function (data) {
                 //     var test=data;
                 // })
-                var promise = UserService.hasFrontMessagePriv();
-                promise.then(function (data) {
-                    $scope.editable = data;
-                })
-
                 // angular.forEach(data.data.pageList,function (data,index) {
                 //     //要在另一个线程中给控件初始化
                 //     // $timeout(function () {
@@ -54,13 +57,13 @@ app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http,
                 //     // data.createDate=new Date(data.createDate)
                 //     data.createDate=$filter('date')(data.createDate,'yyyy-MM-dd');//将数字日期转换成为字符串日期
                 // })
-                angular.forEach(data.data.pageList, function (data) {
-                    data.isEditing = false;//是否正在编辑为假
-                    data.dataCopy = {};
-                    angular.copy(data, data.dataCopy);//保存编辑前的内容
-                })
-                $scope.pageList = data.data.pageList;
-                return data.data.pageList;
+                    angular.forEach(data.pageList, function (data) {
+                        data.isEditing = false;//是否正在编辑为假
+                        data.dataCopy = {};
+                        angular.copy(data, data.dataCopy);//保存编辑前的内容
+                    })
+                $scope.pageList = data.pageList;
+                return data.pageList;
             })
         }
     });

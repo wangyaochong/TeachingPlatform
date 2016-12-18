@@ -5,22 +5,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.PersonDao;
 import program.entity.ItemEntity;
-import program.entity.ResourceEntity;
 import program.util.EntityUtil;
-import program.util.PageBean;
+import program.util.bean.PageBean;
 import program.util.PageListWithSingleBean;
 
 import javax.annotation.Resource;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by【王耀冲】on 【2016/12/15】 at 【1:21】.
@@ -53,10 +47,11 @@ public class ItemEntityController {
             update=new ItemEntity();
             EntityUtil.updateEntity(update, itemEntity);
             Serializable save = genericDao.getSession().save(update);
-            return new ResponseInfo(ResponseInfo.STATUS_OK,null,save);
+            return new ResponseInfo(ResponseFlag.STATUS_OK,null,save);
         }
+        EntityUtil.updateEntity(update, itemEntity);
         genericDao.getSession().update(update);
-        return new ResponseInfo(ResponseInfo.STATUS_OK,null,null);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
     }
 
     @RequestMapping("/deleteItemEntity")
@@ -65,6 +60,6 @@ public class ItemEntityController {
         ItemEntity itemEntity = new ItemEntity();
         itemEntity.setId(id);
         genericDao.getSession().delete(itemEntity);
-        return new ResponseInfo(ResponseInfo.STATUS_OK,null,null);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
     }
 }

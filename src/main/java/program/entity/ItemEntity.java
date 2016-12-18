@@ -3,7 +3,6 @@ package program.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,10 +30,10 @@ public class ItemEntity {
 
     Boolean isOpen;//是否公开
     Long createDate;//生成的时间
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
-    List<ResourceEntity> resources;//资源可以有一个、多个或者零个
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
+    List<FileEntity> resources;//资源可以有一个、多个或者零个
 
-    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, List<ResourceEntity> resources) {
+    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, List<FileEntity> resources) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -100,11 +99,11 @@ public class ItemEntity {
 
 
 
-    public List<ResourceEntity> getResources() {
+    public List<FileEntity> getResources() {
         return resources;
     }
 
-    public void setResources(List<ResourceEntity> resources) {
+    public void setResources(List<FileEntity> resources) {
         this.resources = resources;
     }
 }

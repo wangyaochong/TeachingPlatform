@@ -1,4 +1,4 @@
-package program.util;
+package program.util.bean;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ public class SolutionEntity {
     Integer mark;//得分
     String comment;//评语
     @OneToMany(fetch = FetchType.EAGER)
-    List<ResourceEntity> resourceEntities;
+    List<FileEntity> resourceEntities;
 
     public SolutionEntity() {
     }
@@ -52,15 +52,15 @@ public class SolutionEntity {
         this.comment = comment;
     }
 
-    public List<ResourceEntity> getResourceEntities() {
+    public List<FileEntity> getResourceEntities() {
         return resourceEntities;
     }
 
-    public void setResourceEntities(List<ResourceEntity> resourceEntities) {
+    public void setResourceEntities(List<FileEntity> resourceEntities) {
         this.resourceEntities = resourceEntities;
     }
 
-    public SolutionEntity(Integer mark, String comment, List<ResourceEntity> resourceEntities) {
+    public SolutionEntity(Integer mark, String comment, List<FileEntity> resourceEntities) {
         this.mark = mark;
         this.comment = comment;
         this.resourceEntities = resourceEntities;

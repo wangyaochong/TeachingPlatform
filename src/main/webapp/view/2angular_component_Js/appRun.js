@@ -1,7 +1,7 @@
 /**
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
-app.run(function ($rootScope, ItemEntityService, $timeout) {
+app.run(function ($rootScope, ItemEntityService,UserService) {
 
     $rootScope.stateRootUrl = "/TeachingPlatform/view/5html/index.html#!/";
     $rootScope.screenWidth = window.screen.width;
@@ -13,8 +13,18 @@ app.run(function ($rootScope, ItemEntityService, $timeout) {
         ANNOUNCEMENT: "ANNOUNCEMENT",
         VIDEO: "VIDEO",
         ASSIGNMENT: "ASSIGNMENT",
-        SOLUTION: "SOLUTION"
+        SOLUTION: "SOLUTION",
+        ROLLPICTURE:"ROLLPICTURE"
     }
+
+    UserService.getCurrentUserPrivileages().then(function (data) {
+        $rootScope.HasAssignmentPriv=data.assignment;
+        $rootScope.HasDocumentPriv=data.document;
+        $rootScope.HasFrontMessagePriv=data.frontMessage;
+        $rootScope.HasPersonalInfomationtPriv=data.personalInfomation;
+        $rootScope.HasVideoPriv=data.video;
+    })
+
 
 
     // $timeout(function () {//触发一下滚动大屏
@@ -51,6 +61,9 @@ app.run(function ($rootScope, ItemEntityService, $timeout) {
             createDate: new Date().getTime(),
             dataCopy: {},
             isEditing: true
+        }
+        if(type!=ItemType.ANNOUNCEMENT){//首页消息可以直接添加，但是带有附件的不能，需要上传附件才行
+
         }
         list.unshift(itemEntity);
         // console.log("screenWidth:"+$rootScope.screenWidth);
