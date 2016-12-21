@@ -1,15 +1,27 @@
-:root{
+:root {
     --theme-basic-color: #337ab7;
     --theme-hover-color: #2b659a;
-    --theme-white-color:white;
+    --theme-white-color: white;
 }
 
-*{
+* {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
+}
+
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > td,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > thead > tr > th{
     white-space: normal!important;
 }
+
+/*.input-group-btn{*/
+/*white-space: nowrap;!important;*/
+/*}*/
 

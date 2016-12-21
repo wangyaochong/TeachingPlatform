@@ -1,28 +1,29 @@
 <div>
     <!--<directive-roll-picture></directive-roll-picture>-->
     <div ng-controller="controllerRollPicture">
-        <form action="/TeachingPlatform/File/uploadListFile" enctype="multipart/form-data" method="post">
-            <input id="testFile" type="file" name="files" multiple="multiple">
-            <input type="button" value="提交" ng-click="uploadFile()">
-        </form>
-
         <div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
             <!-- Indicators -->
             <div class="carousel-inner" role="listbox" width="100%">
-                <div class="carousel-picture" ng-class="{true:'item active',false:'item'}[$index==0]" ng-repeat="item in pictures"
+                <div class="carousel-picture" ng-class="{true:'item active',false:'item'}[$index==0]"
+                     ng-repeat="item in pictures"
                      width="100%">
                     <img ng-src="{{item.resources[0].htmlAccessPath}}" ng-alt="" width="100%" height="100%">
-                    <div  ng-if="item.resources==undefined" class="bg-danger" width="100%">
+                    <div ng-if="item.resources==undefined" class="bg-danger" width="100%">
                         <br>
-                        <table width="100%">
-                            <tr width="100%">
-                                <td align="center" width="100%">
-                                    <button class="btn btn-lg btn-danger">
-                                        <h1>添加图片</h1>
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
+                        <!--<table width="100%">-->
+                            <!--<tr width="100%">-->
+                                <!--<td width="30%"></td>-->
+                                <!--<td align="center" width="40%">-->
+                                    <!--<form action="">-->
+                                        <!--<input id="inputid" type="file"  multiple>-->
+                                        <!--<script type="text/javascript">-->
+                                            <!--$("#inputid").fileinput({language:"zh",showCaption:false, showDelete:true,browseLabel:"请上传图片"});-->
+                                        <!--</script>-->
+                                    <!--</form>-->
+                                <!--</td>-->
+                                <!--<td width="30%"></td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
                         <br>
                         <br>
                         <br>
@@ -35,8 +36,9 @@
                                 <tr>
                                     <td align="center">
                                         <div style="width: 90%">
-                                            <textarea class="rollPictureDes" ng-disabled="!item.isEditing" rows="1" ng-model="item.description"
-                                                           style="text-align: left;" data-ng-trim="false"></textarea>
+                                            <textarea class="rollPictureDes" ng-disabled="!item.isEditing" rows="1"
+                                                      ng-model="item.description"
+                                                      style="text-align: left;" data-ng-trim="false"></textarea>
                                         </div>
                                     </td>
                                     <td width="20%" ng-if="HasFrontMessagePriv">
@@ -56,13 +58,13 @@
                                                 ng-click="item.isEditing=!item.isEditing;deleteItemEntity(item,$index,pictures)">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </button>
-                                        <button ng-if="!item.isEditing" type="button" class="btn btn-danger btn-sm"
+                                        <button ng-if="!item.isEditing" type="button" class="btn btn-danger"
                                                 style="display: inline-block;"
                                                 ng-click="addItemEntity(pictures,ItemType.ROLLPICTURE)">
                                             <span class="glyphicon glyphicon-plus"></span>
                                             <div class="hidden-xs hidden-sm" style="display: inline;">
-                                                <br class="visible-xs-block">&nbsp;
-                                                <h6 style="display:inline-block; margin: 0px">新建</h6>
+                                                <!--<br class="visible-xs-block">&nbsp;-->
+                                                <!--<small style="display:inline-block; margin: 0px">新建</small>-->
                                             </div>
                                         </button>
                                     </td>
@@ -140,11 +142,13 @@
                                     {{item.createDate|date:"yyyy-MM-dd"}}
                                 </td>
                                 <td ng-cloak="" title="'标题'" width="10%" align="left" style="min-width: 50px;">
-                                <textarea class="indexMessage" ng-model="item.title" ng-disabled="!item.isEditing" width="100%"
+                                <textarea class="indexMessage" ng-model="item.title" ng-disabled="!item.isEditing"
+                                          width="100%"
                                           rows="1"></textarea>
                                 </td>
                                 <td ng-cloak="" title="'内容'" align="left">
-                                <textarea class="indexMessage" ng-model="item.description" ng-disabled="!item.isEditing" width="100%"
+                                <textarea class="indexMessage" ng-model="item.description" ng-disabled="!item.isEditing"
+                                          width="100%"
                                           rows="1"></textarea>
                                 </td>
                                 <td ng-cloak="" title="'编辑'" width="10%" ng-if="HasFrontMessagePriv">
@@ -175,5 +179,17 @@
         </div>
     </div>
 
+    <form action="/TeachingPlatform/File/uploadListFile" enctype="multipart/form-data" method="post">
+        <input id="testFile" type="file" name="files" multiple="multiple">
+        <!--<input type="button" value="提交" ng-click="uploadFile()">-->
+        <input type="submit" value="提交">
+    </form>
+
+    <!--<form action="">-->
+    <input id="input-id" type="file"  multiple>
+    <script type="text/javascript">
+        $("#input-id").fileinput({language:"zh",showCaption:false, showDelete:true,browseLabel:"请上传图片"});
+    </script>
+    <!--</form>-->
 
 </div>

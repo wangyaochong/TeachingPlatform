@@ -26,7 +26,7 @@ public class FileUtil implements ServletContextAware {
         if (this.realFileBase == null) {
             this.realFileBase = servletContext.getRealPath(File.separator);
             this.completeRealFilePath =this.realFileBase+ File.separator+subDir+File.separator;
-            File file=new File(realFileBase);
+            File file=new File(completeRealFilePath);
             if(file.exists()==false){
                 file.mkdir();//创建文件上传的路径
             }
