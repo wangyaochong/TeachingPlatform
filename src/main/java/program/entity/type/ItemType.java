@@ -1,4 +1,4 @@
-package program.entity;
+package program.entity.type;
 
 public enum ItemType {
     DOCUMENT,

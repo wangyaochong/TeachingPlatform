@@ -22,7 +22,7 @@ public class SecurityContextFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         SecurityContext context =new SecurityContextImpl();
         context.setAuthentication(new AuthImpl(new AuthUserDetailsImpl(
-                new PersonEntity("","","",0,"","","",null))));
+                new PersonEntity("","","",0,"","","",null,null))));
         SecurityContextHolder.setContext(context);
         HttpSession session = ((HttpServletRequest) request).getSession();
         session.setAttribute("SPRING_SECURITY_CONTEXT",SecurityContextHolder.getContext());

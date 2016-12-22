@@ -14,7 +14,15 @@ public class SolutionEntity {
     String comment;//评语
     @OneToMany(fetch = FetchType.EAGER)
     List<FileEntity> resourceEntities;
+    @ManyToOne
+    PersonEntity provider;//作业答题者
 
+    public PersonEntity getProvider() {
+        return provider;
+    }
+    public void setProvider(PersonEntity provider) {
+        this.provider = provider;
+    }
     public SolutionEntity() {
     }
 
@@ -60,9 +68,10 @@ public class SolutionEntity {
         this.resourceEntities = resourceEntities;
     }
 
-    public SolutionEntity(Integer mark, String comment, List<FileEntity> resourceEntities) {
+    public SolutionEntity(Integer mark, String comment, List<FileEntity> resourceEntities, PersonEntity provider) {
         this.mark = mark;
         this.comment = comment;
         this.resourceEntities = resourceEntities;
+        this.provider = provider;
     }
 }

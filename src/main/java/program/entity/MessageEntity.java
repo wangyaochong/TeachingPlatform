@@ -14,36 +14,22 @@ public class MessageEntity {
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
-
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     PersonEntity sender;//发送者
-    @OneToOne(optional = false)
+    @OneToMany
     PersonEntity receiver;//接受者
     @OneToOne(optional = false)
     ItemEntity itemEntity;//单项信息
-    Date sendingDate;//发送时间
+    Date sendingDateTime;//发送时间
     Boolean hasRead;//是否已经阅读
 
-    public MessageEntity(PersonEntity sender, PersonEntity receiver, ItemEntity itemEntity, Date sendingDate, Boolean hasRead) {
+    public MessageEntity(PersonEntity sender, PersonEntity receiver, ItemEntity itemEntity, Date sendingDateTime, Boolean hasRead) {
         this.sender = sender;
         this.receiver = receiver;
         this.itemEntity = itemEntity;
-        this.sendingDate = sendingDate;
+        this.sendingDateTime = sendingDateTime;
         this.hasRead = hasRead;
     }
-
-    @Override
-    public String toString() {
-        return "MessageEntity{" +
-                "id='" + id + '\'' +
-                ", sender=" + sender +
-                ", receiver=" + receiver +
-                ", itemEntity=" + itemEntity +
-                ", sendingDate=" + sendingDate +
-                ", hasRead=" + hasRead +
-                '}';
-    }
-
     public String getId() {
         return id;
     }
@@ -76,12 +62,12 @@ public class MessageEntity {
         this.itemEntity = itemEntity;
     }
 
-    public Date getSendingDate() {
-        return sendingDate;
+    public Date getSendingDateTime() {
+        return sendingDateTime;
     }
 
-    public void setSendingDate(Date sendingDate) {
-        this.sendingDate = sendingDate;
+    public void setSendingDateTime(Date sendingDateTime) {
+        this.sendingDateTime = sendingDateTime;
     }
 
     public Boolean getHasRead() {

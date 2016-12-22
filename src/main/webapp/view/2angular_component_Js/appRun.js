@@ -4,8 +4,11 @@
 app.run(function ($rootScope, ItemEntityService,UserService) {
 
     $rootScope.stateRootUrl = "/TeachingPlatform/view/5html/index.html#!/";
+    $rootScope.templateHtmlUrl="/TeachingPlatform/view/3templateHtml/";
     $rootScope.screenWidth = window.screen.width;
     $rootScope.screenHeight = window.screen.height;
+
+
     //定义全局itemType，后续会用到
     $rootScope.ItemType = {
         DOCUMENT: "DOCUMENT",

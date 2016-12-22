@@ -20,33 +20,48 @@ public class ItemEntity {
     String title;//标题
     String description;//描述
     String type;//类型
+    Boolean isOpen;//是否公开
+    Long createDate;//生成的时间
+    @ManyToOne(fetch = FetchType.EAGER)
+    PersonEntity creator;//单项信息的创建者，通过创建者找到分组，然后所有分组内的人都可以访问
+    @ManyToOne(fetch = FetchType.EAGER)
+    GroupEntity groupEntity;//章节分组
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
+    List<FileEntity> resources;//资源可以有一个、多个或者零个
+
+
+    public PersonEntity getCreator() {
+        return creator;
+    }
+
+    public void setCreator(PersonEntity creator) {
+        this.creator = creator;
+    }
+
+    public GroupEntity getGroupEntity() {
+        return groupEntity;
+    }
+
+    public void setGroupEntity(GroupEntity groupEntity) {
+        this.groupEntity = groupEntity;
+    }
 
     public Boolean getIsOpen() {
         return isOpen;
     }
+
     public void setIsOpen(Boolean isOpen) {
         this.isOpen = isOpen;
     }
 
-    Boolean isOpen;//是否公开
-    Long createDate;//生成的时间
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
-    List<FileEntity> resources;//资源可以有一个、多个或者零个
-
-    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, List<FileEntity> resources) {
-        this.title = title;
-        this.description = description;
-        this.type = type;
-        this.isOpen = isOpen;
-        this.createDate = createDate;
-        this.resources = resources;
-    }
     public Long getCreateDate() {
         return createDate;
     }
+
     public void setCreateDate(Long createDate) {
         this.createDate = createDate;
     }
+
     public String getId() {
         return id;
     }
@@ -79,31 +94,23 @@ public class ItemEntity {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "ItemEntity{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", type='" + type + '\'' +
-                ", isOpen=" + isOpen +
-                ", createDate=" + createDate +
-                ", resources=" + resources +
-                '}';
-    }
-
-
-
-    public ItemEntity() {
-    }
-
-
-
     public List<FileEntity> getResources() {
         return resources;
     }
 
     public void setResources(List<FileEntity> resources) {
+        this.resources = resources;
+    }
+    public ItemEntity() {
+    }
+    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, PersonEntity creator, GroupEntity groupEntity, List<FileEntity> resources) {
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.isOpen = isOpen;
+        this.createDate = createDate;
+        this.creator = creator;
+        this.groupEntity = groupEntity;
         this.resources = resources;
     }
 }

@@ -1,7 +1,7 @@
 /**
  * Created by wangy on 2016/12/18.
  */
-app.controller("controllerRollPicture", function ($scope, $http, ItemEntityService) {
+app.controller("controllerRollPicture", function ($scope, $http, ItemEntityService,FileUploadModalService) {
     ItemEntityService.getItemEntityPage({type: ItemType.ROLLPICTURE}, 1, maxPageRowSize, "createDate")
         .then(function (data) {
             $scope.pictures = data.pageList
@@ -9,9 +9,7 @@ app.controller("controllerRollPicture", function ($scope, $http, ItemEntityServi
         }, function (data) {
             console.log(data)
         })
-    // $http.get(webRootUrl + "RollPicture/getRollPicture").then(function (data) {
-    //     $scope.pictures = data.data
-    // })
+    FileUploadModalService.initFileUploadModal(webRootUrl+"File/uploadListFile",true);
     $scope.uploadFile = function () {
         var fd = new FormData();
         var file = document.querySelector('input[type=file]').files;

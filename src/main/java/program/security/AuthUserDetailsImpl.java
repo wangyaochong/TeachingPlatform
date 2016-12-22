@@ -29,7 +29,7 @@ public class AuthUserDetailsImpl implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthGrantedAuthorityUtil.getAuthorities(this.personEntity.getPrivilegeEntity());
+        return AuthGrantedAuthorityUtil.getAuthorities(this.personEntity.getPrivilegeEntityList());
     }
     @Override
     public String getPassword() {

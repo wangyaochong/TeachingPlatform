@@ -38,7 +38,7 @@ public class TestController {
 //        SessionFactory sessionFactory = baseDao.getSessionFactory();
 //        PersonDao personDao = new PersonDao();
 //        Integer delete = personDao.simpleDelete(new PersonEntity(null, "哈哈哈", null, "男", null, null, null));
-        PersonEntity newPerson=new PersonEntity("201392252","3497725","hello",18,"男","18840838242","1162025261@qq.com",null);
+        PersonEntity newPerson=new PersonEntity("201392252","3497725","hello",18,"男","18840838242","1162025261@qq.com",null,null);
         Integer delete=personDao.simpleDelete(newPerson);
         return delete.toString();
     }

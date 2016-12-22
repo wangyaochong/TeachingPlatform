@@ -25,7 +25,8 @@ public class PrivilegeEntity {
     Boolean document;//对文档的权限
     Boolean video;//对视频的权限
     Boolean assignment;//对作业的权限，包括对作业批改等
-    Boolean personalInfomation;//对个人信息权限，包括修改用户密码等
+    Boolean personalInfomation;//对个人信息权限，包括修改用户密码，用户权限等
+    @ManyToOne GroupEntity groupEntity;//权限对应的组别，每个人的权限仅限自己组内
 
 //    @OneToMany(cascade = CascadeType.ALL)
 //    Set<PersonEntity> personEntities;

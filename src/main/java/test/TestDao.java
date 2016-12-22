@@ -151,7 +151,7 @@ public class TestDao {
     @Test
     public void testDeletePerson() throws InterruptedException {
         PersonDao personDao = new PersonDao();
-        PersonEntity condition=new PersonEntity(null,null,"哈哈哈",null,null,null,null,null);
+        PersonEntity condition=new PersonEntity(null,null,"哈哈哈",null,null,null,null,null,null);
         personDao.simpleDelete(condition);
 //        String hql="delete from PersonEntity where name=?";
 //        Query query=session.createQuery(hql);
@@ -190,7 +190,7 @@ public class TestDao {
                 12,
                 "男",
                 "18840838242",
-                "1162025261@qq", list.get(0));
+                "1162025261@qq", list,null);
         System.out.println(personEntity);
 
 //        list.get(0).getPersonEntities().add(personEntity);

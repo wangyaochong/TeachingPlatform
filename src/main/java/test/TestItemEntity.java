@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import program.entity.ItemEntity;
-import program.entity.ItemType;
+import program.entity.type.ItemType;
 
 import java.util.Date;
 
@@ -25,7 +25,7 @@ public class TestItemEntity {
 
     @Test
     public void test(){
-        ItemEntity itemEntity=new ItemEntity("通知","今天天气不好，老师可能会迟到，请同学们先自习。", ItemType.ANNOUNCEMENT.toString(),true,new Date().getTime(),null);
+        ItemEntity itemEntity=new ItemEntity("通知","今天天气不好，老师可能会迟到，请同学们先自习。", ItemType.ANNOUNCEMENT.toString(),true,new Date().getTime(),null,null,null);
 //        Date s = itemEntity.getCreateDate();
 //        System.out.println(s);
     }
