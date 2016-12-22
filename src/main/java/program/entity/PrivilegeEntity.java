@@ -26,32 +26,47 @@ public class PrivilegeEntity {
     Boolean video;//对视频的权限
     Boolean assignment;//对作业的权限，包括对作业批改等
     Boolean personalInfomation;//对个人信息权限，包括修改用户密码，用户权限等
+
+    //是否具有super权限，仅super权限可以创建用户，同时不受分组的限制
+    //也仅有super权限可以创建具有super权限的用户
+    Boolean isSuper;
     @ManyToOne GroupEntity groupEntity;//权限对应的组别，每个人的权限仅限自己组内
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    Set<PersonEntity> personEntities;
+
+
+
+
+    public Boolean getIsSuper() {
+        return isSuper;
+    }
+
+    public void setIsSuper(Boolean isSuper) {
+        isSuper = isSuper;
+    }
+
+    public GroupEntity getGroupEntity() {
+        return groupEntity;
+    }
+
+    public void setGroupEntity(GroupEntity groupEntity) {
+        this.groupEntity = groupEntity;
+    }
+
+
+
 
     public PrivilegeEntity() {
     }
 
-    @Override
-    public String toString() {
-        return "PrivilegeEntity{" +
-                "id='" + id + '\'' +
-                ", frontMessage=" + frontMessage +
-                ", document=" + document +
-                ", video=" + video +
-                ", assignment=" + assignment +
-                ", personalInfomation=" + personalInfomation +
-                '}';
-    }
 
-    public PrivilegeEntity( Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation) {
+    public PrivilegeEntity(Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation, Boolean isSuper, GroupEntity groupEntity) {
         this.frontMessage = frontMessage;
         this.document = document;
         this.video = video;
         this.assignment = assignment;
         this.personalInfomation = personalInfomation;
+        this.isSuper = isSuper;
+        this.groupEntity = groupEntity;
     }
 
     public String getId() {

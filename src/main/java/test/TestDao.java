@@ -112,7 +112,7 @@ public class TestDao {
 
     @Test
     public void testAddPrivileage() {
-        PrivilegeEntity privilegeEntity = new PrivilegeEntity(false, false, false, false, false);
+        PrivilegeEntity privilegeEntity = new PrivilegeEntity(false, false, false, false, false,false,null);
         session.save(privilegeEntity);
     }
 
