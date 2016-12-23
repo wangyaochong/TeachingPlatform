@@ -11,32 +11,32 @@ app.service('UserService', function ($http) {
     }
     this.getCurrentUserPrivileages=function () {
         return this.getCurrentUser().then(function (data) {
-            return data["privilegeEntity"];
+            return data["privilegeEntityList"];
         })
     }
     this.hasFrontMessagePriv=function () {
         return this.getCurrentUserPrivileages().then(function (data) {
-            return data["frontMessage"];
+            return data[0]["frontMessage"];
         })
     }
     this.hasDocumentPriv=function () {
         return this.getCurrentUser().then(function (data) {
-            return data["document"];
+            return data[0]["document"];
         })
     }
     this.hasVideoPriv=function () {
         return this.getCurrentUser().then(function (data) {
-            return data["video"];
+            return data[0]["video"];
         })
     }
     this.hasAssignmentPriv=function () {
         return this.getCurrentUser().then(function (data) {
-            return data["assignment"];
+            return data[0]["assignment"];
         })
     }
     this.hasPersonalInfomationPriv=function () {
         return this.getCurrentUser().then(function (data) {
-            return data["personalInfomation"];
+            return data[0]["personalInfomation"];
         })
     }
 })

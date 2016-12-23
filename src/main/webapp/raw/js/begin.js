@@ -12,6 +12,10 @@ var ItemType={
     SOLUTION:"SOLUTION",
     ROLLPICTURE:"ROLLPICTURE"
 }
+//由于这个函数没有定义，所以手动定义
+angular.isUndefinedOrNull = function(val) {
+    return angular.isUndefined(val) || val === null
+}
 
 
 

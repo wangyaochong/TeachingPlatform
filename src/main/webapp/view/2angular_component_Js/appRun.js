@@ -2,6 +2,14 @@
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
 app.run(function ($rootScope, ItemEntityService,UserService) {
+    //每一个controllerXXX对应一个controllerXXX.html页面
+    var controllerNames=['RollPicture','IndexMessage'];
+    angular.forEach(controllerNames,function (data) {
+        data="controller"+data;
+        $rootScope[data+"Url"]=templateHtmlUrl+data+".html"
+    })
+    //注册模版路径，比如$rootScope.controllerRollPictureUrl
+    //="/TeachingPlatform/view/3templateHtml/controllerRollPicture.html"
 
     $rootScope.stateRootUrl = "/TeachingPlatform/view/5html/index.html#!/";
     $rootScope.templateHtmlUrl="/TeachingPlatform/view/3templateHtml/";
@@ -21,11 +29,11 @@ app.run(function ($rootScope, ItemEntityService,UserService) {
     }
 
     UserService.getCurrentUserPrivileages().then(function (data) {
-        $rootScope.HasAssignmentPriv=data.assignment;
-        $rootScope.HasDocumentPriv=data.document;
-        $rootScope.HasFrontMessagePriv=data.frontMessage;
-        $rootScope.HasPersonalInfomationtPriv=data.personalInfomation;
-        $rootScope.HasVideoPriv=data.video;
+        $rootScope.HasAssignmentPriv=data[0].assignment;
+        $rootScope.HasDocumentPriv=data[0].document;
+        $rootScope.HasFrontMessagePriv=data[0].frontMessage;
+        $rootScope.HasPersonalInfomationtPriv=data[0].personalInfomation;
+        $rootScope.HasVideoPriv=data[0].video;
     })
 
 

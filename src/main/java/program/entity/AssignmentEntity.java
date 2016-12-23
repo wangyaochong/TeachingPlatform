@@ -1,5 +1,7 @@
 package program.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,10 +13,13 @@ public class AssignmentEntity {
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     ItemEntity itemEntity;
-    Date deadline;
+
+    Long deadlineDateTime;
+
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     List<SolutionEntity> solutionEntities;
 
     public String getId() {
@@ -33,12 +38,12 @@ public class AssignmentEntity {
         this.itemEntity = itemEntity;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public Long getDeadline() {
+        return deadlineDateTime;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setDeadline(Long deadlineDateTime) {
+        this.deadlineDateTime = deadlineDateTime;
     }
 
     public List<SolutionEntity> getSolutionEntities() {

@@ -1,0 +1,1 @@
+使用hibernate时，如果同一个类有多个eager类型的fetch list，那么会报错

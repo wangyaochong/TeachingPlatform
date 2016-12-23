@@ -1,9 +1,12 @@
 package program.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 这是互相通信之间的消息类，可以有附件
@@ -14,16 +17,20 @@ public class MessageEntity {
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
     PersonEntity sender;//发送者
-    @OneToMany
-    PersonEntity receiver;//接受者
-    @OneToOne(optional = false)
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    List<PersonEntity> receiver;//接受者
+
+    @OneToOne(optional = false,fetch = FetchType.EAGER)
     ItemEntity itemEntity;//单项信息
+
     Date sendingDateTime;//发送时间
     Boolean hasRead;//是否已经阅读
 
-    public MessageEntity(PersonEntity sender, PersonEntity receiver, ItemEntity itemEntity, Date sendingDateTime, Boolean hasRead) {
+    public MessageEntity(PersonEntity sender, List<PersonEntity> receiver, ItemEntity itemEntity, Date sendingDateTime, Boolean hasRead) {
         this.sender = sender;
         this.receiver = receiver;
         this.itemEntity = itemEntity;
@@ -46,11 +53,11 @@ public class MessageEntity {
         this.sender = sender;
     }
 
-    public PersonEntity getReceiver() {
+    public List<PersonEntity> getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(PersonEntity receiver) {
+    public void setReceiver(List<PersonEntity> receiver) {
         this.receiver = receiver;
     }
 

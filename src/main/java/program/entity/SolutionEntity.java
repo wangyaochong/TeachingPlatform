@@ -1,5 +1,7 @@
 package program.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,8 +15,10 @@ public class SolutionEntity {
     Integer mark;//得分
     String comment;//评语
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     List<FileEntity> resourceEntities;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     PersonEntity provider;//作业答题者
 
     public PersonEntity getProvider() {

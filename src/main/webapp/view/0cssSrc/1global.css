@@ -1,7 +1,8 @@
 :root {
-    --theme-basic-color: #337ab7;
-    --theme-hover-color: #2b659a;
-    --theme-white-color: white;
+    --basic-color: #337ab7;
+    --hover-color: #2b659a;
+    --white-color: white;
+    --sideMenu-backgroud-color: #2453a0;
 }
 
 * {

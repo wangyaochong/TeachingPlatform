@@ -1,5 +1,7 @@
 package program.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,11 +24,18 @@ public class ItemEntity {
     String type;//类型
     Boolean isOpen;//是否公开
     Long createDate;//生成的时间
+
     @ManyToOne(fetch = FetchType.EAGER)
     PersonEntity creator;//单项信息的创建者，通过创建者找到分组，然后所有分组内的人都可以访问
+
     @ManyToOne(fetch = FetchType.EAGER)
-    GroupEntity groupEntity;//章节分组
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
+    GroupEntity charpterGroup;//章节分组
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    GroupEntity classGroup;//班级分组
+
+    @ManyToMany(fetch = FetchType.EAGER)//当item删除后，对应文件也应该删除
+    @Fetch(FetchMode.SUBSELECT)
     List<FileEntity> resources;//资源可以有一个、多个或者零个
 
 
@@ -38,12 +47,20 @@ public class ItemEntity {
         this.creator = creator;
     }
 
-    public GroupEntity getGroupEntity() {
-        return groupEntity;
+    public GroupEntity getCharpterGroup() {
+        return charpterGroup;
     }
 
-    public void setGroupEntity(GroupEntity groupEntity) {
-        this.groupEntity = groupEntity;
+    public void setCharpterGroup(GroupEntity charpterGroup) {
+        this.charpterGroup = charpterGroup;
+    }
+
+    public GroupEntity getClassGroup() {
+        return classGroup;
+    }
+
+    public void setClassGroup(GroupEntity classGroup) {
+        this.classGroup = classGroup;
     }
 
     public Boolean getIsOpen() {
@@ -103,14 +120,16 @@ public class ItemEntity {
     }
     public ItemEntity() {
     }
-    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, PersonEntity creator, GroupEntity groupEntity, List<FileEntity> resources) {
+
+    public ItemEntity(String title, String description, String type, Boolean isOpen, Long createDate, PersonEntity creator, GroupEntity charpterGroup, GroupEntity classGroup, List<FileEntity> resources) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.isOpen = isOpen;
         this.createDate = createDate;
         this.creator = creator;
-        this.groupEntity = groupEntity;
+        this.charpterGroup = charpterGroup;
+        this.classGroup = classGroup;
         this.resources = resources;
     }
 }

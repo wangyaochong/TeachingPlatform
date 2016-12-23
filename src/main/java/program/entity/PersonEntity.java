@@ -1,5 +1,7 @@
 package program.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,11 +29,16 @@ public class PersonEntity {
 
     //所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
     //可能具有多个权限，比如既是数学课代表又是英语课代表
+
     //所有用于默认都具有读权限
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //一个权限有可能有多个学生，一个学生也有可能有多个权限
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     List<PrivilegeEntity> privilegeEntityList;
 
     //所在的分组，有可能有多个，比如同时上数学和英语课
+    @ManyToMany(fetch = FetchType.EAGER) //一个学生有可能属于多个班级，一个班级也可能有多个学生
+    @Fetch(FetchMode.SUBSELECT)
     List<GroupEntity> groupEntityList;
 
     public List<GroupEntity> getGroupEntityList() {

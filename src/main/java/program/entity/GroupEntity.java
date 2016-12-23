@@ -4,6 +4,8 @@ package program.entity;
  * Created by【王耀冲】on 【2016/12/22】 at 【23:09】.
  */
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  *分组信息，同一个分组内的单项信息可以由该分组内的所有人共享
  */
+@Entity
 public class GroupEntity {
     @Id
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
@@ -19,12 +22,18 @@ public class GroupEntity {
     String id;//id
     String name;//分组的名字
     String type;//分组的类型分为人员分组和章节分组
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
     GroupEntity parentGroupEntity;//只能有一个父级分组
-    @OneToMany
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)//使用list，同时一个类中有多个eagerfetch，那么需要使用子查询或者set
     List<GroupEntity> childGroupEntityList;//可以有多个子级分组
+
     @ManyToOne(fetch = FetchType.EAGER)
     PersonEntity creator;//分组创建人
+
+
     Long createDate;//创建时间
 
     public String getId() {

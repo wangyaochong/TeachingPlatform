@@ -1,39 +1,39 @@
 .navbar {
-    background-color: var(--theme-basic-color);
+    background-color: var(--basic-color);
 }
 
 div a.navbar-brand {
-    color: var(--theme-white-color) !important;
+    color: var(--white-color) !important;
     font-size: 2em;
 }
 
 div a.navbar-brand:hover {
-    background-color: var(--theme-hover-color) !important;
+    background-color: var(--hover-color) !important;
 }
 
 div ul.nav li a {
-    color: var(--theme-white-color) !important;
+    color: var(--white-color) !important;
 }
 
 div ul.nav li a :hover {
-    background-color: var(--theme-hover-color) !important;
+    background-color: var(--hover-color) !important;
 }
 
 li ul.dropdown-menu, a.dropdown-toggle {
-    background-color: var(--theme-basic-color) !important;
+    background-color: var(--basic-color) !important;
 }
 
 li.dropdown ul li a:hover, a.dropdown-toggle:hover, div ul.nav li a:hover {
-    background-color: var(--theme-hover-color) !important;
+    background-color: var(--hover-color) !important;
 }
 
 button.navbar-toggle {
-    background-color: var(--theme-white-color);
+    background-color: var(--white-color);
 }
 
 span.icon-bar {
-    color: var(--theme-basic-color) !important;
-    background-color: var(--theme-basic-color) !important;
+    color: var(--basic-color) !important;
+    background-color: var(--basic-color) !important;
 }
 
 h3 {
@@ -67,7 +67,7 @@ textarea.rollPictureDes {
     overflow: hidden !important;
     border-radius: 5px;
     font-size: 1.5em;
-    background-color: var(--theme-basic-color);
+    background-color: var(--basic-color);
     color: white;
     text-indent: 2em;
 }
@@ -79,7 +79,7 @@ textarea.rollPictureDes:disabled {
 }
 
 textarea.rollPictureDes:enabled {
-    border: 1px dotted var(--theme-white-color);
+    border: 1px dotted var(--white-color);
 }
 
 
@@ -91,7 +91,7 @@ textarea.indexMessage {
     text-align: left;
     overflow: hidden !important;
     border-radius: 5px;
-    border: 1px dotted var(--theme-basic-color);
+    border: 1px dotted var(--basic-color);
 }
 
 textarea.indexMessage:disabled {
@@ -108,4 +108,13 @@ textarea.indexMessage:disabled {
 .pagination,
 .ng-table-pagination {
     margin: 0;
+}
+
+
+.carousel-control{
+    color: var(--hover-color)!important;
+    text-shadow: none!important;
+    background-image: none!important;
+    filter: alpha(opacity=100)!important;
+    opacity: 1!important;
 }

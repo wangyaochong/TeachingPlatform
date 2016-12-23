@@ -13,7 +13,7 @@ import java.util.List;
 public class AuthGrantedAuthorityUtil {
     public static List<AuthGrantedAuthority> getAuthorities(List<PrivilegeEntity> privilegeEntityList) {
         ArrayList<AuthGrantedAuthority> authorities = new ArrayList<>();
-        Field[] declaredFields = privilegeEntityList.getClass().getDeclaredFields();
+        Field[] declaredFields = PrivilegeEntity.class.getDeclaredFields();
         for(Field f:declaredFields){
             for(PrivilegeEntity p:privilegeEntityList){
                 try {

@@ -3,5 +3,5 @@
  */
 $stateProvider.state('personalCenter',{
     url: '/personalCenter',
-    template:"personalCenter"
+    templateUrl:templateHtmlUrl+'statePersonalCenter.html'
 });

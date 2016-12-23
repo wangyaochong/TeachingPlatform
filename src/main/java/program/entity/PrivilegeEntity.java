@@ -30,7 +30,8 @@ public class PrivilegeEntity {
     //是否具有super权限，仅super权限可以创建用户，同时不受分组的限制
     //也仅有super权限可以创建具有super权限的用户
     Boolean isSuper;
-    @ManyToOne GroupEntity groupEntity;//权限对应的组别，每个人的权限仅限自己组内
+    @ManyToOne(fetch = FetchType.EAGER)
+    GroupEntity groupEntity;//权限对应的组别，每个人的权限仅限自己组内
 
 
 
