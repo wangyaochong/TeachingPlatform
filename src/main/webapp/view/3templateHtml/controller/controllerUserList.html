@@ -1,0 +1,48 @@
+<div class="container-fluid" ng-controller="controllerUserList">
+    <div style="float: left;width: 10%;height: 1px"></div>
+    <div style="float: left;width:80%;">
+        <div style="width: 100%;height: 5%"></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="display: inline-block">用户信息列表</h3>
+                <button  style="margin-top:-5px " type="button" class="btn btn-danger btn-sm pull-right"
+                        style="display: inline-block;"
+                        ng-click="editUser()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <div class="hidden-xs hidden-sm" style="display: inline;">
+                        <br class="visible-xs-block">&nbsp;
+                        <h6 style="display:inline-block; margin: 0px">新建</h6>
+                    </div>
+                </button>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table ng-table="frontMessageTableParams" class="table " show-filter="true">
+                            <tr ng-repeat="item in $data">
+                                <td ng-cloak="" title="'帐号'" filter="{ number: 'text'}" width="20%" align="left" style="min-width: 50px;">
+                                    {{item.number}}
+                                </td>
+                                <td ng-cloak="" title="'姓名'" filter="{ name: 'text'}" width="20%" align="left" style="min-width: 50px;">
+                                    {{item.name}}
+                                </td>
+                                <td ng-cloak="" title="'手机'" filter="{ phoneNumber: 'text'}" width="20%" align="left" style="min-width: 50px;">
+                                    {{item.phoneNumber}}
+                                </td>
+                                <td ng-cloak="" title="'邮箱'" filter="{ email: 'text'}" width="20%" align="left" style="min-width: 50px;">
+                                    {{item.email}}
+                                </td>
+                                <td ng-cloak="" title="'修改'"width="20%" align="left" style="min-width: 50px;">
+                                    <directive-edit $item="item" before-callback="editUser(item)" delete-callback="deleteUser(item)"
+                                                $index="$index"    $list="$data"></directive-edit>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

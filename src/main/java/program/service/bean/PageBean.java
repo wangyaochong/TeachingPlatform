@@ -1,4 +1,4 @@
-package program.util.bean;
+package program.service.bean;
 
 import java.util.List;
 

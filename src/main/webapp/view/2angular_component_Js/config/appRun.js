@@ -1,41 +1,42 @@
 /**
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
-function generateUrl(scope,type,nameList){
-    angular.forEach(nameList,function (data) {
-        data=type+data;
-        scope[data+"Url"]=templateHtmlUrl+type+"/"+data+".html"
-    })
-}
-var controllerNames=[
-    'HeaderMenu',
-    'RollPicture',
-    'IndexMessage',
-    'UserInformation'
-];
-var directiveNames=[
-    'Edit'
+var userCenterStates = [
+    'userCenter.userList',
+    'userCenter.userInformation'
 ]
-generateUrl(templateUrls,"controller",controllerNames);
-generateUrl(templateUrls,"directive",directiveNames);
+app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, CRUDService) {
+    $rootScope.$on('$stateChangeStart',
+        function (event, toState, toParams, fromState, fromParams) {
+            if (toState.name == "userCenter") {
+                if (userCenterStates.indexOf(fromState.name) != -1) {
+                    event.preventDefault();//禁止切换
+                }
+            }
+        })
 
 
-app.run(function ($rootScope, ItemEntityService,UserService,CRUDHtmlService) {
     //每一个controllerXXX对应一个controllerXXX.html页面
     //directive也是类似的
 
-    generateUrl($rootScope,"controller",controllerNames);
-    generateUrl($rootScope,"directive",directiveNames);
-
-
+    generateUrl($rootScope, "controller", controllerNames);
+    generateUrl($rootScope, "directive", directiveNames);
 
     //注册模版路径，比如$rootScope.controllerRollPictureUrl
-    //="/TeachingPlatform/view/3templateHtml/controllerRollPicture.html"
-
+    //="/TeachingPlatform/view/3templateHtml/controllerRollPicture.html
     $rootScope.stateRootUrl = "/TeachingPlatform/view/5html/index.html#!/";
-    $rootScope.templateHtmlUrl="/TeachingPlatform/view/3templateHtml/";
+    $rootScope.templateHtmlUrl = "/TeachingPlatform/view/3templateHtml/";
     $rootScope.screenWidth = window.screen.width;
     $rootScope.screenHeight = window.screen.height;
+
+    UserService.getCurrentUserPrivileages().then(function (data) {
+        $rootScope.HasAssignmentPriv = data[0].assignment;
+        $rootScope.HasDocumentPriv = data[0].document;
+        $rootScope.HasFrontMessagePriv = data[0].frontMessage;
+        $rootScope.HasPersonalInfomationtPriv = data[0].personalInfomation;
+        $rootScope.HasVideoPriv = data[0].video;
+        $rootScope.HasSuperPriv = data[0].isSuper;
+    })
 
 
     //定义全局itemType，后续会用到
@@ -46,35 +47,27 @@ app.run(function ($rootScope, ItemEntityService,UserService,CRUDHtmlService) {
         VIDEO: "VIDEO",
         ASSIGNMENT: "ASSIGNMENT",
         SOLUTION: "SOLUTION",
-        ROLLPICTURE:"ROLLPICTURE"
+        ROLLPICTURE: "ROLLPICTURE"
     }
-
-    UserService.getCurrentUserPrivileages().then(function (data) {
-        $rootScope.HasAssignmentPriv=data[0].assignment;
-        $rootScope.HasDocumentPriv=data[0].document;
-        $rootScope.HasFrontMessagePriv=data[0].frontMessage;
-        $rootScope.HasPersonalInfomationtPriv=data[0].personalInfomation;
-        $rootScope.HasVideoPriv=data[0].video;
-        $rootScope.HasSuperPriv=data[0].isSuper;
-    })
-
 
 
     // $timeout(function () {//触发一下滚动大屏
     //     $('.carousel').carousel('next')
     // },5000)
     $rootScope.revertItemEntity = function (data, list) {
-        CRUDHtmlService.revertObject(data,list);
+        CRUDHtmlService.revertObject(data, list);
     }
     $rootScope.saveItemEntity = function (data) {
         //保存编辑的内容到副本
         var response = ItemEntityService.updateItemEntity(data)
-        CRUDHtmlService.saveObject(data,response);
+        CRUDHtmlService.saveObject(data, response);
     }
+
     $rootScope.deleteItemEntity = function (data, index, list) {
-        CRUDHtmlService.deleteObject(index,list);
+        CRUDHtmlService.deleteObject(index, list);
         ItemEntityService.deleteItemEntity(data);
     }
+
     $rootScope.addItemEntity = function (list, type) {
         var itemEntity = {
             id: "",//id
@@ -86,8 +79,8 @@ app.run(function ($rootScope, ItemEntityService,UserService,CRUDHtmlService) {
             dataCopy: {},
             isEditing: true
         }
-        if(type!=ItemType.ANNOUNCEMENT){//首页消息可以直接添加，但是带有附件的不能，需要上传附件才行
-            CRUDHtmlService.addObject(itemEntity,list)
+        if (type != ItemType.ANNOUNCEMENT) {//首页消息可以直接添加，但是带有附件的不能，需要上传附件才行
+            CRUDHtmlService.addObject(itemEntity, list)
         }
         list.unshift(itemEntity);
         // console.log("screenWidth:"+$rootScope.screenWidth);

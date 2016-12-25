@@ -9,7 +9,7 @@
     </button>
     <br class="visible-xs-block">
     <!--在超小屏幕换行-->
-    <button ng-if="!$item.isEditing&&showDelete" type="button" class="btn btn-danger btn-sm"
+    <button ng-if="!$item.isEditing&&$list" type="button" class="btn btn-danger btn-sm"
             ng-click="$item.isEditing=!$item.isEditing;deleteItem($index,$list)">
         <span class="glyphicon glyphicon-remove"></span>
     </button>

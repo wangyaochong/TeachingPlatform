@@ -17,12 +17,12 @@ app.service('ItemEntityService', function (CRUDService) {
             orderAsc:orderAsc
         };
         return CRUDService.getMethod(url,params).then(function (data) {
-            angular.forEach(data.data.pageList, function (data) {
+            angular.forEach(data.pageList, function (data) {
                 data.isEditing = false;//是否正在编辑为假
                 data.dataCopy = {};
                 angular.copy(data, data.dataCopy);//保存编辑前的内容
             })
-            return data.data;
+            return data;
         }, function (error) {
             console.log(error)
         })
@@ -39,7 +39,7 @@ app.service('ItemEntityService', function (CRUDService) {
             createDate: data.createDate
         }
         return CRUDService.updateMethod(url,params).then(function (data) {
-            return data.data;
+            return data;
         })
     }
     this.deleteItemEntity = function (data) {
@@ -48,7 +48,7 @@ app.service('ItemEntityService', function (CRUDService) {
             id: data.id
         }
         return CRUDService.updateMethod(url,params).then(function (data) {
-            return data.data;
+            return data;
         })
     }
 })

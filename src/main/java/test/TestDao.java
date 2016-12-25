@@ -15,8 +15,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import program.util.bean.PageBean;
-import program.util.PageListWithSingleBean;
+import program.service.bean.PageBean;
+import program.service.PageListService;
 
 import java.io.IOException;
 import java.util.Date;
@@ -66,12 +66,12 @@ public class TestDao {
 //        condition.setAge(24);
 //        condition.setEmail("");
         condition.setPhoneNumber("18840838242");
-        PageListWithSingleBean<PersonEntity> pageListWithSingleBean=new PageListWithSingleBean<PersonEntity>(session,condition,1,5,"ag",true);
-        PageBean<PersonEntity> pageBean = pageListWithSingleBean.getPageBean();
-        System.out.println("总共："+pageBean.getPageTotalCount()+"页");
-        for(PersonEntity p:pageBean.getPageList()){
-            System.out.println(p);
-        }
+//        PageListService<PersonEntity> pageListWithSingleBean=new PageListService<PersonEntity>(condition,1,5,"ag",true);
+//        PageBean<PersonEntity> pageBean = pageListWithSingleBean.getPageBean();
+//        System.out.println("总共："+pageBean.getPageTotalCount()+"页");
+//        for(PersonEntity p:pageBean.getPageList()){
+//            System.out.println(p);
+//        }
 
     }
 

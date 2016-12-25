@@ -9,22 +9,26 @@ app.directive('directiveEdit', function () {
         scope: {
             $item: "=",
             $index: "=",
-            $list: "=",
-            showDelete: "@"//只有在列表中才需要这个showDelete属性，如果不设置，默认为不显示
+            $list: "=",//近当有list的时候才显示delete按钮
+            saveCallback:"&",
+            deleteCallback:"&",
+            beforeCallback:"&"
         },
         controller: function ($scope) {
             $scope.beforeEditing = function (item) {
                 item.dataCopy = {};
                 angular.copy(item, item.dataCopy);//保存编辑前的内容
-
+                $scope.beforeCallback();
             }
             $scope.saveEditing = function (item) {
                 angular.copy(item, item.dataCopy);
+                $scope.saveCallback();
             }
             $scope.deleteItem = function (index, list) {
                 if (!angular.isUndefinedOrNull(list)) {
                     list.splice(index, 1);
                 }
+                $scope.deleteCallback();
             }
             $scope.revertEditing = function (item, list) {
                 angular.copy(item.dataCopy, item);

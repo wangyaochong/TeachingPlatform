@@ -1,6 +1,7 @@
 package program.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"frontMessage","document","video","assignment","personalInfomation"})})
 //@UniqueConstraint()注解，可以让多个列组成的联合属性唯一
-public class PrivilegeEntity {
+public class PrivilegeEntity implements IEntity{
     //每一种权限对应一个模块的所有权限
     //当老师给一个用户授权时，如果该权限组合没有在数据库中存在，则新增一种一条记录
     //然后该用户指向该权限id

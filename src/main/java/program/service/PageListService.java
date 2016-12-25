@@ -1,4 +1,4 @@
-package program.util;
+package program.service;
 
 import javafx.util.Pair;
 import org.hibernate.Criteria;
@@ -7,44 +7,30 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import program.util.bean.PageBean;
+import program.dao.GenericDao;
+import program.service.bean.PageBean;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
 @Repository
-public class PageListWithSingleBean<T> {
+public class PageListService<T> {
     PageBean<T> pageBean = new PageBean();//分页的保存项
-    Session session;//用来获取分页信息的session
+    @Resource(name = "GenericDao")
+    GenericDao genericDao;//用来获取分页信息的session
     T condition;//查询条件
 
-    public PageListWithSingleBean() {
-
+    public PageListService() {
     }
 
     //构造函数的公共方法
-    private void init(Session session, T condition, Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc) {
+    //由于这个方法有局部变量，所以要使用synchronized关键字
+    public synchronized PageBean<T> getPageBean(T condition, Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc) {
         this.condition = condition;
-        this.session = session;
         setPageBean(pageCurrentIndex, pageRowSize, orderBy, orderAsc);
+        return this.pageBean;
     }
-
-    //传入的orderBy不是null，就默认降序排序，传入的orderAsc只要不是null，就升序排序
-    public PageListWithSingleBean(Session session, T condition, Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc) {
-        init(session, condition, pageCurrentIndex, pageRowSize, orderBy, orderAsc);
-    }
-
-    //
-    public PageListWithSingleBean(Session session, T condition, Integer pageCurrentIndex, Integer pageRowSize, String orderBy) {
-        init(session, condition, pageCurrentIndex, pageRowSize, orderBy, null);
-    }
-
-    //不传入orderBy就不排序
-    public PageListWithSingleBean(Session session, T condition, Integer pageCurrentIndex, Integer pageRowSize) {
-        init(session, condition, pageCurrentIndex, pageRowSize, null, null);
-    }
-
     //从查询条件获取键值对，用于查询
     private List<Pair<String, Object>> getKeyValueList() {
         if (condition == null) return new ArrayList<Pair<String, Object>>();
@@ -62,24 +48,16 @@ public class PageListWithSingleBean<T> {
         }
         return pairList;
     }
-
-    public PageBean<T> getPageBean() {
-        return pageBean;
-    }
-
-    public void setPageBean(PageBean<T> pageBean) {
-        this.pageBean = pageBean;
-    }
-
     //设置pageBean，也就是从入参构造一页列表
-    public void setPageBean(Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc) {
+    private void setPageBean(Integer pageCurrentIndex, Integer pageRowSize, String orderBy, Boolean orderAsc) {
         this.pageBean.setPageCurrentIndex(pageCurrentIndex);
         this.pageBean.setPageRowSize(pageRowSize);
         this.pageBean.setOrderBy(orderBy);
         this.pageBean.setOrderAsc(orderAsc);
 
         //先根据条件获取总条数
-        Criteria criteria = session.createCriteria(condition.getClass());
+        Session session = genericDao.getSession();
+        Criteria criteria =session.createCriteria(condition.getClass());
         List<Pair<String, Object>> conditionKeyValueList = getKeyValueList();
         for (int i = 0; i < conditionKeyValueList.size(); i++) {//加入查询条件
             criteria.add(Restrictions.eq(conditionKeyValueList.get(i).getKey(), conditionKeyValueList.get(i).getValue()));

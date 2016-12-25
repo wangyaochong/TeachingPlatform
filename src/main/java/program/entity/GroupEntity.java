@@ -7,6 +7,7 @@ package program.entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  *分组信息，同一个分组内的单项信息可以由该分组内的所有人共享
  */
 @Entity
-public class GroupEntity {
+public class GroupEntity implements IEntity{
     @Id
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")

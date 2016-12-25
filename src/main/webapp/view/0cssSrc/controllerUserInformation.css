@@ -1,0 +1,5 @@
+input.UserInformation{
+    border-radius: 5px;
+    border: 1px dotted var(--basic-color);
+    width: 100%;
+}

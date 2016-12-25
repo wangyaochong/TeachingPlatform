@@ -1,6 +1,7 @@
 package program.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
  *单项信息可能有一个或者多个资源，也可能没有资源
  */
 @Entity
-public class FileEntity {
+public class FileEntity implements IEntity{
     @Id
     @GenericGenerator(name="generator",strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")

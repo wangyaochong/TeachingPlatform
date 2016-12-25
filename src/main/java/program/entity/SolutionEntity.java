@@ -3,11 +3,12 @@ package program.entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
-public class SolutionEntity {
+public class SolutionEntity implements IEntity{
     @Id
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")

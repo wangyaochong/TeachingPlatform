@@ -3,6 +3,7 @@ package program.entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * PersonEntity是所有的用户，包括教师，学生，管理员等，但只用一个表来表示，不同用户的区别有权限分隔
  */
 @Entity
-public class PersonEntity {
+public class PersonEntity implements IEntity{
     @Id
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")

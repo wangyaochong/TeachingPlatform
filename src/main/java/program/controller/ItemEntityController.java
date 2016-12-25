@@ -9,9 +9,9 @@ import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.PersonDao;
 import program.entity.ItemEntity;
-import program.util.EntityUtil;
-import program.util.bean.PageBean;
-import program.util.PageListWithSingleBean;
+import program.service.CrudService;
+import program.service.bean.PageBean;
+import program.service.PageListService;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -24,42 +24,34 @@ import java.io.Serializable;
 public class ItemEntityController {
     @Resource
     PersonDao genericDao;
-
+    @Resource
+    CrudService crudService;//增删改查操作
+    @Resource
+    PageListService<ItemEntity> pageListService;
     @RequestMapping("/getItemEntityPage")//需要获取分页itemEntity共用的URL
     @ResponseBody
     public PageBean<ItemEntity> getItemEntityPage(@ModelAttribute ItemEntity itemEntity,
                                                   @RequestParam Integer pageCurrentIndex, @RequestParam Integer pageRowSize,
                                                   @RequestParam(required = false) String orderBy, @RequestParam(required = false) Boolean orderAsc) {
         //itemEntity是过滤条件，
-        PageListWithSingleBean<ItemEntity> pageListWithSingleBean = new PageListWithSingleBean<ItemEntity>(genericDao.getSession(), itemEntity,
-                pageCurrentIndex, pageRowSize, orderBy, orderAsc);
         //这个地方，由于返回时使用StringHttpMessageConverter将类转换为字符串，在转换为字符串的时候，需要获取所有的属性，
         //包括级联属性，类属性，因为是使用getCurrentSession，调用完session会关闭。
         // 所以在转换时就无法获取到真实的属性，因此不能使用懒加载
-        return pageListWithSingleBean.getPageBean();
+        return pageListService.getPageBean(itemEntity,
+                pageCurrentIndex, pageRowSize, orderBy, orderAsc);
     }
 
     @RequestMapping("/updateItemEntity")
     @ResponseBody//update操作，如果不带id，那么就保存
     public ResponseInfo updateItemEntity(@ModelAttribute ItemEntity itemEntity) {
-        ItemEntity update = genericDao.getSession().get(ItemEntity.class, itemEntity.getId());
-        if(update==null){//如果是一个没有保存过的entity，则保存
-            update=new ItemEntity();
-            EntityUtil.updateEntity(update, itemEntity);
-            Serializable save = genericDao.getSession().save(update);
-            return new ResponseInfo(ResponseFlag.STATUS_OK,null,save);
-        }
-        EntityUtil.updateEntity(update, itemEntity);
-        genericDao.getSession().update(update);
-        return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
+        Serializable serializable = crudService.saveOrUpdateOne(itemEntity);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,serializable);
     }
 
     @RequestMapping("/deleteItemEntity")
     @ResponseBody
     public ResponseInfo deleteItemEntity(@RequestParam(value = "id") String id) {
-        ItemEntity itemEntity = new ItemEntity();
-        itemEntity.setId(id);
-        genericDao.getSession().delete(itemEntity);
+        crudService.deleteOne(ItemEntity.class,id);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
     }
 }

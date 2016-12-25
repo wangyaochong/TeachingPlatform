@@ -3,6 +3,7 @@ package program.entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.List;
  * 这是互相通信之间的消息类，可以有附件
  */
 @Entity
-public class MessageEntity {
+public class MessageEntity implements IEntity{
     @Id
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
