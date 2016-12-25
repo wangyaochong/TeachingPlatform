@@ -1,0 +1,20 @@
+<div>
+    <button ng-if="!$item.isEditing" type="button" class="btn btn-primary btn-sm"
+            ng-click="beforeEditing($item);$item.isEditing=!$item.isEditing;">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+    <button ng-if="$item.isEditing" type="button" class="btn btn-primary btn-sm"
+            ng-click="$item.isEditing=!$item.isEditing;saveEditing($item)">
+        <span class="glyphicon glyphicon-floppy-saved"></span>
+    </button>
+    <br class="visible-xs-block">
+    <!--在超小屏幕换行-->
+    <button ng-if="!$item.isEditing&&showDelete" type="button" class="btn btn-danger btn-sm"
+            ng-click="$item.isEditing=!$item.isEditing;deleteItem($index,$list)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button ng-if="$item.isEditing" type="button" class="btn btn-danger btn-sm"
+            ng-click="$item.isEditing=!$item.isEditing;revertEditing($item,$list);">
+        <span class="glyphicon glyphicon-floppy-remove"></span>
+    </button>
+</div>

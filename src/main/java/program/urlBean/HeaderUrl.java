@@ -24,7 +24,8 @@ public class HeaderUrl  {
         ));
         headerDropDownTitle=new UrlDefinition("header.navDrop","#",locale);//下拉菜单的标题
         headerDropDownList=new ArrayList<UrlDefinition>(Arrays.asList(//下拉菜单具体选项
-                new UrlDefinition("header.navDrop.个人中心","personalCenter",locale),
+                new UrlDefinition("header.navDrop.用户中心","userCenter",locale),
+                new UrlDefinition("header.navDrop.课程中心","courseCenter",locale),
                 new UrlDefinition("header.navRight.语言设置","languageSetting",locale),
                 new UrlDefinition("header.navRight.搜索","search",locale)
         ));

@@ -2,7 +2,6 @@
  * Created by 【王耀冲】 on 【2016/12/22】 at 【15:22】.
  */
 app.service('FileUploadModalService', function ($rootScope) {
-
     this.initFileUploadModal = function (outUploadUrl, isMultiple, uploadSuccessCallBack) {
         //上传成功会会回调uploadSuccessCallBack函数，该函数只有一个参数，就是response，回调时会将该参数填入
         //尝试使用angular的ng-include加载模版，但是失败了，可能是由于动态加载，导致指令没有在angular框架中注册

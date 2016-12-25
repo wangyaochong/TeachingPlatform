@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
 public class SecurityContextFilter implements Filter {
     @Override
@@ -22,7 +23,7 @@ public class SecurityContextFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         SecurityContext context =new SecurityContextImpl();
         context.setAuthentication(new AuthImpl(new AuthUserDetailsImpl(
-                new PersonEntity("","","",0,"","","",null,null))));
+                new PersonEntity("","","",new Date().getTime(),"","","",null,null))));
         SecurityContextHolder.setContext(context);
         HttpSession session = ((HttpServletRequest) request).getSession();
         session.setAttribute("SPRING_SECURITY_CONTEXT",SecurityContextHolder.getContext());

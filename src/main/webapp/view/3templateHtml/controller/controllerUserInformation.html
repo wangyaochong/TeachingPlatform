@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="controllerUserInformation">
+    <!--这个用来当左边边距-->
+    <div style="width: 20%; float: left;display: block;height: 1px"></div>
+    <div style="width: 60%; float: left;display: block">
+        <!--这个div用来当上边边距-->
+        <div style="height: 20%;width: 100%"></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="display: inline-block">个人信息</h3>
+                <div style="float: right;background-color: white; padding: 3px;margin-top:-5px;border-radius: 5px">
+                    <!--编辑按钮指令-->
+                    <directive-edit $item="userInformation"></directive-edit>
+                </div>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <table class="table table-bordered table-hover ">
+                        <tbody>
+                        <tr ng-repeat="(key,value) in userInformation" ng-if="nameTranslation[key]">
+                            <td class="bg-primary">{{nameTranslation[key]}}</td>
+                            <td ng-if="key!='password' &&key!='birthDate' ">{{value}}</td>
+                            <td ng-if="key!='password' && key=='birthDate'  " >{{value|date:"yyyy-MM-dd"}}</td>
+                            <td ng-if="key=='password'">******</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
