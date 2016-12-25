@@ -32,6 +32,7 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
                 })
         }
     });
+
     $scope.editUser=function (item) {
         if(angular.isUndefinedOrNull(item)){
             //传参，必须要在state定义的地方定义参数
