@@ -3,7 +3,7 @@ app.directive('directiveHeader', function () {
         restrict: 'E',
         templateUrl: directiveHtmlUrl+'directiveHeader.html',
         replace: true,
-        controller:function ($scope,$http,$q) {
+        controller:function ($scope,$http) {
             $http.get(webRootUrl+"Header/getHeaderUrl").then(function (data) {
                 $scope.header=data.data
             })

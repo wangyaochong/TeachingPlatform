@@ -9,7 +9,7 @@ var gulpModules = {
     gulpPlumber: require('gulp-plumber')
 }
 var processPath = {
-    js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2angular_component_Js/*.js'],
+    js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2angular_component_Js/**/*.js'],
     js2onePath: '../view/js/',
     js2oneLibPath: [
         //jquery
@@ -47,7 +47,7 @@ var processPath = {
         '../raw/csslib/slick.css',
         '../raw/csslib/slick-theme.css',
         '../raw/csslib/fileinput.css',
-        '../raw/csslib/AdminLTE.css',
+        // '../raw/csslib/AdminLTE.css',
         '../raw/csslib/bootstrap-datepicker3.css',
 
     ],

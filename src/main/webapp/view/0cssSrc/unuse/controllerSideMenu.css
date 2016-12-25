@@ -1,0 +1,9 @@
+.panel.SideMenu{
+    margin: 0px!important;
+}
+.panel-heading.SideMenu{
+    padding: 2px;
+}
+.panel-body.SideMenu{
+    padding:3px;
+}

@@ -19,6 +19,7 @@ import program.util.bean.PageBean;
 import program.util.PageListWithSingleBean;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -187,7 +188,7 @@ public class TestDao {
                 "201399252",
                 "qwerqwer",
                 "哈哈哈",
-                12,
+                new Date().getTime(),
                 "男",
                 "18840838242",
                 "1162025261@qq", list,null);

@@ -21,17 +21,17 @@ public class PersonEntity {
     String number;//学生就是学号，教师就是工号，管理员可以没有号码
     String password;//用户名密码
     String name;//名字
-    Integer age;//年龄
     String gender;//性别，男或女
+    Long birthDate;//出生日期
     String phoneNumber;//手机号码
     String email;//邮箱账号
-
 
     //所具有的权限，超级管理员的权限都是真，其他用户默认的权限都是假，
     //可能具有多个权限，比如既是数学课代表又是英语课代表
 
     //所有用于默认都具有读权限
     //一个权限有可能有多个学生，一个学生也有可能有多个权限
+
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     List<PrivilegeEntity> privilegeEntityList;
@@ -52,6 +52,13 @@ public class PersonEntity {
     public PersonEntity() {
     }
 
+    public Long getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Long birthDate) {
+        this.birthDate = birthDate;
+    }
     public String getPassword() {
         return password;
     }
@@ -82,14 +89,6 @@ public class PersonEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getGender() {
@@ -124,11 +123,11 @@ public class PersonEntity {
         this.privilegeEntityList = privilegeEntityList;
     }
 
-    public PersonEntity(String number, String password, String name, Integer age, String gender, String phoneNumber, String email, List<PrivilegeEntity> privilegeEntityList, List<GroupEntity> groupEntityList) {
+    public PersonEntity(String number, String password, String name, Long birthDate, String gender, String phoneNumber, String email, List<PrivilegeEntity> privilegeEntityList, List<GroupEntity> groupEntityList) {
         this.number = number;
         this.password = password;
         this.name = name;
-        this.age = age;
+        this.birthDate = birthDate;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;

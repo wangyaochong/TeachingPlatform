@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="/TeachingPlatform/view/css/app.css">
 </head>
 <body>
-<directive-header></directive-header>
+<!--<directive-header></directive-header>-->
 <!--这个菜单是除了登录页面，所有页面共用的-->
+<!--改为controller实现，可以保证组件风格一致-->
+<div ng-include="controllerHeaderMenuUrl"></div>
+
+
 <ui-view></ui-view>
+
 </body>
 </html>
 <script src="/TeachingPlatform/view/js/lib.js"></script>

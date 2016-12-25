@@ -1,4 +1,4 @@
-app.controller("controllerIndexMessage", function ($scope, NgTableParams, $http, $filter, $timeout, UserService,ItemEntityService) {
+app.controller("controllerIndexMessage", function ($scope, NgTableParams, $filter, $timeout, UserService,ItemEntityService) {
     $scope.pageList=[];
     $scope.editable=false;
     $scope.frontMessageTableParams = new NgTableParams({count: 5}, {

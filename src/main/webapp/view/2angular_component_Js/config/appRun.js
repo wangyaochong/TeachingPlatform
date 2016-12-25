@@ -1,13 +1,34 @@
 /**
  * Created by 【王耀冲】 on 【2016/12/13】 at 【15:16】.
  */
-app.run(function ($rootScope, ItemEntityService,UserService) {
-    //每一个controllerXXX对应一个controllerXXX.html页面
-    var controllerNames=['RollPicture','IndexMessage'];
-    angular.forEach(controllerNames,function (data) {
-        data="controller"+data;
-        $rootScope[data+"Url"]=templateHtmlUrl+data+".html"
+function generateUrl(scope,type,nameList){
+    angular.forEach(nameList,function (data) {
+        data=type+data;
+        scope[data+"Url"]=templateHtmlUrl+type+"/"+data+".html"
     })
+}
+var controllerNames=[
+    'HeaderMenu',
+    'RollPicture',
+    'IndexMessage',
+    'UserInformation'
+];
+var directiveNames=[
+    'Edit'
+]
+generateUrl(templateUrls,"controller",controllerNames);
+generateUrl(templateUrls,"directive",directiveNames);
+
+
+app.run(function ($rootScope, ItemEntityService,UserService,CRUDHtmlService) {
+    //每一个controllerXXX对应一个controllerXXX.html页面
+    //directive也是类似的
+
+    generateUrl($rootScope,"controller",controllerNames);
+    generateUrl($rootScope,"directive",directiveNames);
+
+
+
     //注册模版路径，比如$rootScope.controllerRollPictureUrl
     //="/TeachingPlatform/view/3templateHtml/controllerRollPicture.html"
 
@@ -34,6 +55,7 @@ app.run(function ($rootScope, ItemEntityService,UserService) {
         $rootScope.HasFrontMessagePriv=data[0].frontMessage;
         $rootScope.HasPersonalInfomationtPriv=data[0].personalInfomation;
         $rootScope.HasVideoPriv=data[0].video;
+        $rootScope.HasSuperPriv=data[0].isSuper;
     })
 
 
@@ -42,24 +64,15 @@ app.run(function ($rootScope, ItemEntityService,UserService) {
     //     $('.carousel').carousel('next')
     // },5000)
     $rootScope.revertItemEntity = function (data, list) {
-        //取消编辑的内容
-        angular.copy(data.dataCopy, data);
-        if (data.id == undefined || data.id == "") {//如果是取消新增的内容，则回退
-            list.shift();
-        }
+        CRUDHtmlService.revertObject(data,list);
     }
     $rootScope.saveItemEntity = function (data) {
         //保存编辑的内容到副本
-        var result = ItemEntityService.updateItemEntity(data)
-        if (data.id == undefined || data.id == "") {
-            result.then(function (response) {
-                data.id = response.data;
-            })
-        }
-        angular.copy(data, data.dataCopy);
+        var response = ItemEntityService.updateItemEntity(data)
+        CRUDHtmlService.saveObject(data,response);
     }
     $rootScope.deleteItemEntity = function (data, index, list) {
-        list.splice(index, 1);
+        CRUDHtmlService.deleteObject(index,list);
         ItemEntityService.deleteItemEntity(data);
     }
     $rootScope.addItemEntity = function (list, type) {
@@ -74,7 +87,7 @@ app.run(function ($rootScope, ItemEntityService,UserService) {
             isEditing: true
         }
         if(type!=ItemType.ANNOUNCEMENT){//首页消息可以直接添加，但是带有附件的不能，需要上传附件才行
-
+            CRUDHtmlService.addObject(itemEntity,list)
         }
         list.unshift(itemEntity);
         // console.log("screenWidth:"+$rootScope.screenWidth);

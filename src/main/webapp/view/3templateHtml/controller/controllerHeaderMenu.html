@@ -1,0 +1,34 @@
+<div class="navbar navbar-default" role="navigation" style="margin:0px;padding: 0px" ng-controller="controllerHeaderMenu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--由于ui-sref不支持动态绑定，所以只能使用ng-href，使用全路径来进行路由切换-->
+            <a ng-cloak="" class="navbar-brand" ng-href="{{stateRootUrl+header.webTitle.href}}">{{header.webTitle.name}}</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-cloak="" ng-repeat="x in header.headerNavLeft"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
+                <li class="dropdown">
+                    <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu HeaderMenu" role="menu" style="width: 100px!important;">
+                        <li ng-cloak=""
+                            ng-repeat="x in header.headerDropDownList"
+                            style="margin: 0px!important;">
+                            <a ng-href="{{stateRootUrl+x.href}}" style="text-align: center;padding-left: 0px;padding-right:0px">{{x.name}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</div>
