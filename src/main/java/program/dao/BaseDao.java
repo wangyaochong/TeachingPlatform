@@ -16,6 +16,5 @@ public class BaseDao{
     private SessionFactory sessionFactory;//sessionFactory只有自己可见
     public Session getSession() {
         return sessionFactory.getCurrentSession();
-//        return sessionFactory.openSession();
     }
 }

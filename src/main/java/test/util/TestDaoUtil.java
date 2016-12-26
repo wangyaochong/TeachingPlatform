@@ -16,6 +16,7 @@ public class TestDaoUtil {
     static Session session;
     private static SessionFactory sessionFactory;
     public static GenericDao getGenericDao() {
+
         return genericDao;
     }
     static GenericDao genericDao;
