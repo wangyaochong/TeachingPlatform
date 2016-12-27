@@ -22,6 +22,13 @@ var processPath = {
         '../raw/jslib/ng-table.js',
         //angular-ui-router
         '../raw/jslib/angular-ui-router.js',
+        //angular动画插件
+        '../raw/jslib/angular-animate.js',
+        //angular手机触屏插件
+        '../raw/jslib/angular-touch.js',
+        //ui-bootstrap，angular bootstrap插件
+        '../raw/jslib/ui-bootstrap.js',
+        '../raw/jslib/ui-bootstrap-tpls.js',
         //datepicker#日期选择插件
         '../raw/jslib/bootstrap-datepicker.js',
         '../raw/jslib/bootstrap-datepicker.zh-CN.min.js',
@@ -40,6 +47,7 @@ var processPath = {
         '../raw/jslib/slideout.js',
         //一个效果插件
         '../raw/jslib/easing.js',
+
     ],
     css2oneLibPath: [
         '../raw/csslib/bootstrap.css',
@@ -49,7 +57,7 @@ var processPath = {
         '../raw/csslib/fileinput.css',
         // '../raw/csslib/AdminLTE.css',
         '../raw/csslib/bootstrap-datepicker3.css',
-
+        '../raw/csslib/ui-bootstrap-csp.css',
     ],
     css2oneSrcPath: ['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',

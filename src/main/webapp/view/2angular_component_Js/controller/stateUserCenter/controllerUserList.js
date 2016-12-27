@@ -2,7 +2,7 @@
  * Created by wangy on 2016/12/25.
  */
 app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$state,CRUDService) {
-    $scope.frontMessageTableParams = new NgTableParams({count: 5}, {
+    $scope.userListTableParams = new NgTableParams({count: 5}, {
         counts: [],//代表用户不可以切换每页显示的数量
         paginationMaxBlocks: 10,//最多显示的按钮
         paginationMinBlocks: 5,//最少显示的按钮
@@ -43,5 +43,6 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
     }
     $scope.deleteUser=function (data) {
         CRUDService.updateMethod("User/deleteUser", data);
+        $scope.userListTableParams.reload();
     }
 })

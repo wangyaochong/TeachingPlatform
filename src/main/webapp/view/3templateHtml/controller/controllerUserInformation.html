@@ -24,11 +24,11 @@
         <div style="height: 20%;width: 100%"></div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="display: inline-block;width: 50%">个人信息</h3>
+                <h3 class="panel-title" style="display: inline-block;width: 50%">个人信息{{userInformation}}</h3>
                 <div style="float: right;background-color: white; padding: 3px;margin-top:-5px;border-radius: 5px">
                     <!--编辑按钮指令-->
                     <directive-edit $item="userInformation" before-callback="showPassCheckModal()"
-                                    save-callback="updateUser(userInformation)"></directive-edit>
+                                    save-callback="updateUser()"></directive-edit>
                 </div>
                 <span style="float: right;margin-right: 5px">选项</span>
             </div>
@@ -37,13 +37,16 @@
                     <table class="table table-bordered table-hover ">
                         <tbody>
                         <!--如果是修改密码-->
-                        <tr ng-repeat="(key,value) in userInformation" ng-if="nameTranslation[key]&&editType=='password'">
+                        <tr ng-repeat="(key,value) in userInformation"
+                            ng-if="nameTranslation[key]&&editType=='password'">
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
                             <!--后半部分编辑框-->
                             <td ng-if="key!='password' &&key!='birthDate' ">{{value}}</td>
-                            <td ng-if="key!='password' && key=='birthDate'  " >{{value|date:"yyyy-MM-dd"}}</td>
-                            <td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">******</td>
+                            <td ng-if="key!='password' && key=='birthDate'  ">{{value|date:"yyyy-MM-dd"}}</td>
+                            <td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">
+                                ******
+                            </td>
                             <td ng-if="userInformation.isEditing==true && key=='password'">
                                 <input class="UserInformation" type="password" ng-model="userInformation.password">
                             </td>
@@ -53,17 +56,25 @@
                         <tr ng-repeat="(key,value) in userInformation" ng-if="nameTranslation[key]&&editType=='new'">
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
-                            <!--后半部分编辑框-->
-                            <!--<td ng-if="key!='password' &&key!='birthDate' "> {{value}}</td>-->
-                            <!--<td ng-if="key!='password' && key=='birthDate'  " >{{value|date:"yyyy-MM-dd"}}</td>-->
-                            <!--<td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">******</td>-->
-                            <td >
+                            <td>
                                 <div>
-                                    <input ng-disabled="!userInformation.isEditing" class="UserInformation" type="text" ng-model="userInformation[key]">
+                                    <input ng-if="key!='birthDate'&&key!='gender' " ng-disabled="!userInformation.isEditing" class="UserInformation" type="text"
+                                           ng-model="userInformation[key]" placeholder="请编辑内容">
+                                    <!--<div class="input-group date">-->
+                                    <select class="UserInformation" ng-if="key=='gender' " ng-disabled="!userInformation.isEditing" name="" id="" ng-model="userInformation.gender">
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                    <input ng-if="key=='birthDate'" ng-disabled="!userInformation.isEditing" class="UserInformation" id="UserInfoDatePicker" type="text" ng-model="userInformation.birthDate">
                                 </div>
                             </td>
                             <!--<td ng-if="userInformation.isEditing==true && key=='password'">******</td>-->
                         </tr>
+                        <!--<tr>-->
+                        <!--<div>-->
+                        <!--<input id="UserInfoDatePicker" type="text" class="form-control">-->
+                        <!--</div>-->
+                        <!--</tr>-->
                         </tbody>
                     </table>
                 </ul>
