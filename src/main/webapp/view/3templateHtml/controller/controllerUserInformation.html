@@ -24,7 +24,7 @@
         <div style="height: 20%;width: 100%"></div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="display: inline-block;width: 50%">个人信息{{userInformation}}</h3>
+                <h3 class="panel-title" style="display: inline-block;width: 50%">个人信息</h3>
                 <div style="float: right;background-color: white; padding: 3px;margin-top:-5px;border-radius: 5px">
                     <!--编辑按钮指令-->
                     <directive-edit $item="userInformation" before-callback="showPassCheckModal()"
@@ -58,14 +58,28 @@
                             <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
                             <td>
                                 <div>
-                                    <input ng-if="key!='birthDate'&&key!='gender' " ng-disabled="!userInformation.isEditing" class="UserInformation" type="text"
+                                    <input ng-if="key!='birthDate'&&key!='gender' &&key!='privilege'" ng-disabled="!userInformation.isEditing" class="UserInformation" type="text"
                                            ng-model="userInformation[key]" placeholder="请编辑内容">
                                     <!--<div class="input-group date">-->
+
                                     <select class="UserInformation" ng-if="key=='gender' " ng-disabled="!userInformation.isEditing" name="" id="" ng-model="userInformation.gender">
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
-                                    <input ng-if="key=='birthDate'" ng-disabled="!userInformation.isEditing" class="UserInformation" id="UserInfoDatePicker" type="text" ng-model="userInformation.birthDate">
+
+                                    <input ng-if="key=='birthDate' " ng-disabled="!userInformation.isEditing" class="UserInformation" id="UserInfoDatePicker" type="text" ng-model="userInformation.birthDate">
+
+                                    <div ng-if=" key=='privilege' " >
+                                        <select class="selectpicker UserInformation" data-style="UserInformation" multiple data-live-search="true" autocomplete="new-password" data-width="100%">
+                                            <option>首页编辑</option>
+                                            <option >资源编辑</option>
+                                            <option >视频编辑</option>
+                                            <option>作业编辑</option>
+                                            <option >用户信息编辑</option>
+                                            <option>班级信息编辑</option>
+                                            <option>超级权限</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </td>
                             <!--<td ng-if="userInformation.isEditing==true && key=='password'">******</td>-->

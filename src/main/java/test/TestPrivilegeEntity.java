@@ -11,7 +11,7 @@ public class TestPrivilegeEntity extends DaoBaseUtil{
     @Test
     public void testAdd(){
         this.beforeMethod();
-        this.session.save(new PrivilegeEntity(true,true,true,true,true,true,null));//添加一个super权限
+        this.session.save(new PrivilegeEntity(true,true,true,true,true,true,true,null));//添加一个super权限
         this.afterMethod();
     }
 }

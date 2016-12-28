@@ -11,7 +11,7 @@ import javax.persistence.*;
  * 除了id，权限的各个字段的各种组合唯一
  */
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"frontMessage","document","video","assignment","personalInfomation"})})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"frontMessage","document","video","assignment","personalInformation"})})
 //@UniqueConstraint()注解，可以让多个列组成的联合属性唯一
 public class PrivilegeEntity implements IEntity{
     //每一种权限对应一个模块的所有权限
@@ -26,7 +26,9 @@ public class PrivilegeEntity implements IEntity{
     Boolean document;//对文档的权限
     Boolean video;//对视频的权限
     Boolean assignment;//对作业的权限，包括对作业批改等
-    Boolean personalInfomation;//对个人信息权限，包括修改用户密码，用户权限等
+    Boolean personalInformation;//对个人信息权限，包括修改用户密码，用户权限等
+    Boolean group;//是否具有创建班级的权限，如果有创建班级的权限，那么就是教师以上的人员
+
 
     //是否具有super权限，仅super权限可以创建用户，同时不受分组的限制
     //也仅有super权限可以创建具有super权限的用户
@@ -54,19 +56,26 @@ public class PrivilegeEntity implements IEntity{
         this.groupEntity = groupEntity;
     }
 
+    public Boolean getGroup() {
+        return group;
+    }
 
+    public void setGroup(Boolean group) {
+        this.group = group;
+    }
 
 
     public PrivilegeEntity() {
     }
 
 
-    public PrivilegeEntity(Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInfomation, Boolean isSuper, GroupEntity groupEntity) {
+    public PrivilegeEntity(Boolean frontMessage, Boolean document, Boolean video, Boolean assignment, Boolean personalInformation, Boolean group, Boolean isSuper, GroupEntity groupEntity) {
         this.frontMessage = frontMessage;
         this.document = document;
         this.video = video;
         this.assignment = assignment;
-        this.personalInfomation = personalInfomation;
+        this.personalInformation = personalInformation;
+        this.group = group;
         this.isSuper = isSuper;
         this.groupEntity = groupEntity;
     }
@@ -111,11 +120,11 @@ public class PrivilegeEntity implements IEntity{
         this.assignment = assignment;
     }
 
-    public Boolean getPersonalInfomation() {
-        return personalInfomation;
+    public Boolean getPersonalInformation() {
+        return personalInformation;
     }
 
-    public void setPersonalInfomation(Boolean personalInfomation) {
-        this.personalInfomation = personalInfomation;
+    public void setPersonalInformation(Boolean personalInformation) {
+        this.personalInformation = personalInformation;
     }
 }

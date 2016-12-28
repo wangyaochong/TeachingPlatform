@@ -36,6 +36,7 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
         $rootScope.HasPersonalInfomationtPriv = data[0].personalInfomation;
         $rootScope.HasVideoPriv = data[0].video;
         $rootScope.HasSuperPriv = data[0].isSuper;
+        $rootScope.HasGroupPriv = data[0].group;
     })
 
 

@@ -42,7 +42,9 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
         }
     }
     $scope.deleteUser=function (data) {
-        CRUDService.updateMethod("User/deleteUser", data);
-        $scope.userListTableParams.reload();
+        var promise= CRUDService.updateMethod("User/deleteUser", data);
+        promise.then(function (data) {//响应回来后再重新加载ngTable
+            $scope.userListTableParams.reload();
+        })
     }
 })

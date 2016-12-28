@@ -43,11 +43,15 @@ var processPath = {
         '../raw/jslib/purify.js',
         '../raw/jslib/theme.js',
         '../raw/jslib/zh.js',
-        //侧边菜单插件
-        '../raw/jslib/slideout.js',
-        //一个效果插件
-        '../raw/jslib/easing.js',
+        //bootstrap-select插件
+        '../raw/jslib/bootstrap-select.js',
+        '../raw/jslib/defaults-zh_CN.js',
 
+
+        //侧边菜单插件
+        // '../raw/jslib/slideout.js',
+        //一个效果插件
+        // '../raw/jslib/easing.js',
     ],
     css2oneLibPath: [
         '../raw/csslib/bootstrap.css',
@@ -58,6 +62,7 @@ var processPath = {
         // '../raw/csslib/AdminLTE.css',
         '../raw/csslib/bootstrap-datepicker3.css',
         '../raw/csslib/ui-bootstrap-csp.css',
+        '../raw/csslib/bootstrap-select.css',
     ],
     css2oneSrcPath: ['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',

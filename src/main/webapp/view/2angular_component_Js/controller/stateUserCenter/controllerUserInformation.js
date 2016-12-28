@@ -14,6 +14,7 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
         password: "密码",
         phoneNumber: "手机",
         email: "邮箱",
+        privilege:"权限"
     }
 
     if (angular.isUndefinedOrNull($stateParams.id)) {//自己查看个人信息
@@ -26,12 +27,13 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
             $scope.userInformation = {
                 number: "",
                 name: "",
-                gender: "女",
+                gender: "男",
                 birthDate: new Date(),
                 password: "",
                 phoneNumber: "",
                 email: "",
-                isEditing: true
+                isEditing: true,
+                privilege:""
             }
             $timeout(function () {
                 $("#UserInfoDatePicker").datepicker({
@@ -42,23 +44,21 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
                     todayBtn: true,//显示今日按钮
                 })
                 $("#UserInfoDatePicker").datepicker("update", new Date())//传入当前日期
+
+                $('.selectpicker').selectpicker({
+                    // style: 'btn-primary',
+                    size: 10
+                });
+                $("input").attr("autocomplete","new-password")
+
+
+
+
             }, 0)
         } else {//管理员修改用户密码
             UserService.getUser({id: $stateParams.id}).then(function (result) {
                 $scope.userInformation = result;
                 $scope.userInformation.isEditing = true;
-
-                $timeout(function () {
-                    $("input").datepicker({
-                        maxViewMode: 1,//设置最多可以从月开始设置
-                        language: "zh-CN",//设置语言为中文
-                        autoclose: true,//设置选择日期后自动关闭
-                        todayHighlight: true,//设置高亮今日
-                        todayBtn: true,//显示今日按钮
-                    })
-                    $("#datePicker").datepicker("update", new Date(data.createDate))
-                }, 0)
-
             })
         }
     }
