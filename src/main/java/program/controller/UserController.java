@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import program.controller.base.DataOperateBase;
 import program.controller.util.ResponseInfo;
-import program.entity.ItemEntity;
-import program.service.CrudService;
-import program.service.PageListService;
 import program.service.UserService;
 import program.entity.PersonEntity;
 import program.service.bean.PageBean;
@@ -21,14 +19,9 @@ import java.io.Serializable;
  */
 @Controller
 @RequestMapping("/User")
-public class UserController {
+public class UserController  extends DataOperateBase{
     @Resource
     UserService userService;
-    @Resource
-    CrudService crudService;
-    @Resource
-    PageListService<PersonEntity> pageListService;
-
     @RequestMapping("/getCurrent")
     @ResponseBody
 //    获取当前在线用户

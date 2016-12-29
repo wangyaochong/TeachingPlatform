@@ -1,5 +1,6 @@
 package test;
 
+import netscape.security.Privilege;
 import org.springframework.transaction.annotation.Transactional;
 import program.dao.BaseDao;
 import program.dao.GenericDao;
@@ -15,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import program.entity.type.PrivilegeType;
 import program.service.bean.PageBean;
 import program.service.PageListService;
 
@@ -113,7 +115,7 @@ public class TestDao {
 
     @Test
     public void testAddPrivileage() {
-        PrivilegeEntity privilegeEntity = new PrivilegeEntity(false, false, false, false, false,false,false,null);
+        PrivilegeEntity privilegeEntity = new PrivilegeEntity(PrivilegeType.SUPER.toString(),null);
         session.save(privilegeEntity);
     }
 

@@ -29,27 +29,12 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
     $rootScope.screenWidth = window.screen.width;
     $rootScope.screenHeight = window.screen.height;
 
-    UserService.getCurrentUserPrivileages().then(function (data) {
-        $rootScope.HasAssignmentPriv = data[0].assignment;
-        $rootScope.HasDocumentPriv = data[0].document;
-        $rootScope.HasFrontMessagePriv = data[0].frontMessage;
-        $rootScope.HasPersonalInfomationtPriv = data[0].personalInfomation;
-        $rootScope.HasVideoPriv = data[0].video;
-        $rootScope.HasSuperPriv = data[0].isSuper;
-        $rootScope.HasGroupPriv = data[0].group;
-    })
 
 
-    //定义全局itemType，后续会用到
-    $rootScope.ItemType = {
-        DOCUMENT: "DOCUMENT",
-        EMAIL: "EMAIL",
-        ANNOUNCEMENT: "ANNOUNCEMENT",
-        VIDEO: "VIDEO",
-        ASSIGNMENT: "ASSIGNMENT",
-        SOLUTION: "SOLUTION",
-        ROLLPICTURE: "ROLLPICTURE"
-    }
+    //定义全局变量，后续会用得到
+    $rootScope.ItemType=ItemType;
+    $rootScope.PrivilegeType=PrivilegeType;
+    $rootScope.PrivilegeMap=PrivilegeMap;
 
 
     // $timeout(function () {//触发一下滚动大屏

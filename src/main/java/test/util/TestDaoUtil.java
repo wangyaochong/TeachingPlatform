@@ -31,7 +31,6 @@ public class TestDaoUtil {
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
         localSessionFactoryBean.setHibernateProperties(properties);
-        localSessionFactoryBean.setAnnotatedClasses(PersonEntity.class, PrivilegeEntity.class);
         localSessionFactoryBean.setPackagesToScan("program/entity");
         try {
             localSessionFactoryBean.afterPropertiesSet();

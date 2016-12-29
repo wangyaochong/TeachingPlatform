@@ -31,7 +31,8 @@ public class TestPersonEntity {
     @Test
     public  void testAddPerson(){
         List<PrivilegeEntity> privilegeEntities = TestDaoUtil.getGenericDao().simpleQueryList(new PrivilegeEntity());
-        PersonEntity personEntity=new PersonEntity("201392254","qwerqwer","王耀冲",new Date().getTime(),"男","18840838242","1162025261@qq.com",privilegeEntities,null);
+        PersonEntity personEntity=new PersonEntity("123","123","王耀冲",new Date().getTime(),"男","18840838242","1162025261@qq.com",privilegeEntities,
+                null);
         session.save(personEntity);
     }
 }

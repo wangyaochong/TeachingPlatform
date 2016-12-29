@@ -2,6 +2,7 @@ package test;
 
 import org.junit.Test;
 import program.entity.PrivilegeEntity;
+import program.entity.type.PrivilegeType;
 import test.util.DaoBaseUtil;
 
 /**
@@ -11,7 +12,7 @@ public class TestPrivilegeEntity extends DaoBaseUtil{
     @Test
     public void testAdd(){
         this.beforeMethod();
-        this.session.save(new PrivilegeEntity(true,true,true,true,true,true,true,null));//添加一个super权限
+        this.session.save(new PrivilegeEntity(PrivilegeType.SUPER,null));//添加一个super权限
         this.afterMethod();
     }
 }
