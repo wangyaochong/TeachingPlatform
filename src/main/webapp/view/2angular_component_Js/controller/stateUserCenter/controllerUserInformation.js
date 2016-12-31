@@ -7,6 +7,7 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
     $scope.userInformation = {};
     $scope.userInformation.privilegeSelected = [];
     $scope.editType = $stateParams.editType;
+    $scope.isSelf=false;
     $scope.privilegeCandidate=[]
     $scope.nameTranslation = {
         number: "帐号",
@@ -24,6 +25,9 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
     if ($scope.editType == "editPass") {//如果是编辑密码，那就获取当前登录用户
         UserService.getCurrentUser().then(function (result) {
             $scope.userInformation = result;
+            if($scope.userInformation.id==$stateParams.id){//如果id相等，则表示是同一个用户
+                $scope.isSelf=true;
+            }
         });
     } else if ($scope.editType == "editNew") {//如果是管理员新建用户
         //否则则是管理员或者老师
@@ -117,7 +121,14 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
             })
         }
     }
-//用来初始化
+
+
+
+    UserService.getCurrentUser().then(function (result) {//自己不能编辑自己的权限
+        if(result.id==$stateParams.id){//如果id相等，则表示是同一个用户
+            $scope.isSelf=true;
+        }
+    });
 })
 function getChinesePrivilege(privilegeName) {
     var privilegeMap = {};
