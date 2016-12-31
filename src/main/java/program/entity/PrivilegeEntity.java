@@ -58,4 +58,13 @@ public class PrivilegeEntity implements IEntity{
     public void setGroupEntity(GroupEntity groupEntity) {
         this.groupEntity = groupEntity;
     }
+
+    @Override
+    public String toString() {
+        return "PrivilegeEntity{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", groupEntity=" + groupEntity +
+                '}';
+    }
 }

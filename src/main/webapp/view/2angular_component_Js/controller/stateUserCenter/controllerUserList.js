@@ -2,7 +2,7 @@
  * Created by wangy on 2016/12/25.
  */
 app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$state,CRUDService) {
-    $scope.userListTableParams = new NgTableParams({count: 5}, {
+    $scope.userListTableParams = new NgTableParams({count: 10}, {
         counts: [],//代表用户不可以切换每页显示的数量
         paginationMaxBlocks: 10,//最多显示的按钮
         paginationMinBlocks: 5,//最少显示的按钮
@@ -36,9 +36,9 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
     $scope.editUser=function (item) {
         if(angular.isUndefinedOrNull(item)){
             //传参，必须要在state定义的地方定义参数
-            $state.go("userCenter.userInformation",{id:"new"})
+            $state.go("userCenter.userInformation",{id:"",editType:"editNew"})//新建用户
         }else{
-            $state.go("userCenter.userInformation",{id:item.id});
+            $state.go("userCenter.userInformation",{id:item.id,editType:"editPassAndPriv"});//编辑用户密码和权限
         }
     }
     $scope.deleteUser=function (data) {

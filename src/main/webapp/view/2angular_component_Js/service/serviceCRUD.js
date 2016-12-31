@@ -6,7 +6,7 @@ app.service('CRUDService', function ($http) {
         var params = buildHttpParams(data);
         return  $http({
             url: webRootUrl +url,
-            params: params,
+            data: params,
             method: "post"
         }).then(function (data) {
             return data.data;

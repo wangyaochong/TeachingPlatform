@@ -62,7 +62,7 @@ angular.isUndefinedOrNull = function (val) {
 }
 //以上定义的是全局js变量，不用放到rootScope中
 // var app = angular.module('app', ['ngTouch','ngAnimate','ui.router', 'ngTable','ui.bootstrap']);
-var app = angular.module('app', ['ui.router', 'ngTable', 'ui.bootstrap']);
+var app = angular.module('app', ['ui.router', 'ngTable', 'ui.bootstrap','ui.select','ngSanitize']);
 app.config(function ($stateProvider, $urlRouterProvider)
 {"##begin##"})
 

@@ -17,7 +17,8 @@ public class SingleClassSqlConstructor {//单表sql语句构造器
         }
     }
 
-    public static <T> Pair<String, Map<String, Object>> createQuestionMarkSql_and(T condition,String operateType) {//返回的是sql字符串以及依次的值
+    //在传入condition时，如果是null，则不加入查询条件，要查属性为null的表，需要另外使用criteria
+    public static <T> Pair<String, Map<String, Object>> createQuestionMarkHql_and(T condition, String operateType) {//返回的是sql字符串以及依次的值
         Field[] declaredFields = condition.getClass().getDeclaredFields();
         Map<String, Object> valueMap = new HashMap<String, Object>();
         //String sqlParam="delete "+condition.getClass().getName()+" as "+condition.getClass().getSimpleName()+" where ";

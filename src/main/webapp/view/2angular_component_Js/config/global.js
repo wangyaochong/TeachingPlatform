@@ -26,7 +26,6 @@ function buildHttpParams(data) {
     var param = {};
     var filterParams=[
         'dataCopy',
-        'privilegeEntityList'
     ]
     angular.forEach(data, function (value, key) {
         if (angular.isUndefinedOrNull(value) ||

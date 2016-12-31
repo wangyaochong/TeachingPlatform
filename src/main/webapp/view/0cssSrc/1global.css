@@ -4,8 +4,8 @@
     --white-color: white;
     --sideMenu-backgroud-color: #2453a0;
 }
-
-* {
+/*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
+* not input{
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;

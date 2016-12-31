@@ -29,6 +29,7 @@ var processPath = {
         //ui-bootstrap，angular bootstrap插件
         '../raw/jslib/ui-bootstrap.js',
         '../raw/jslib/ui-bootstrap-tpls.js',
+
         //datepicker#日期选择插件
         '../raw/jslib/bootstrap-datepicker.js',
         '../raw/jslib/bootstrap-datepicker.zh-CN.min.js',
@@ -44,8 +45,12 @@ var processPath = {
         '../raw/jslib/theme.js',
         '../raw/jslib/zh.js',
         //bootstrap-select插件
-        '../raw/jslib/bootstrap-select.js',
-        '../raw/jslib/defaults-zh_CN.js',
+        // '../raw/jslib/bootstrap-select.js',
+        // '../raw/jslib/defaults-zh_CN.js',
+        //angular-ui-select
+        '../raw/jslib/select.js',
+        //angular-ui-select依赖sanitize.js
+        '../raw/jslib/angular-sanitize.js',
 
 
         //侧边菜单插件
@@ -54,15 +59,20 @@ var processPath = {
         // '../raw/jslib/easing.js',
     ],
     css2oneLibPath: [
+        // '../raw/csslib/slick.css',
+        // '../raw/csslib/slick-theme.css',
+        // '../raw/csslib/AdminLTE.css',
+        // '../raw/csslib/bootstrap-select.css',
+
+        
         '../raw/csslib/bootstrap.css',
         '../raw/csslib/ng-table.css',
-        '../raw/csslib/slick.css',
-        '../raw/csslib/slick-theme.css',
         '../raw/csslib/fileinput.css',
-        // '../raw/csslib/AdminLTE.css',
         '../raw/csslib/bootstrap-datepicker3.css',
+        //ui.bootstrap.css
         '../raw/csslib/ui-bootstrap-csp.css',
-        '../raw/csslib/bootstrap-select.css',
+        // angular-ui-select
+        '../raw/csslib/select.css',
     ],
     css2oneSrcPath: ['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',

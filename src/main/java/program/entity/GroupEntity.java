@@ -93,6 +93,9 @@ public class GroupEntity implements IEntity{
         this.createDate = createDate;
     }
 
+    public GroupEntity() {
+    }
+
     public GroupEntity(String name, String type, GroupEntity parentGroupEntity, List<GroupEntity> childGroupEntityList, PersonEntity creator, Long createDate) {
         this.name = name;
         this.type = type;

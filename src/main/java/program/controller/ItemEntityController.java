@@ -51,7 +51,7 @@ public class ItemEntityController {
     @RequestMapping("/deleteItemEntity")
     @ResponseBody
     public ResponseInfo deleteItemEntity(@RequestParam(value = "id") String id) {
-        crudService.deleteOne(ItemEntity.class,id);
+        crudService.deleteOneById(ItemEntity.class,id);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
     }
 }

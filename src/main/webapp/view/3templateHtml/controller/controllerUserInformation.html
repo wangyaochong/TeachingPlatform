@@ -17,6 +17,7 @@
         </div>
     </div>
 
+
     <!--这个用来当左边边距-->
     <div style="width: 20%; float: left;display: block;height: 1px"></div>
     <div style="width: 60%; float: left;display: block">
@@ -36,9 +37,42 @@
                 <ul class="list-groupEdit">
                     <table class="table table-bordered table-hover ">
                         <tbody>
-                        <!--如果是修改密码和权限-->
+
+<!----------------------------------------------------如果是修改密码----------------------------------------------------------->
                         <tr ng-repeat="(key,value) in userInformation"
-                            ng-if="nameTranslation[key]&&editType=='password'">
+                            ng-if="nameTranslation[key]&&editType=='editPass'">
+                            <!--前半部分的提示框-->
+                            <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
+
+                            <!--后半部分编辑框-->
+                            <td ng-if="key!='password' &&key!='birthDate' &&key!='privilegeEntityList' ">{{value}}</td>
+                            <td ng-if="key!='password' && key=='birthDate'  &&key!='' ">{{value|date:"yyyy-MM-dd"}}</td>
+                            <td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">
+                                ******
+                            </td>
+                            <td ng-if="userInformation.isEditing==true && key=='password'">
+                                <input class="UserInformation" type="password" ng-model="userInformation.password">
+                            </td>
+                            <td ng-if="key=='privilegeEntityList' ">
+                                <div class="UserInformation PrivEdit" id="PrivEditPass" ng-disabled="true">
+                                    <ui-select multiple ng-model="userInformation.privilegeEntityList"
+                                               close-on-select="false" ng-disabled="true">
+                                        <ui-select-match placeholder="  请编辑内容">{{$item.type}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="privilege in rootPriv | filter: $select.search track by $index">
+                                            <span ng-bind="privilege.type"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+<!----------------------------------------如果是修改密码和权限------------------------>
+                        <tr ng-repeat="(key,value) in userInformation"
+                            ng-if="nameTranslation[key]&&editType=='editPassAndPriv'">
 
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
@@ -54,43 +88,55 @@
                             </td>
 
                             <td ng-if=" key=='privilegeEntityList' ">
-                                <select class="selectpicker UserInformation" data-style="UserInformation" multiple data-live-search="true"
-                                        autocomplete="new-password" data-width="100%" ng-model="userInformation.privilegeEntityList">
-                                    <!--<optgroup label="Picnic">-->
-                                    <option ng-repeat="(key,value) in PrivilegeMap" value="{{key}}">{{value}}</option>
-                                    <!--</optgroup>-->
-                                </select>
-                                <!--pri{{PrivilegeMap}}-->
+                                <ui-select multiple ng-model="userInformation.privilegeEntityList"
+                                           close-on-select="false">
+                                    <ui-select-match placeholder="  请编辑内容">{{$item.type}}</ui-select-match>
+                                    <ui-select-choices
+                                            repeat="privilege in privilegeCandidate | filter: $select.search track by $index">
+                                        <span ng-bind="privilege.type"></span>
+                                    </ui-select-choices>
+                                </ui-select>
                             </td>
                         </tr>
-                        <tr>{{userInformation.privilegeEntityList}}</tr>
-                        <!--如果是添加新用户-->
-                        <tr ng-repeat="(key,value) in userInformation" ng-if="nameTranslation[key]&&editType=='new'">
+
+
+<!---------------------------------如果是添加新用户---------------------------------------------------->
+                        <tr ng-repeat="(key,value) in userInformation"
+                            ng-if="nameTranslation[key]&&editType=='editNew'">
+
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{nameTranslation[key]}}</td>
+
+
+
                             <td>
-
-                                <input ng-if="key!='birthDate'&&key!='gender' &&key!='privilege'" ng-disabled="!userInformation.isEditing"
-                                       class="UserInformation" type="text"
+                                <input ng-if="key!='birthDate'&&key!='gender' &&key!='privilegeEntityList'"
+                                       ng-disabled="!userInformation.isEditing"
+                                       class="UserInformation form-control" type="text"
                                        ng-model="userInformation[key]" placeholder="请编辑内容">
-                                <!--<div class="input-groupEdit date">-->
-
-                                <select class="UserInformation" ng-if="key=='gender' " ng-disabled="!userInformation.isEditing" name="" id=""
+                                <select class="UserInformation form-control" ng-if="key=='gender' "
+                                        ng-disabled="!userInformation.isEditing" name=""
                                         ng-model="userInformation.gender">
                                     <option value="男">男</option>
                                     <option value="女">女</option>
                                 </select>
-
-                                <input ng-if="key=='birthDate' " ng-disabled="!userInformation.isEditing" class="UserInformation" id="UserInfoDatePicker"
+                                <input ng-if="key=='birthDate' " ng-disabled="!userInformation.isEditing"
+                                       class="UserInformation form-control" id="UserInfoDatePicker"
                                        type="text" ng-model="userInformation.birthDate">
-                                <div ng-if=" key=='privilegeEntityList' ">
-                                    <select class="selectpicker UserInformation" data-style="UserInformation" multiple data-live-search="true"
-                                            autocomplete="new-password" data-width="100%" ng-model="userInformation.privilegeEntityList">
-                                        <option ng-repeat="(key,value) in PrivilegeMap" value="{{key}}">{{value}}</option>
-                                    </select>
+                                <div ng-if=" key=='privilegeEntityList' " class="UserInformation PrivEdit" id="PrivEditNew">
+                                    <ui-select multiple ng-model="userInformation.privilegeEntityList"
+                                               close-on-select="false">
+                                        <ui-select-match placeholder="  请编辑内容">{{$item.type}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="privilege in privilegeCandidate | filter: $select.search track by $index">
+                                            <span ng-bind="privilege.type"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
                                 </div>
                             </td>
                         </tr>
+
+
                         </tbody>
                     </table>
                 </ul>

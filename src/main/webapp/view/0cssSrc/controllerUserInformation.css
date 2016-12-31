@@ -7,5 +7,10 @@ select.UserInformation{
     border-radius: 5px;
     border: 1px dotted var(--basic-color);
     width: 100%;
-    height: 27px;
+    height:35px;
+}
+div.UserInformation.PrivEdit{
+    border-radius: 5px;
+    border: 1px dotted var(--basic-color);
+    width: 100%;
 }

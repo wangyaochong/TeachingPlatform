@@ -1,18 +1,20 @@
 package program.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import program.controller.base.DataOperateBase;
 import program.controller.util.ResponseInfo;
+import program.entity.PrivilegeEntity;
 import program.service.UserService;
 import program.entity.PersonEntity;
 import program.service.bean.PageBean;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by【王耀冲】on 【2016/12/15】 at 【1:13】.
@@ -31,14 +33,15 @@ public class UserController  extends DataOperateBase{
 
     @RequestMapping("/deleteUser")
     @ResponseBody
-    public ResponseInfo deleteUser(String id) {
-        crudService.deleteOne(PersonEntity.class, id);
+    public ResponseInfo deleteUser(@RequestBody PersonEntity personEntity) {
+        crudService.deleteOneById(PersonEntity.class, personEntity.getId());
         return new ResponseInfo("ok", null, null);
     }
 
     @RequestMapping("/updateUser")
     @ResponseBody
-    public ResponseInfo updateUser(@ModelAttribute PersonEntity personEntity) {
+    //使用post请求直接发送一个发个对象，可以使用RequestBody注解获取，否则有可能会报错
+    public ResponseInfo updateUser(@RequestBody PersonEntity personEntity) {
         Serializable serializable = crudService.saveOrUpdateOne(personEntity);//serializable是id
         return new ResponseInfo("ok", null, serializable);
     }
@@ -46,7 +49,7 @@ public class UserController  extends DataOperateBase{
     @RequestMapping("/getUser")
     @ResponseBody
     public PersonEntity getUser(@RequestParam String id) {
-        return (PersonEntity) crudService.getOne(PersonEntity.class, id);
+        return (PersonEntity) crudService.getOneById(PersonEntity.class, id);
     }
 
     @RequestMapping("/getUserPage")

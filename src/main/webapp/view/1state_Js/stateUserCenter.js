@@ -23,7 +23,7 @@ $stateProvider.state('userCenter', {
                     $state.go("userCenter.userList");
                 }
                 else {
-                    $state.go("userCenter.userInformation")
+                    $state.go("userCenter.userInformation",{editType:"editPass"})//对于自己就只能编辑密码，如果是教师要编辑同学的权限，那也是通过不同的入口
                 }
             }
         })
