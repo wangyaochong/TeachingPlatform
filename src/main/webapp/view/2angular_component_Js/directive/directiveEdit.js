@@ -15,25 +15,25 @@ app.directive('directiveEdit', function () {
             beforeCallback:"&"
         },
         controller: function ($scope) {
-            $scope.beforeEditing = function (item) {
-                item.dataCopy = {};
-                angular.copy(item, item.dataCopy);//保存编辑前的内容
+            $scope.beforeEditing = function () {
+                $scope.$item.dataCopy = {};
+                angular.copy($scope.$item, $scope.$item.dataCopy);//保存编辑前的内容
                 $scope.beforeCallback();
             }
-            $scope.saveEditing = function (item) {
-                angular.copy(item, item.dataCopy);
+            $scope.saveEditing = function () {
+                angular.copy($scope.$item, $scope.$item.dataCopy);
                 $scope.saveCallback();
             }
-            $scope.deleteItem = function (index, list) {
-                if (!angular.isUndefinedOrNull(list)) {
-                    list.splice(index, 1);
+            $scope.deleteItem = function () {
+                if (!angular.isUndefinedOrNull($scope.$list)) {
+                    $scope.$list.splice($scope.$index, 1);
                 }
                 $scope.deleteCallback();
             }
-            $scope.revertEditing = function (item, list) {
-                angular.copy(item.dataCopy, item);
-                if ( (!(angular.isUndefinedOrNull(list)))  || item.id == "") {//如果是取消新增的内容，则回退
-                    list.shift();
+            $scope.revertEditing = function () {
+                angular.copy($scope.$item.dataCopy, $scope.$item);
+                if ( angular.isUndefinedOrNull($scope.$list)|| $scope.$item.id == "") {//如果是取消新增的内容，则回退
+                    $scope.$list.shift();
                 }
             }
         }

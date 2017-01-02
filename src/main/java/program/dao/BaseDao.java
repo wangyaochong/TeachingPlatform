@@ -14,7 +14,10 @@ public class BaseDao{
 //    Session session;//给子类留一个可用的session
     @Autowired
     private SessionFactory sessionFactory;//sessionFactory只有自己可见
-    public Session getSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
+    }
+    public Session openSession(){
+        return sessionFactory.openSession();
     }
 }

@@ -35,7 +35,7 @@
             </div>
             <div class="panel-body">
                 <ul class="list-groupEdit">
-                    <table class="table table-bordered table-hover ">
+                    <table class="table table-bordered">
                         <tbody>
 
 <!----------------------------------------------------如果是修改密码----------------------------------------------------------->
@@ -57,7 +57,7 @@
                                 <div class="UserInformation PrivEdit" id="PrivEditPass" ng-disabled="true">
                                     <ui-select multiple ng-model="userInformation.privilegeEntityList"
                                                close-on-select="false" ng-disabled="true">
-                                        <ui-select-match placeholder="  请编辑内容">{{$item.type}}</ui-select-match>
+                                        <ui-select-match placeholder="无">{{$item.type}}</ui-select-match>
                                         <ui-select-choices
                                                 repeat="privilege in rootPriv | filter: $select.search track by $index">
                                             <span ng-bind="privilege.type"></span>

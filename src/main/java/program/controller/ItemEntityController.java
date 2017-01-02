@@ -1,20 +1,23 @@
 package program.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.PersonDao;
+import program.entity.GroupEntity;
 import program.entity.ItemEntity;
+import program.entity.PersonEntity;
 import program.service.CrudService;
+import program.service.UserService;
 import program.service.bean.PageBean;
 import program.service.PageListService;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by【王耀冲】on 【2016/12/15】 at 【1:21】.
@@ -26,6 +29,8 @@ public class ItemEntityController {
     PersonDao genericDao;
     @Resource
     CrudService crudService;//增删改查操作
+    @Resource
+    UserService userService;
     @Resource
     PageListService<ItemEntity> pageListService;
     @RequestMapping("/getItemEntityPage")//需要获取分页itemEntity共用的URL
@@ -41,9 +46,33 @@ public class ItemEntityController {
                 pageCurrentIndex, pageRowSize, orderBy, orderAsc);
     }
 
+    @RequestMapping("/getItemEntityListByClassGroupId")//通过班级groupId获取该班级的所有资源
+    @ResponseBody
+    public ResponseInfo getItemEntityListByClassGroupId(@RequestParam String id){
+        GroupEntity groupEntity=new GroupEntity();
+        groupEntity.setId(id);//这里传来的id是classGroupId
+        ItemEntity itemEntity=new ItemEntity();
+        itemEntity.setClassGroup(groupEntity);
+        List<ItemEntity> listByCondition = crudService.getListByCondition(itemEntity);
+        Collections.sort(listByCondition, new Comparator<ItemEntity>() {
+            @Override
+            public int compare(ItemEntity o1, ItemEntity o2) {//按照时间创建顺序排序
+                return (int) (o2.getCreateDate()-o1.getCreateDate());
+            }
+        });
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
+    }
+
+
+
+
     @RequestMapping("/updateItemEntity")
     @ResponseBody//update操作，如果不带id，那么就保存
-    public ResponseInfo updateItemEntity(@ModelAttribute ItemEntity itemEntity) {
+    public ResponseInfo updateItemEntity(@RequestBody ItemEntity itemEntity) {
+        if(itemEntity.getCreator()==null){
+            PersonEntity currentUser = userService.getCurrentUser();
+            itemEntity.setCreator(currentUser);
+        }
         Serializable serializable = crudService.saveOrUpdateOne(itemEntity);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,serializable);
     }

@@ -1,3 +1,95 @@
+var debounce = function (func, threshold, execAsap) {
+    var timeout;
+    return function debounced () {
+        var obj = this, args = arguments;
+        function delayed () {
+            if (!execAsap)
+                func.apply(obj, args);
+            timeout = null;
+        };
+        if (timeout)
+            clearTimeout(timeout);
+        else if (execAsap)
+            func.apply(obj, args);
+        timeout = setTimeout(delayed, threshold || 100);
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var directiveCourseBlockWidth="20%";
+var directivePictureBlockWidth="20%";
+
+
+window.onresize =function () {
+    $(".courseblockwrapper").each(function () {
+        $(this).width(directiveCourseBlockWidth);
+        //必须要多设置几次，不然会出错
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $(this).height($(this).width());//让高度等于宽度
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+        $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 var webRootUrl = "/TeachingPlatform/"
 var templateHtmlUrl = "/TeachingPlatform/view/3templateHtml/";
 var directiveHtmlUrl = "/TeachingPlatform/view/4directiveHtml/";

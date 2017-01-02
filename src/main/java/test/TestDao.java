@@ -1,6 +1,5 @@
 package test;
 
-import netscape.security.Privilege;
 import org.springframework.transaction.annotation.Transactional;
 import program.dao.BaseDao;
 import program.dao.GenericDao;
@@ -17,8 +16,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import program.entity.type.PrivilegeType;
-import program.service.bean.PageBean;
-import program.service.PageListService;
 
 import java.io.IOException;
 import java.util.Date;
@@ -31,10 +28,10 @@ public class TestDao {
 
 //        List<PersonEntity> objects = genericDao.simpleGetAll(PersonEntity.class);
 //
-//        Session session = baseDao.getSession();
-//        Session session1 = genericDao.getSession();
+//        Session session = baseDao.getCurrentSession();
+//        Session session1 = genericDao.getCurrentSession();
 //        System.out.println(objects);
-//        baseDao.getSession().save(new FileEntity(objects.get(0),"sdfsdff",new Date()));
+//        baseDao.getCurrentSession().save(new FileEntity(objects.get(0),"sdfsdff",new Date()));
         List<PersonEntity> list = session.createCriteria(PersonEntity.class).list();
         System.out.println(list);
 //        session.save(new FileEntity(list.get(0), "sdsdfsdfsaaadfsdffsdff", new Date()));
@@ -143,7 +140,7 @@ public class TestDao {
 
     @Test
     public void testDeletePersonHql() {
-        session = new BaseDao().getSession();
+        session = new BaseDao().getCurrentSession();
         String hql = "delete from program.entity.PersonEntity where name='哈哈哈'";
         Query query = session.createQuery(hql);
 //        query.setParameter(1;

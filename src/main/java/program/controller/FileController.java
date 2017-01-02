@@ -1,6 +1,5 @@
 package program.controller;
 
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +11,6 @@ import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.GenericDao;
 import program.entity.FileEntity;
-import program.entity.ItemEntity;
 import program.service.UserService;
 
 import javax.annotation.Resource;
@@ -38,7 +36,7 @@ public class FileController {
 
     @RequestMapping("/download")
     public void download(@RequestParam String id, @RequestParam(defaultValue = "true", required = false) Boolean isAttachment, HttpServletResponse response) {
-        FileEntity fileEntity = genericDao.getSession().get(FileEntity.class, id);
+        FileEntity fileEntity = genericDao.getCurrentSession().get(FileEntity.class, id);
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
         response.setContentLength(Math.toIntExact(fileEntity.getFileSize()));
@@ -88,10 +86,10 @@ public class FileController {
                             fileUtil.getCompleteRealFilePath(),
                             fileUtil.getCompleteContextFilePath(),
                             size, originalFilename, new Date().getTime());
-            String saveId = (String) genericDao.getSession().save(fileEntity);
+            String saveId = (String) genericDao.getCurrentSession().save(fileEntity);
             fileEntity.setFilePath(fileEntity.getFilePath() + saveId + fileEntity.getOriginName());
             fileEntity.setHtmlAccessPath(fileEntity.getHtmlAccessPath() + saveId + fileEntity.getOriginName());
-            genericDao.getSession().update(fileEntity);
+            genericDao.getCurrentSession().update(fileEntity);
             File file = new File(fileEntity.getFilePath());
             if (file.exists() == false) {
                 try {

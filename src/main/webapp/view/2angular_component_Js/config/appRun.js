@@ -3,13 +3,24 @@
  */
 var userCenterStates = [
     'userCenter.userList',
-    'userCenter.userInformation'
+    'userCenter.userInformation',
+
+]
+var courseCenterStates=[
+    'courseCenter.teacher',
+    'courseCenter.student',
+    'courseCenter.teacherResource',
 ]
 app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, CRUDService) {
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams) {
             if (toState.name == "userCenter") {
                 if (userCenterStates.indexOf(fromState.name) != -1) {
+                    event.preventDefault();//禁止切换
+                }
+            }
+            if (toState.name=="courseCenter") {
+                if (courseCenterStates.indexOf(fromState.name) != -1) {
                     event.preventDefault();//禁止切换
                 }
             }

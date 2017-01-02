@@ -15,7 +15,7 @@ public class TestGroupEntity extends DaoBaseUtil {
     public void testAddGroup(){
         this.beforeMethod();
 //        this.session.save();
-        GroupEntity groupEntity = new GroupEntity("根", GroupType.CLASS, null, null, null, new Date().getTime());
+        GroupEntity groupEntity = new GroupEntity("根","这是根分组", GroupType.CLASS, null, null, null, new Date().getTime());
         this.session.save(groupEntity);
         this.afterMethod();
     }

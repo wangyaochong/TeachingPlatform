@@ -56,7 +56,7 @@ public class PageListService<T> {
         this.pageBean.setOrderAsc(orderAsc);
 
         //先根据条件获取总条数
-        Session session = genericDao.getSession();
+        Session session = genericDao.getCurrentSession();
         Criteria criteria =session.createCriteria(condition.getClass());
         List<Pair<String, Object>> conditionKeyValueList = getKeyValueList();
         for (int i = 0; i < conditionKeyValueList.size(); i++) {//加入查询条件

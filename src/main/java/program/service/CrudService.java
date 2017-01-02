@@ -2,10 +2,7 @@ package program.service;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
-import program.controller.util.ResponseFlag;
-import program.controller.util.ResponseInfo;
 import program.dao.GenericDao;
-import program.entity.ItemEntity;
 import program.entity.entityInterface.IEntity;
 import program.util.EntityUtil;
 
@@ -20,22 +17,25 @@ import java.util.List;
 public class CrudService {
     @Resource(name = "GenericDao")
     GenericDao genericDao;
-    public Session getSession(){
-        return genericDao.getSession();
+    public Session getCurrentSession(){
+        return genericDao.getCurrentSession();
+    }
+    public Session openSession(){
+        return genericDao.openSession();
     }
     public IEntity getOneById(Class<? extends IEntity> clazz, String id) {
-        return genericDao.getSession().get(clazz, id);
+        return genericDao.getCurrentSession().get(clazz, id);
     }
 
     //如是一个没有保存过的entity就保存，否则只要不是null，就用新的属性值一一替换旧值
     public Serializable saveOrUpdateOne(IEntity entity) {
         if (entity.getId() == null || entity.getId() == "") {
-            Serializable save = genericDao.getSession().save(entity);
+            Serializable save = genericDao.getCurrentSession().save(entity);
             return save;
         }
-        IEntity update = genericDao.getSession().get(entity.getClass(), entity.getId());
+        IEntity update = genericDao.getCurrentSession().get(entity.getClass(), entity.getId());
         EntityUtil.updateEntity(update, entity);
-        genericDao.getSession().update(update);
+        genericDao.getCurrentSession().update(update);
         return "";
     }
 
@@ -43,7 +43,7 @@ public class CrudService {
         try {
             IEntity o = (IEntity) clazz.newInstance();
             o.setId(id);
-            genericDao.getSession().delete(o);
+            genericDao.getCurrentSession().delete(o);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -55,7 +55,7 @@ public class CrudService {
         return genericDao.simpleQueryList(condition);
     }
 
-    public <T> T getOnebyCondition(T condition) {
+    public <T> T getOneByCondition(T condition) {
         return genericDao.simpleQueryOne(condition);
     }
 

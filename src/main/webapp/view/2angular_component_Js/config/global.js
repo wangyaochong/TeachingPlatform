@@ -12,10 +12,14 @@ var controllerNames = [
     'RollPicture',
     'IndexMessage',
     'UserInformation',
-    'UserList'
+    'UserList',
+    'CourseCenterStudent',
+    'CourseCenterTeacher',
+    'CourseCenterTeacherResource',
 ];
 var directiveNames = [
-    'Edit'
+    'Edit',
+    'CourseBlock'
 ]
 
 generateUrl(templateUrls, "controller", controllerNames);

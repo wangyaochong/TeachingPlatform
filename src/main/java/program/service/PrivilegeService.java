@@ -18,7 +18,7 @@ public class PrivilegeService {
     @Resource
     CrudService crudService;
     List<PrivilegeEntity> getRootPrivilegeList(){//选出不处于任何一个分组的privilege
-        Criteria criteria = crudService.getSession().createCriteria(PrivilegeEntity.class);
+        Criteria criteria = crudService.getCurrentSession().createCriteria(PrivilegeEntity.class);
         criteria.add(Restrictions.isNull("groupEntity"));
         return  criteria.list();
     }

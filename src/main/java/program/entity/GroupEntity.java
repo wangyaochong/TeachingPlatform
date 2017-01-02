@@ -22,6 +22,7 @@ public class GroupEntity implements IEntity{
     @GeneratedValue(generator = "generator")
     String id;//id
     String name;//分组的名字
+    String description;//描述
     String type;//分组的类型分为人员分组和章节分组
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -96,12 +97,21 @@ public class GroupEntity implements IEntity{
     public GroupEntity() {
     }
 
-    public GroupEntity(String name, String type, GroupEntity parentGroupEntity, List<GroupEntity> childGroupEntityList, PersonEntity creator, Long createDate) {
+    public GroupEntity(String name, String description, String type, GroupEntity parentGroupEntity, List<GroupEntity> childGroupEntityList, PersonEntity creator, Long createDate) {
         this.name = name;
+        this.description = description;
         this.type = type;
         this.parentGroupEntity = parentGroupEntity;
         this.childGroupEntityList = childGroupEntityList;
         this.creator = creator;
         this.createDate = createDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
