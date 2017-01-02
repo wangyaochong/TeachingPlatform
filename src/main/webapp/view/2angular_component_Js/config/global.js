@@ -19,7 +19,8 @@ var controllerNames = [
 ];
 var directiveNames = [
     'Edit',
-    'CourseBlock'
+    'CourseBlock',
+    'PictureBlock'
 ]
 
 generateUrl(templateUrls, "controller", controllerNames);

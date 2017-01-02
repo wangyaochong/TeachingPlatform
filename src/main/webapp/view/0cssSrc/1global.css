@@ -12,7 +12,6 @@
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
-
 .table-responsive > .table > tbody > tr > td,
 .table-responsive > .table > tbody > tr > th,
 .table-responsive > .table > tfoot > tr > td,

@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,7 @@ public class FileController {
     public ResponseInfo uploadList(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         List<MultipartFile> files = multipartRequest.getFiles("files");
+        List<String> saveIds=new ArrayList<>();
         for (MultipartFile f : files) {
             String originalFilename = f.getOriginalFilename();
             long size = f.getSize();
@@ -87,6 +89,7 @@ public class FileController {
                             fileUtil.getCompleteContextFilePath(),
                             size, originalFilename, new Date().getTime());
             String saveId = (String) genericDao.getCurrentSession().save(fileEntity);
+            saveIds.add(saveId);
             fileEntity.setFilePath(fileEntity.getFilePath() + saveId + fileEntity.getOriginName());
             fileEntity.setHtmlAccessPath(fileEntity.getHtmlAccessPath() + saveId + fileEntity.getOriginName());
             genericDao.getCurrentSession().update(fileEntity);
@@ -104,7 +107,7 @@ public class FileController {
                 e.printStackTrace();
             }
         }
-        return new ResponseInfo(ResponseFlag.STATUS_OK, null, null);
+        return new ResponseInfo(ResponseFlag.STATUS_OK, null, saveIds);
     }
 
     @RequestMapping("/uploadMapFile")//这个是针对一个form表单中有多个input file类型

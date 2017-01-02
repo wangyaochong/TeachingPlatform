@@ -1,23 +1,31 @@
 <div style="height: 10%;width: 100%"></div>
 <div style="width: 10%;height: 1px;float: left"></div>
 <div ng-controller="controllerCourseCenterTeacherResource" style="width: 80%;float: left">
+
+    <!--添加滚动图片模态框-->
     <div class="modal fade" id="newRollPictureModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeRollPictureModal()">&times;</button>
                     <h4 class="modal-title">添加滚动图片</h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tbody>
+                        <!--<tr>-->
+                        <!--<td width="25%" class="bg-primary">课程名</td>-->
+                        <!--<td><input type="text" class="CourseCenterTeacher" ng-model="newCourse.name"></td>-->
+                        <!--</tr>-->
                         <tr>
-                            <td width="25%" class="bg-primary">课程名</td>
-                            <td><input type="text" class="CourseCenterTeacher" ng-model="newCourse.name"></td>
+                            <td width="25%" class="bg-primary">图片描述</td>
+                            <td><input type="text" class="CourseCenterTeacher" ng-model="newItemEntity.description"></td>
                         </tr>
                         <tr>
-                            <td width="25%" class="bg-primary">课程描述</td>
-                            <td><input type="text" class="CourseCenterTeacher" ng-model="newCourse.description"></td>
+                            <td width="25%" class="bg-primary">上传图片</td>
+                            <td>
+                                <input class="fileUploadInput" name="files" type="file" class="file-loading">
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -76,12 +84,11 @@
 
 
         <!--------------------------------滚动图片编辑------------------------------------------------------------>
-
-
         <div class="panel panel-primary" style="width: 100%">
             <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
-                    <a ng-click="initPosition()" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                    <a ng-click="initPosition();" class="collapsed" data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTwo" aria-expanded="false"
                        aria-controls="collapseTwo">
                         首页滚动图片编辑
                     </a>
@@ -95,7 +102,7 @@
                             <tbody>
                             <tr>
                                 <td align="center" style="width:100%;height: 100%">
-                                    <a data-toggle="modal" href="#newRollPictureModal" ng-click="InitNewCourseModal()">
+                                    <a data-toggle="modal" href="#newRollPictureModal" ng-click="InitNewRollPictureModal()">
                                         <span style="font-size: 300%;" class="glyphicon glyphicon-plus"></span>
                                     </a>
                                 </td>
@@ -103,6 +110,9 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <directive-picture-block ng-if="isOpenCollapseTwo()" ng-repeat="x in rollPictureList" $item="x" $index="$index" $width="'12.5%'"
+                    $padding="'1%'"></directive-picture-block>
 
                 </div>
             </div>

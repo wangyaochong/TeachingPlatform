@@ -59,6 +59,47 @@ app.directive('directiveCourseBlock', function () {
             $scope.revertEdit=function () {
                 angular.copy($scope.$item.dataCopy,$scope.$item);
             }
+
+
+            window.onresize=function () {
+                的
+            }
+            window.onresize =function () {
+                $(".courseblockwrapper").each(function () {
+                    $(this).width($scope.$width);
+                    //必须要多设置几次，不然会出错
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $(this).height($(this).width());//让高度等于宽度
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                    $("#newCourseButtonDiv").css("height",$("#newCourseButtonDiv").width())
+                })
+            }
         }
     }
 })

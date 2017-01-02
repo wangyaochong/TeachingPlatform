@@ -4,7 +4,7 @@
 app.directive('directivePictureBlock', function () {
     return {
         restrict: 'E',
-        templateUrl: templateUrls.directiveCourseBlockUrl,
+        templateUrl: templateUrls.directivePictureBlockUrl,
         replace: true,
         scope: {
             $list:"=",
@@ -15,22 +15,29 @@ app.directive('directivePictureBlock', function () {
         },
         controller: function ($scope, $timeout,CRUDService,CRUDHtmlService,$state) {
             $timeout(function () {
-                $(".courseblockpaddingwrapper").each(function () {
+                $(".PictureBlockPaddingWrapper").each(function () {
                     $(this).css("padding", $scope.$padding);
                 })
-                $(".courseblockwrapper").each(function () {
+
+                $(".PictureBlockWrapper").each(function () {
                     $(this).width($scope.$width);
                     $(this).height($(this).width());//让高度等于宽度
                 })
-                $(".courseblockcontent").each(function () {
-                    var r=(Math.random()*1000%100+150);
-                    r=parseInt(r);
-                    var g=(Math.random()*1000%100+150);
-                    g=parseInt(g);
-                    var b=(Math.random()*1000%100+150);
-                    b=parseInt(b);
-                    $(this).css("background-color", "rgb("+r+","+g+","+b+")");
-                })
+                var htmlFilePath=$scope.$item.resources[0].htmlAccessPath;
+                htmlFilePath = htmlFilePath.replace(/\\/g, "/");
+
+                $("#PictureBlockContent"+$scope.$index).css("background-image","url(' "+htmlFilePath+" ')")
+                var selfWidth=$("#PictureBlockWrapper"+$scope.$index).width();
+                $("#PictureBlockContent"+$scope.$index).css("background-size",selfWidth+"px "+selfWidth+"px")
+                // $(".PictureBlockContent").each(function () {
+                //     var r=(Math.random()*1000%100+150);
+                //     r=parseInt(r);
+                //     var g=(Math.random()*1000%100+150);
+                //     g=parseInt(g);
+                //     var b=(Math.random()*1000%100+150);
+                //     b=parseInt(b);
+                //     $(this).css("background-color", "rgb("+r+","+g+","+b+")");
+                // })
             }, 100)
 
 
@@ -43,15 +50,14 @@ app.directive('directivePictureBlock', function () {
                 $("#editCourseModal"+$scope.$index).modal("show");
             }
 
-            $scope.updateCourse=function () {
-                CRUDService.updateMethod("Group/updateGroup",$scope.$item).then(function (response) {
+            $scope.updateItem=function () {
+                CRUDService.updateMethod("ItemEntity/updateItemEntity",$scope.$item).then(function (response) {
                     $("#editCourseModal"+$scope.$index).modal("hide");
                 });
             }
 
-            $scope.deleteCourse=function () {
-                CRUDService.updateMethod("Group/deleteGroup",$scope.$item).then(function (response) {
-                    console.log("deleteGroup",response)
+            $scope.deleteItem=function () {
+                CRUDService.getMethod("ItemEntity/deleteItemEntity",{id:$scope.$item.id}).then(function (response) {
                     CRUDHtmlService.deleteObject($scope.$index,$scope.$list);
                 })
             }
@@ -59,10 +65,6 @@ app.directive('directivePictureBlock', function () {
             $scope.revertEdit=function () {
                 angular.copy($scope.$item.dataCopy,$scope.$item);
             }
-
-
-
-
         }
     }
 })
