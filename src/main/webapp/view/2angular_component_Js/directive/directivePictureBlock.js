@@ -13,7 +13,7 @@ app.directive('directivePictureBlock', function () {
             $width: "=",
             $padding: "="
         },
-        controller: function ($scope, $timeout,CRUDService,CRUDHtmlService,$state) {
+        controller: function ($scope, $timeout,CRUDService,CRUDHtmlService,$uibModal) {
             $timeout(function () {
                 $(".PictureBlockPaddingWrapper").each(function () {
                     $(this).css("padding", $scope.$padding);
@@ -29,25 +29,25 @@ app.directive('directivePictureBlock', function () {
                 $("#PictureBlockContent"+$scope.$index).css("background-image","url(' "+htmlFilePath+" ')")
                 var selfWidth=$("#PictureBlockWrapper"+$scope.$index).width();
                 $("#PictureBlockContent"+$scope.$index).css("background-size",selfWidth+"px "+selfWidth+"px")
-                // $(".PictureBlockContent").each(function () {
-                //     var r=(Math.random()*1000%100+150);
-                //     r=parseInt(r);
-                //     var g=(Math.random()*1000%100+150);
-                //     g=parseInt(g);
-                //     var b=(Math.random()*1000%100+150);
-                //     b=parseInt(b);
-                //     $(this).css("background-color", "rgb("+r+","+g+","+b+")");
-                // })
             }, 100)
 
 
-            $scope.courseResourceClick = function () {
-                $state.go("courseCenter.teacherResource",{groupId:$scope.$item.id})
-            }
-            $scope.editCourse=function () {
-                $scope.$item.dataCopy={};
-                angular.copy($scope.$item,$scope.$item.dataCopy);
-                $("#editCourseModal"+$scope.$index).modal("show");
+            $scope.editPictureBlock=function () {
+                console.log("editPictureBlock")
+                var modalInstance= $uibModal.open({
+                    controller:"controllerModalPictureBlock",
+                    templateUrl:templateHtmlUrl+"modal/controllerModalPictureBlock.html",
+                    resolve:{
+                        modalParam:function () {
+                            
+                        }
+                    }
+                })
+                modalInstance.result.then(function (result) {
+                    console.log(result)
+                },function (cancelResult) {
+                    console.log(cancelResult)
+                })
             }
 
             $scope.updateItem=function () {

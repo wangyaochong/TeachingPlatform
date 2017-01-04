@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+        <h4 class="modal-title">设置滚动图片</h4>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td width="25%" class="bg-primary">图片描述</td>
+                <td><input type="text" class="CourseCenterTeacher" ng-model="newItemEntity.description"></td>
+            </tr>
+            <tr>
+                <td width="25%" class="bg-primary">上传图片</td>
+                <td>
+                    <input class="fileUploadInput" name="files" type="file" class="file-loading">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary">确定</button>
+    </div>
+</div>
