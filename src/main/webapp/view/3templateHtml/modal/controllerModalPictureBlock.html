@@ -8,7 +8,7 @@
             <tbody>
             <tr>
                 <td width="25%" class="bg-primary">图片描述</td>
-                <td><input type="text" class="CourseCenterTeacher" ng-model="newItemEntity.description"></td>
+                <td><input type="text" class="CourseCenterTeacher" ng-model="itemEntity.description"></td>
             </tr>
             <tr>
                 <td width="25%" class="bg-primary">上传图片</td>
@@ -20,6 +20,6 @@
         </table>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary">确定</button>
+        <button type="button" class="btn btn-primary" ng-click="updateItemEntity(itemEntity)">确定</button>
     </div>
 </div>

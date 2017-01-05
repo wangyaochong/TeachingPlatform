@@ -35,6 +35,7 @@ public class CrudService {
         }
         IEntity update = genericDao.getCurrentSession().get(entity.getClass(), entity.getId());
         EntityUtil.updateEntity(update, entity);
+
         genericDao.getCurrentSession().update(update);
         return "";
     }

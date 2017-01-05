@@ -11,20 +11,41 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
     $scope.currentClassGroup = {};
     $scope.newItemEntity = {}
     console.log("controllerCourseCenterTeacherResource")
-    CRUDService.getMethod("ItemEntity/getItemEntityListByClassGroupId", {id: $stateParams.groupId}).then(function (response) {
-        angular.forEach(response.data, function (one) {
-            if (one.type == ItemType.ANNOUNCEMENT) {
-                $scope.indexMessageList.push(one);
-            }
-            if (one.type == ItemType.ROLLPICTURE) {
-                $scope.rollPictureList.push(one);
-            }
-        })
-        console.log(response);
+
+
+    $scope.$on("resourceUpdated",function (event, param) {
+        $scope.initResourceList();//当资源更新后，需要重新加载资源
     })
+
+
+
+
+    $scope.initResourceList=function () {
+        $scope.indexMessageList = [];
+        $scope.rollPictureList = [];
+        $scope.assignmentList = [];
+        $scope.documentList = [];
+        $scope.videoList = [];
+        CRUDService.getMethod("ItemEntity/getItemEntityListByClassGroupId", {id: $stateParams.groupId}).then(function (response) {
+            angular.forEach(response.data, function (one) {
+                if (one.type == ItemType.ANNOUNCEMENT) {
+                    $scope.indexMessageList.push(one);
+                }
+                if (one.type == ItemType.ROLLPICTURE) {
+                    $scope.rollPictureList.push(one);
+                }
+            })
+            console.log(response);
+        })
+    }
+
+    $scope.initResourceList()
+
+
     CRUDService.getMethod("Group/getClassGroupById", {id: $stateParams.groupId}).then(function (response) {
         $scope.currentClassGroup = response.data;
     })
+
 
     $scope.updateItemEntity = function (data) {
         CRUDService.updateMethod("ItemEntity/updateItemEntity", data).then(function (response) {
@@ -32,6 +53,7 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
                 data.id = response.data;
             }
+            $scope.initResourceList()
         })
     }
     $scope.addIndexMessage = function (data) {
@@ -58,8 +80,11 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             classGroup: $scope.currentClassGroup,
             dataCopy: {}
         }
+        $('#input-id').fileinput('clear');
+        $(".fileUploadInput").fileinput("reset");
     }
     $scope.closeRollPictureModal = function () {
+        $('#input-id').fileinput('clear');
         $(".fileUploadInput").fileinput("reset");
     }
 
@@ -99,7 +124,8 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             }
             $scope.newItemEntity.resources.push(oneResource);//文件只允许一次上传一张，返回的是一张张图片的id列表
             $scope.updateItemEntity($scope.newItemEntity);
-            $scope.rollPictureList.unshift($scope.newItemEntity);
+
+            // $scope.rollPictureList.unshift($scope.newItemEntity);
         })
     }, 100);
 })
