@@ -9,9 +9,9 @@ app.controller("controllerRollPicture", function ($scope, $http, ItemEntityServi
         }, function (data) {
             console.log(data)
         })
-    FileUploadModalService.initFileUploadModal(webRootUrl + "File/uploadListFile", true,function (data) {
-        console.log(data)
-    });
+    // FileUploadModalService.initFileUploadModal(webRootUrl + "File/uploadListFile", true,function (data) {
+    //     console.log(data)
+    // });
 })
 function initDirectiveRollPicture($scope) {
     setTimeout(function () {
@@ -26,21 +26,5 @@ function initDirectiveRollPicture($scope) {
             autosize(ta);
             ta.style.display = '';
         })
-        //暂时不使用slick插件
-        // $('#slickContainer').css("width", $scope.pictures.length * 100 + "px");
-        // $('.slick').slick({
-        //     // dots: true,
-        //     infinite: false,
-        //     zIndex: 0,
-        //     slidesToShow: 6,
-        //     arrows: true,
-        //     autoplay: false,
-        //     prevArrow: '<a class="left carousel-control" style="z-index: 1000;width: 50px!important;" role="button">' +
-        //     ' <span' +
-        //     ' class="glyphicon glyphicon-chevron-left"></span></a>',
-        //     nextArrow: '<a class="right carousel-control" style="z-index: 1000;width: 50px!important;"role="button">' +
-        //     ' <span' +
-        //     ' class="glyphicon glyphicon-chevron-right"></span> </a>'
-        // });
     }, 50)
 }

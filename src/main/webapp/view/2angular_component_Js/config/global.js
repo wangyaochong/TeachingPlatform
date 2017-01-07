@@ -1,3 +1,4 @@
+
 /**
  * Created by wangy on 2016/12/25.
  */
@@ -16,6 +17,7 @@ var controllerNames = [
     'CourseCenterStudent',
     'CourseCenterTeacher',
     'CourseCenterTeacherResource',
+    'Assignment'
 ];
 var directiveNames = [
     'Edit',

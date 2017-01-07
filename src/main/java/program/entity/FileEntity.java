@@ -19,6 +19,11 @@ public class FileEntity implements IEntity{
     PersonEntity uploader;//上传者
     String filePath;//文件路径
     String htmlAccessPath;//html直接访问路径
+    String originName;//文件原本的名字，文件上传后，统一重命名为id，
+    // 然后保存，避免文件因为名字相同导致冲突或者丢失
+    Long uploadTime;//上传时间
+
+    Long fileSize;//文件大小
 
     @Override
     public String toString() {
@@ -41,7 +46,6 @@ public class FileEntity implements IEntity{
         this.htmlAccessPath = htmlAccessPath;
     }
 
-    Long fileSize;//文件大小
 
     public Long getFileSize() {
         return fileSize;
@@ -51,9 +55,7 @@ public class FileEntity implements IEntity{
         this.fileSize = fileSize;
     }
 
-    String originName;//文件原本的名字，文件上传后，统一重命名为id，
-    // 然后保存，避免文件因为名字相同导致冲突或者丢失
-    Long uploadTime;//上传时间
+
 
 
 

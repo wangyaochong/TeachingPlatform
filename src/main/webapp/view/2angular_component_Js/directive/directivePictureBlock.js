@@ -47,13 +47,6 @@ app.directive('directivePictureBlock', function () {
                     }
                 })
                 modalInstance.result.then(function (result) {
-
-
-
-
-
-
-
                     console.log(result)
                 }, function (cancelResult) {
                     console.log(cancelResult)

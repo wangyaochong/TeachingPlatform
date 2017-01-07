@@ -29,6 +29,9 @@
                             <td ng-cloak="" title="'时间'" width="10%" align="left" style="min-width: 50px;">
                                 {{item.createDate|date:"yyyy-MM-dd"}}
                             </td>
+                            <td ng-cloak="" title="'课程名'" width="10%"  align="left" >
+                                {{item.classGroup.name}}
+                            </td>
                             <td ng-cloak="" title="'标题'" width="10%" align="left" style="min-width: 50px;">
                                 <textarea class="IndexMessage" ng-model="item.title" ng-disabled="!item.isEditing"
                                           width="100%"
@@ -38,27 +41,6 @@
                                 <textarea class="IndexMessage" ng-model="item.description" ng-disabled="!item.isEditing"
                                           width="100%"
                                           rows="1"></textarea>
-                            </td>
-                            <td ng-cloak="" title="'编辑'" width="10%" ng-if="HasFrontMessagePriv">
-                                <button ng-if="!item.isEditing" type="button" class="btn btn-primary btn-sm"
-                                        ng-click="item.isEditing=!item.isEditing">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                                <button ng-if="item.isEditing" type="button" class="btn btn-primary btn-sm"
-                                        ng-click="item.isEditing=!item.isEditing;saveItemEntity(item)">
-                                    <span class="glyphicon glyphicon-floppy-saved"></span>
-                                </button>
-                                <br class="visible-xs-block">
-                                <!--在超小屏幕换行-->
-                                <button ng-if="!item.isEditing" type="button" class="btn btn-danger btn-sm"
-                                        ng-click="item.isEditing=!item.isEditing;deleteItemEntity(item,$index,$data)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                                <button ng-if="item.isEditing" type="button" class="btn btn-danger btn-sm"
-                                        ng-click="item.isEditing=!item.isEditing;revertItemEntity(item,$data);">
-                                    <span class="glyphicon glyphicon-floppy-remove"></span>
-                                </button>
-
                             </td>
                         </tr>
                     </table>

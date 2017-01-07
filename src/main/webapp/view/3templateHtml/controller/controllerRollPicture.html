@@ -17,55 +17,26 @@
                                 <br>
                             </div>
                             <div class="carousel-caption" ng-if="item.resources!=undefined">
-                                <div width="50" class="" height="100%">
-                                    <table width="100%" cellpadding="20px" cellspacing="10px" align="center">
-                                        <tr>
-                                            <td align="center">
-                                                <div style="width: 90%">
-                                                <textarea class="rollPictureDes" ng-disabled="!item.isEditing" rows="1"
-                                                          ng-model="item.description"
-                                                          style="text-align: left;" data-ng-trim="false"></textarea>
-                                                </div>
-                                            </td>
-                                            <td width="20%" ng-if="HasFrontMessagePriv">
-                                                <button ng-if="!item.isEditing" type="button"
-                                                        class="btn btn-primary"
-                                                        ng-click="item.isEditing=!item.isEditing">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </button>
-                                                <button ng-if="item.isEditing" type="button" class="btn btn-primary"
-                                                        ng-click="item.isEditing=!item.isEditing;saveItemEntity(item)">
-                                                    <span class="glyphicon glyphicon-floppy-saved"></span>
-                                                </button>
-                                                <button ng-if="item.isEditing" type="button" class="btn btn-danger"
-                                                        ng-click="item.isEditing=!item.isEditing;revertItemEntity(item,pictures);">
-                                                    <span class="glyphicon glyphicon-floppy-remove"></span>
-                                                </button>
-                                                <button ng-if="!item.isEditing" type="button" class="btn btn-danger"
-                                                        ng-click="item.isEditing=!item.isEditing;deleteItemEntity(item,$index,pictures)">
-                                                    <span class="glyphicon glyphicon-remove"></span>
-                                                </button>
-                                                <button ng-if="!item.isEditing" type="button" class="btn btn-danger"
-                                                        style="display: inline-block;"
-                                                        ng-click="addItemEntity(pictures,ItemType.ROLLPICTURE)">
-                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                    <div class="hidden-xs hidden-sm" style="display: inline;">
-                                                    </div>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                <table width="100%" cellpadding="20px" cellspacing="10px" align="left"
+                                       class="bg-primary" style="table-layout: fixed;background-color: rgba(51, 122, 183,0.7)">
+                                    <tbody>
+                                    <tr >
+                                        <td style="padding: 10px" width="10%">{{item.classGroup.name}}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td style="padding: 10px">{{item.description}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </td>
             </tr>
             </tbody>
-
         </table>
-
-
         <!--显示图标标记-->
         <ol class="carousel-indicators">
             <li ng-class="{true:'active',false:''}[$index==0]" data-target="#carousel-example-generic"
@@ -83,17 +54,4 @@
         </a>
     </div>
 
-    <div ng-if="false">
-        <div id="slickContainer" style="height: 100px;background-color:red;">
-            <div width="{{pictures.pictures.length*100}}px">
-                <div class="slick">
-                    <div ng-repeat="x in pictures.pictures">
-                        <a ng-href="{{x.href}}">
-                            <img ng-src="{{x.href}}" style="height: 100px;width: 100px">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

@@ -79,17 +79,6 @@ window.onresize =function () {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 var webRootUrl = "/TeachingPlatform/"
 var templateHtmlUrl = "/TeachingPlatform/view/3templateHtml/";
 var directiveHtmlUrl = "/TeachingPlatform/view/4directiveHtml/";

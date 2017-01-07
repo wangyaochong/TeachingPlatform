@@ -1,8 +1,9 @@
 /**
  * Created by wangy on 2017/1/1.
  */
-app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $scope, $stateParams, $timeout) {
+app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $scope, $stateParams, $timeout,$uibModal) {
     $scope.isRollPicturePanelOpen = false;
+    $scope.positionInited=false;//位置没有更新
     $scope.indexMessageList = [];
     $scope.rollPictureList = [];
     $scope.assignmentList = [];
@@ -16,9 +17,6 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
     $scope.$on("resourceUpdated",function (event, param) {
         $scope.initResourceList();//当资源更新后，需要重新加载资源
     })
-
-
-
 
     $scope.initResourceList=function () {
         $scope.indexMessageList = [];
@@ -34,9 +32,22 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
                 if (one.type == ItemType.ROLLPICTURE) {
                     $scope.rollPictureList.push(one);
                 }
+                if(one.type==ItemType.ASSIGNMENT){
+                    $scope.assignmentList.push(one);
+                }
+                if(one.type==ItemType.DOCUMENT){
+                    $scope.documentList.push(one);
+                }
+                if(one.type==ItemType.VIDEO){
+                    $scope.videoList.push(one);
+                }
             })
             console.log(response);
+            $timeout(function () {
+                autosize(document.querySelectorAll('textarea'));
+            }, 100)
         })
+
     }
 
     $scope.initResourceList()
@@ -56,7 +67,10 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             $scope.initResourceList()
         })
     }
-    $scope.addIndexMessage = function (data) {
+    
+    
+    
+    $scope.addIndexMessage = function () {
         var tmpMessage = {
             id: "",
             title: "",
@@ -70,6 +84,47 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
         angular.copy(tmpMessage, tmpMessage.dataCopy);
         $scope.indexMessageList.unshift(tmpMessage);
     }
+    $scope.addAssignment=function () {
+        var tmpMessage = {
+            id: "",
+            title: "",
+            createDate: new Date().getTime(),
+            type: ItemType.ASSIGNMENT,
+            isOpen: true,
+            classGroup: $scope.currentClassGroup,
+            isEditing: true,
+            dataCopy: {}
+        }
+        angular.copy(tmpMessage, tmpMessage.dataCopy);
+        $scope.assignmentList.unshift(tmpMessage);
+    }
+
+    $scope.addFileToItem=function (item) {
+        var modalInstance = $uibModal.open({
+            controller: "controllerModalNewResource",
+            templateUrl: templateHtmlUrl + "modal/controllerModalNewResource.html",
+            resolve: {
+                modalParam: function () {
+                    return {
+                        itemEntity: item
+                    }
+                }
+            }
+        })
+        modalInstance.result.then(function (result) {
+            console.log(result)
+        }, function (cancelResult) {
+            console.log(cancelResult)
+        })
+
+    }
+
+    //传入的是item，然后根据index删除资源
+    $scope.deleteFileFromItem=function (item,index) {
+        item.resources.splice(index,1);
+        $scope.updateItemEntity(item);
+    }
+
 
     $scope.InitNewRollPictureModal = function () {
         $scope.newItemEntity = {
@@ -92,7 +147,7 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
     $scope.initPosition = function () {//因为是使用collapse，所以宽度什么的需要等展开才能正确获取到
         $timeout(function () {
             $("#newRollPictureDiv").css("height", $("#newRollPictureDiv").width())
-        }, 100)
+        }, 0)
     }
     $scope.isOpenCollapseTwo = function () {
         var test=$("#collapseTwo").attr('class');

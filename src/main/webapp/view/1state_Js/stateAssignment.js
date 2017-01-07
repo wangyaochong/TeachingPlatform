@@ -3,5 +3,5 @@
  */
 $stateProvider.state('assignment',{
     url: '/assignment',
-    template:"assignment"
+    templateUrl:templateUrls.controllerAssignmentUrl
 });
