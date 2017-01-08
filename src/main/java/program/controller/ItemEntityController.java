@@ -10,7 +10,9 @@ import program.entity.GroupEntity;
 import program.entity.ItemEntity;
 import program.entity.PersonEntity;
 import program.entity.entityInterface.IEntity;
+import program.entity.type.ItemType;
 import program.service.CrudService;
+import program.service.ItemEntityService;
 import program.service.UserService;
 import program.service.bean.PageBean;
 import program.service.PageListService;
@@ -36,6 +38,11 @@ public class ItemEntityController {
     UserService userService;
     @Resource
     PageListService<ItemEntity> pageListService;
+    @Resource
+    ItemEntityService itemEntityService;
+
+
+
     @RequestMapping("/getItemEntityPage")//需要获取分页itemEntity共用的URL
     @ResponseBody
     public PageBean<ItemEntity> getItemEntityPage(@ModelAttribute ItemEntity itemEntity,
@@ -88,5 +95,40 @@ public class ItemEntityController {
     public ResponseInfo deleteItemEntity(@RequestParam(value = "id") String id) {
         crudService.deleteOneById(ItemEntity.class,id);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
+    }
+
+    @RequestMapping("/getCurrentUserRollPicture")
+    @ResponseBody
+    public ResponseInfo getCurrentUserRollPicture(){
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.ROLLPICTURE);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
+    }
+
+    @RequestMapping("/getCurrentUserIndexMessage")
+    @ResponseBody
+    public ResponseInfo getCurrentUserIndexMessage(){
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.ANNOUNCEMENT);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
+    }
+
+    @RequestMapping("/getCurrentUserAssignment")
+    @ResponseBody
+    public ResponseInfo getCurrentUserAssignment(){
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.ASSIGNMENT);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
+    }
+
+    @RequestMapping("/getCurrentUserDocument")
+    @ResponseBody
+    public ResponseInfo getCurrentUserDocument(){
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.DOCUMENT);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
+    }
+
+    @RequestMapping("/getCurrentUserVideo")
+    @ResponseBody
+    public ResponseInfo getCurrentUserVideo(){
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.ROLLPICTURE);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
     }
 }
