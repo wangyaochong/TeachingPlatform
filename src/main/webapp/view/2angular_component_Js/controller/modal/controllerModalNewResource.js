@@ -43,7 +43,6 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
                 data.id = response.data;
             }
             $rootScope.$broadcast("resourceUpdated",{});
-
         })
         $uibModalInstance.dismiss("cancel")
     }

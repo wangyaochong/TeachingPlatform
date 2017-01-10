@@ -67,10 +67,8 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             $scope.initResourceList()
         })
     }
-    
-    
-    
-    $scope.addIndexMessage = function () {
+
+    $scope.addIndexMessage = function () {//添加首页消息
         var tmpMessage = {
             id: "",
             title: "",
@@ -84,7 +82,7 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
         angular.copy(tmpMessage, tmpMessage.dataCopy);
         $scope.indexMessageList.unshift(tmpMessage);
     }
-    $scope.addAssignment=function () {
+    $scope.addAssignment=function () {//添加作业
         var tmpMessage = {
             id: "",
             title: "",
@@ -98,6 +96,22 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
         angular.copy(tmpMessage, tmpMessage.dataCopy);
         $scope.assignmentList.unshift(tmpMessage);
     }
+
+    $scope.addDocument=function () {//添加文档
+        var tmpMessage = {
+            id: "",
+            title: "",
+            createDate: new Date().getTime(),
+            type: ItemType.DOCUMENT,
+            isOpen: true,
+            classGroup: $scope.currentClassGroup,
+            isEditing: true,
+            dataCopy: {}
+        }
+        angular.copy(tmpMessage, tmpMessage.dataCopy);
+        $scope.assignmentList.unshift(tmpMessage);
+    }
+    
 
     $scope.addFileToItem=function (item) {
         var modalInstance = $uibModal.open({
@@ -179,7 +193,6 @@ app.controller("controllerCourseCenterTeacherResource", function (CRUDService, $
             }
             $scope.newItemEntity.resources.push(oneResource);//文件只允许一次上传一张，返回的是一张张图片的id列表
             $scope.updateItemEntity($scope.newItemEntity);
-
             // $scope.rollPictureList.unshift($scope.newItemEntity);
         })
     }, 100);
