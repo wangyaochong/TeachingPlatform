@@ -104,7 +104,6 @@
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"
                  style="width: 100%">
                 <div class="panel-body" style="width: 100%">
-
                     <div style="float: left;width: 12.5%;" id="newRollPictureDiv">
                         <table align="center" style="width:100%;height: 100%">
                             <tbody>
@@ -191,22 +190,31 @@
                 <h4 class="panel-title">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
                        aria-expanded="false"
-                       aria-controls="collapseFour">
+                       aria-controls="collapseFour" ng-click="initPosition()">
                         课程文档编辑
                     </a>
                 </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                 <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                    wolf moon officia aute, non cupidatat
-                    skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                    aliqua put a bird on it squid
-                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                    wes anderson cred nesciunt sapiente ea
-                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
-                    denim aesthetic synth nesciunt you probably
-                    haven't heard of them accusamus labore sustainable VHS.
+                    <div style="float: left;width: 12.5%;" id="newDocumentDiv">
+                        <table align="center" style="width:100%;height: 100%">
+                            <tbody>
+                            <tr>
+                                <td align="center" style="width:100%;height: 100%">
+                                    <a ng-click="addDocument()">
+                                        <span style="font-size: 300%;" class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <directive-document-block ng-if="isOpenCollapseFour()" $list="documentList"
+                                             ng-repeat="x in documentList" $item="x" $index="$index" $width="'12.5%'"
+                                             $padding="'1%'"></directive-document-block>
+
                 </div>
             </div>
         </div>

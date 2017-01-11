@@ -1,0 +1,46 @@
+<div style="height: 10%;width: 100%"></div>
+<div style="float: left;width: 10%;height: 1px"></div>
+<div style="float: left;width:80%;">
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-controller="controllerDocument">
+        <div class="panel panel-primary" ng-repeat="classGroup in classGroupList">
+            <div class="panel-heading" role="tab" id="heading{{$index}}">
+                <h4 class="panel-title">
+                    <!--<a aria-expanded="true" aria-controls="collapseOne">-->
+                        <a class="h4" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" >{{classGroup.name}} <small
+                                style="color:
+                        white">
+                            {{classGroup.description}}</small></a>
+                    <!--</a>-->
+                </h4>
+            </div>
+            <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
+                <div class="panel-body">
+                    <table class="table-bordered table">
+                        <thead>
+                        <tr>
+                            <td>时间</td>
+                            <td>标题</td>
+                            <td>内容</td>
+                            <td>附件</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in assignmentList track by $index" ng-if="x.classGroup.id==classGroup.id">
+                            <td>{{x.createDate|date:"yyyy-MM-dd"}}</td>
+                            <td>{{x.title}}</td>
+                            <td>{{x.description}}</td>
+                            <td>
+                                <div ng-repeat="resource in x.resources" style="height: 30px;">
+                                    <a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

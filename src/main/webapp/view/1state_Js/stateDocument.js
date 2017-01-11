@@ -3,5 +3,5 @@
  */
 $stateProvider.state('document',{
     url: '/document',
-    template:"document"
+    templateUrl:templateUrls.controllerDocumentUrl
 });
