@@ -12,8 +12,10 @@
 >
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"></property>
-        <property name="maxInMemorySize" value="4194304"></property>
-        <property name="maxUploadSizePerFile" value="1048576"></property>
+        <!--内存中最大有40MB-->
+        <property name="maxInMemorySize" value="41943040"></property>
+        <!--文件大小最大为1000MB-->
+        <property name="maxUploadSizePerFile" value="1048576000"></property>
     </bean>
     <context:component-scan base-package="program"></context:component-scan>
     <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties"></context:property-placeholder>

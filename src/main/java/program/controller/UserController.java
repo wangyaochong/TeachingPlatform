@@ -3,8 +3,11 @@ package program.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import program.controller.base.DataOperateBase;
+import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
+import program.entity.GroupEntity;
 import program.entity.PrivilegeEntity;
+import program.entity.entityInterface.IEntity;
 import program.service.UserService;
 import program.entity.PersonEntity;
 import program.service.bean.PageBean;
@@ -59,5 +62,11 @@ public class UserController  extends DataOperateBase{
                                               @RequestParam(required = false) String orderBy, @RequestParam(required = false) Boolean orderAsc) {
         return pageListService.getPageBean(personEntity, pageCurrentIndex, pageRowSize, orderBy, orderAsc);
     }
-
+    @RequestMapping("/addCurrentUserToGroup")
+    @ResponseBody
+    public ResponseInfo addCurrentUserToGroup(@RequestParam String groupId){
+        IEntity oneById = crudService.getOneById(GroupEntity.class, groupId);
+        userService.addCurrentUserToGroup((GroupEntity) oneById);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
+    }
 }

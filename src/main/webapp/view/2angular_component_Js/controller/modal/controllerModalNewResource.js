@@ -2,9 +2,7 @@
  * Created by 【王耀冲】 on 【2017/1/7】 at 【17:20】.
  */
 app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$timeout,modalParam,CRUDService ,$rootScope) {
-
     $scope.itemEntity=modalParam.itemEntity;
-
     $timeout(function () {
         $(".fileUploadInput").fileinput({
             language: "zh",//使用中文
@@ -30,12 +28,9 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
             $scope.updateItemEntity($scope.itemEntity);
         })
     }, 50);
-
     $scope.closeModal=function () {
         $uibModalInstance.dismiss("cancel")
     }
-
-
     $scope.updateItemEntity = function (data) {
         CRUDService.updateMethod("ItemEntity/updateItemEntity", data).then(function (response) {
             console.log(response)
@@ -46,6 +41,4 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
         })
         $uibModalInstance.dismiss("cancel")
     }
-
-
 })

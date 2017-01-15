@@ -3,5 +3,5 @@
  */
 $stateProvider.state('video',{
     url: '/video',
-    template:"video"
+    templateUrl:templateUrls.controllerVideoUrl
 });

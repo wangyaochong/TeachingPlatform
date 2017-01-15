@@ -18,13 +18,16 @@ var controllerNames = [
     'CourseCenterTeacher',
     'CourseCenterTeacherResource',
     'Assignment',
-    'Document'
+    'Document',
+    'Video',
+    'VideoPlay',
 ];
 var directiveNames = [
     'Edit',
     'CourseBlock',
     'PictureBlock',
-    'DocumentBlock'
+    'DocumentBlock',
+    'VideoBlock'
 ]
 
 generateUrl(templateUrls, "controller", controllerNames);

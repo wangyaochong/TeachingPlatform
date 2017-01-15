@@ -42,13 +42,13 @@
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="width: 100%">
 
 
-        <!--------------------------------------------------首页消息编辑------------------------------------------------------------>
+        <!--------------------------------------------------首页消息------------------------------------------------------------>
         <div class="panel panel-primary">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
                        aria-controls="collapseOne">
-                        首页消息编辑
+                        首页消息
                     </a>
                 </h4>
             </div>
@@ -60,7 +60,7 @@
                             <td>时间</td>
                             <td>标题</td>
                             <td>内容</td>
-                            <td>
+                            <td ng-if="hasPrivilege">
                                 操作
                                 <button type="button" class="btn btn-danger btn-sm pull-right"
                                         style="display: inline-block;"
@@ -78,7 +78,7 @@
                                           ng-disabled="!x.isEditing"></textarea></td>
                             <td><textarea rows="1" class="CourseCenterTeacherResource" ng-model="x.description"
                                           ng-disabled="!x.isEditing"></textarea></td>
-                            <td>
+                            <td ng-if="hasPrivilege">
                                 <directive-edit $list="indexMessageList" $item="x" $index="$index"
                                                 save-callback="updateItemEntity(x)"></directive-edit>
                             </td>
@@ -90,21 +90,21 @@
         </div>
 
 
-        <!--------------------------------滚动图片编辑------------------------------------------------------------>
+        <!--------------------------------滚动图片------------------------------------------------------------>
         <div class="panel panel-primary" style="width: 100%">
             <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
                     <a ng-click="initPosition();" class="collapsed" data-toggle="collapse" data-parent="#accordion"
                        href="#collapseTwo" aria-expanded="false"
                        aria-controls="collapseTwo">
-                        首页滚动图片编辑
+                        首页滚动图片
                     </a>
                 </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"
                  style="width: 100%">
                 <div class="panel-body" style="width: 100%">
-                    <div style="float: left;width: 12.5%;" id="newRollPictureDiv">
+                    <div style="float: left;width: 12.5%;" id="newRollPictureDiv" ng-if="hasPrivilege">
                         <table align="center" style="width:100%;height: 100%">
                             <tbody>
                             <tr>
@@ -120,20 +120,20 @@
                     </div>
 
                     <directive-picture-block ng-if="isOpenCollapseTwo()" $list="rollPictureList"
-                                             ng-repeat="x in rollPictureList" $item="x" $index="$index" $width="'12.5%'"
+                                             ng-repeat="x in rollPictureList" $item="x" $index="$index" $width="'12.5%'" $editable="hasPrivilege"
                                              $padding="'1%'"></directive-picture-block>
                 </div>
             </div>
         </div>
 
-        <!------------------------------------------------编辑作业的功能------------------------------------------------->
+        <!------------------------------------------------作业的功能------------------------------------------------->
         <div class="panel panel-primary">
             <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
                        aria-expanded="false"
                        aria-controls="collapseThree">
-                        课程作业编辑
+                        课程作业
                     </a>
                 </h4>
             </div>
@@ -146,7 +146,7 @@
                             <td>标题</td>
                             <td>内容</td>
                             <td>附件</td>
-                            <td>
+                            <td ng-if="hasPrivilege">
                                 操作
                                 <button type="button" class="btn btn-danger btn-sm pull-right"
                                         style="display: inline-block;"
@@ -166,13 +166,14 @@
                             <td>
                                 <div ng-repeat="resource in x.resources" style="height: 30px;">
                                     <a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>
-                                    <button class="btn btn-sm btn-danger pull-right" ng-click="deleteFileFromItem(x,$index)"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <button class="btn btn-sm btn-danger pull-right" ng-click="deleteFileFromItem(x,$index)" ng-if="hasPrivilege"><span
+                                            class="glyphicon glyphicon-remove"></span></button>
                                 </div>
-                                <button class="btn btn-sm btn-primary pull-right " ng-click="addFileToItem(x)" ng-if="x.id!='' " >
+                                <button class="btn btn-sm btn-primary pull-right " ng-click="addFileToItem(x)" ng-if="x.id!='' &&hasPrivilege" >
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                             </td>
-                            <td>
+                            <td ng-if="hasPrivilege">
                                 <directive-edit $list="assignmentList" $item="x" $index="$index"
                                                 save-callback="updateItemEntity(x)"></directive-edit>
                             </td>
@@ -184,20 +185,20 @@
         </div>
 
 
-        <!--------------------------------------------------------------资源编辑------------------------------------------------------>
+        <!--------------------------------------------------------------资源------------------------------------------------------>
         <div class="panel panel-primary">
             <div class="panel-heading" role="tab" id="headingFour">
                 <h4 class="panel-title">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"
                        aria-expanded="false"
                        aria-controls="collapseFour" ng-click="initPosition()">
-                        课程文档编辑
+                        课程文档
                     </a>
                 </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                 <div class="panel-body">
-                    <div style="float: left;width: 12.5%;" id="newDocumentDiv">
+                    <div style="float: left;width: 12.5%;" id="newDocumentDiv" ng-if="hasPrivilege">
                         <table align="center" style="width:100%;height: 100%">
                             <tbody>
                             <tr>
@@ -211,7 +212,7 @@
                         </table>
                     </div>
 
-                    <directive-document-block ng-if="isOpenCollapseFour()" $list="documentList"
+                    <directive-document-block ng-if="isOpenCollapseFour()" $list="documentList" $editable="hasPrivilege"
                                              ng-repeat="x in documentList" $item="x" $index="$index" $width="'12.5%'"
                                              $padding="'1%'"></directive-document-block>
 
@@ -220,33 +221,39 @@
         </div>
 
 
-        <!--------------------------------------------------------课程视频编辑------------------------------------------------------>
+        <!--------------------------------------------------------课程视频------------------------------------------------------>
         <div class="panel panel-primary">
             <div class="panel-heading" role="tab" id="headingFive">
                 <h4 class="panel-title">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive"
                        aria-expanded="false"
-                       aria-controls="collapseThree">
-                        课程视频编辑
+                       aria-controls="collapseThree" ng-click="initPosition()">
+                        课程视频
                     </a>
                 </h4>
             </div>
             <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                 <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                    wolf moon officia aute, non cupidatat
-                    skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-                    aliqua put a bird on it squid
-                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                    wes anderson cred nesciunt sapiente ea
-                    proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw
-                    denim aesthetic synth nesciunt you probably
-                    haven't heard of them accusamus labore sustainable VHS.
+                    <div style="float: left;width: 12.5%;" id="newVideoDiv" ng-if="hasPrivilege">
+                        <table align="center" style="width:100%;height: 100%">
+                            <tbody>
+                            <tr>
+                                <td align="center" style="width:100%;height: 100%">
+                                    <a ng-click="addVideo()">
+                                        <span style="font-size: 300%;" class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <directive-video--block ng-if="isOpenCollapseFive()" $list="videoList" $editable="hasPrivilege"
+                                              ng-repeat="x in videoList" $item="x" $index="$index" $width="'12.5%'"
+                                              $padding="'1%'"></directive-video--block>
+
                 </div>
             </div>
         </div>
-
-
     </div>
-
 </div>

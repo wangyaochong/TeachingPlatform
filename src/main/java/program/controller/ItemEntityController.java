@@ -128,7 +128,13 @@ public class ItemEntityController {
     @RequestMapping("/getCurrentUserVideo")
     @ResponseBody
     public ResponseInfo getCurrentUserVideo(){
-        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.ROLLPICTURE);
+        List<ItemEntity> currentUserItemEntityByType = itemEntityService.getCurrentUserItemEntityByType(ItemType.VIDEO);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,currentUserItemEntityByType);
+    }
+    @RequestMapping("/getItemEntityById")
+    @ResponseBody
+    public ResponseInfo getFileEntityById(@RequestParam String id){
+        IEntity oneById = crudService.getOneById(ItemEntity.class, id);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,oneById);
     }
 }

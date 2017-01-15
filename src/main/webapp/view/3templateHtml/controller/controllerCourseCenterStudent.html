@@ -1,3 +1,39 @@
-<div ng-controller="controllerCourseCenterStudent">
-    controllerCourseCenterStudent
+<div style="height: 10%;width: 100%"></div>
+<div style="float: left;width: 10%;height: 1px"></div>
+<div ng-controller="controllerCourseCenterStudent" style="float: left;width: 80%">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">已选课程</h3>
+        </div>
+        <div class="panel-body">
+            <button style="margin-right: 10px;" class="btn btn-sm btn-primary" ng-repeat="x in currentUser.groupEntityList"
+             ng-click="goToCourseResource(x)">{{x.name}}</button>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">所有课程</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <td>课程名</td>
+                    <td>课程描述</td>
+                    <td>课程老师</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in allCourse">
+                    <td>{{x.name}}</td>
+                    <td>{{x.description}}</td>
+                    <td>{{x.creator.name}}</td>
+                    <td> <button class="btn btn-sm btn-primary" ng-click="addCurrentUserToGroup(x.id)">申请加入该课程</button>  </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>

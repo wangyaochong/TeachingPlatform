@@ -51,6 +51,9 @@ var processPath = {
         '../raw/jslib/select.js',
         //angular-ui-select依赖sanitize.js
         '../raw/jslib/angular-sanitize.js',
+        //视频播放插件
+        '../raw/jslib/video.js',
+        '../raw/jslib/videojs-ie8.js',
 
 
         //侧边菜单插件
@@ -73,6 +76,8 @@ var processPath = {
         '../raw/csslib/ui-bootstrap-csp.css',
         // angular-ui-select
         '../raw/csslib/select.css',
+        //video.js
+        '../raw/csslib/video-js.css',
     ],
     css2oneSrcPath: ['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',

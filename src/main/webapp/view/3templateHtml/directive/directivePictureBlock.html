@@ -2,7 +2,7 @@
     <div class="PictureBlockPaddingWrapper" id="PictureBlockPaddingWrapper{{$index}}" style="width:100%;height: 100%">
         <div class="PictureBlockContent" id="PictureBlockContent{{$index}}" style="width:100%;height: 100%">
             <div style="width: 100%;height: 100%">
-                <div class="pull-right">
+                <div class="pull-right" ng-if="$editable">
                     <button type="button" class="btn btn-primary btn-sm"
                             ng-click="editPictureBlock()">
                         <span class="glyphicon glyphicon-pencil"></span>

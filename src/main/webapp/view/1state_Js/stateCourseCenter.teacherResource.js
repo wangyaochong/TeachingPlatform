@@ -3,6 +3,6 @@
  */
 
 $stateProvider.state('courseCenter.teacherResource',{
-    url: '/teacherResource?groupId',
+    url: '/teacherResource?groupId&isStudent',
     templateUrl:templateUrls.controllerCourseCenterTeacherResourceUrl
 });

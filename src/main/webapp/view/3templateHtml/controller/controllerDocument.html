@@ -3,7 +3,7 @@
 <div style="float: left;width:80%;">
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-controller="controllerDocument">
-        <div class="panel panel-primary" ng-repeat="classGroup in classGroupList">
+        <div class="panel panel-primary documentCollapse" id="{{$index}}"  ng-repeat="classGroup in classGroupList" ng-init="outIndex=$index;">
             <div class="panel-heading" role="tab" id="heading{{$index}}">
                 <h4 class="panel-title">
                     <!--<a aria-expanded="true" aria-controls="collapseOne">-->
@@ -16,28 +16,34 @@
             </div>
             <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
                 <div class="panel-body">
-                    <table class="table-bordered table">
-                        <thead>
-                        <tr>
-                            <td>时间</td>
-                            <td>标题</td>
-                            <td>内容</td>
-                            <td>附件</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="x in assignmentList track by $index" ng-if="x.classGroup.id==classGroup.id">
-                            <td>{{x.createDate|date:"yyyy-MM-dd"}}</td>
-                            <td>{{x.title}}</td>
-                            <td>{{x.description}}</td>
-                            <td>
-                                <div ng-repeat="resource in x.resources" style="height: 30px;">
-                                    <a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <directive-document-block ng-if="currentCollapse==outIndex&&x.classGroup.id==classGroup.id" $list="documentList"
+                                              ng-repeat="x in documentList" $item="x" $index="$index" $width="'12.5%'"
+                                              $padding="'1%'"></directive-document-block>
+
+
+
+                    <!--<table class="table-bordered table">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<td>时间</td>-->
+                            <!--<td>标题</td>-->
+                            <!--<td>内容</td>-->
+                            <!--<td>附件</td>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr ng-repeat="x in assignmentList track by $index" ng-if="x.classGroup.id==classGroup.id">-->
+                            <!--<td>{{x.createDate|date:"yyyy-MM-dd"}}</td>-->
+                            <!--<td>{{x.title}}</td>-->
+                            <!--<td>{{x.description}}</td>-->
+                            <!--<td>-->
+                                <!--<div ng-repeat="resource in x.resources" style="height: 30px;">-->
+                                    <!--<a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>-->
+                                <!--</div>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
                 </div>
             </div>
         </div>

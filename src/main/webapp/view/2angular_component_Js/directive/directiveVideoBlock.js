@@ -1,10 +1,10 @@
 /**
  * Created by 【王耀冲】 on 【2017/1/11】 at 【20:03】.
  */
-app.directive('directiveDocumentBlock', function () {
+app.directive('directiveVideoBlock', function () {
     return {
         restrict: 'E',
-        templateUrl: templateUrls.directiveDocumentBlockUrl,
+        templateUrl: templateUrls.directiveVideoBlockUrl,
         replace: true,
         scope: {
             $list: "=",
@@ -16,10 +16,10 @@ app.directive('directiveDocumentBlock', function () {
         },
         controller: function ($scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
             $timeout(function () {
-                $(".DocumentBlockPaddingWrapper").each(function () {
+                $(".VideoBlockPaddingWrapper").each(function () {
                     $(this).css("padding", $scope.$padding);
                 })
-                $(".DocumentBlockWrapper").each(function () {
+                $(".VideoBlockWrapper").each(function () {
                     $(this).width($scope.$width);
                     $(this).height($(this).width());//让高度等于宽度
                 })
@@ -31,17 +31,17 @@ app.directive('directiveDocumentBlock', function () {
                     var postfix=htmlFilePath.split(".");
                     var type=postfix[postfix.length-1];
                     var backImageBaseUrl='/TeachingPlatform/view/img/';
-                    $("#DocumentBlockContent" + $scope.$index).css("background-image", "url(' " + backImageBaseUrl+type+".png" + " ')")
-                    var selfWidth = $("#DocumentBlockWrapper" + $scope.$index).width();
-                    $("#DocumentBlockContent" + $scope.$index).css("background-size", selfWidth + "px " + selfWidth + "px")
+                    $("#VideoBlockContent" + $scope.$index).css("background-image", "url(' " + backImageBaseUrl+type+".png" + " ')")
+                    var selfWidth = $("#VideoBlockWrapper" + $scope.$index).width();
+                    $("#VideoBlockContent" + $scope.$index).css("background-size", selfWidth + "px " + selfWidth + "px")
                 }
             }, 100)
 
-            $scope.editDocumentBlock = function () {
-                console.log("editDocumentBlock")
+            $scope.editVideoBlock = function () {
+                console.log("editVideoBlock")
                 var modalInstance = $uibModal.open({
-                    controller: "controllerModalDocumentBlock",
-                    templateUrl: templateHtmlUrl + "modal/controllerModalDocumentBlock.html",
+                    controller: "controllerModalVideoBlock",
+                    templateUrl: templateHtmlUrl + "modal/controllerModalVideoBlock.html",
                     resolve: {
                         modalParam: function () {
                             return {

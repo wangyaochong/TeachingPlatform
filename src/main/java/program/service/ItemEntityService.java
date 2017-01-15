@@ -34,9 +34,10 @@ public class ItemEntityService {
         List listByCreator = criteriaCreator.list();
 
         if(currentUser.getGroupEntityList().size()!=0){//如果当前用户在某个班级中
-            String hql="from program.entity.ItemEntity item where item.classGroup in :classList";
+            String hql="from program.entity.ItemEntity item where item.classGroup in :classList and item.type=:type";
             Query query = currentSession.createQuery(hql);
             query.setParameterList("classList",currentUser.getGroupEntityList());
+            query.setParameter("type",itemType.toString());
             List listInGroup=  query.list();
             listByCreator.addAll(listInGroup);
         }

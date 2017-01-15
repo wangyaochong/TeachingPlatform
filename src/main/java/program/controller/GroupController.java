@@ -63,4 +63,13 @@ public class GroupController extends DataOperateBase {
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,groupEntity);
     }
 
+    @RequestMapping("/getAllClassGroup")
+    @ResponseBody
+    public ResponseInfo getAllClassGroup(){
+        GroupEntity groupEntity=new GroupEntity();
+        groupEntity.setType(GroupType.CLASS);
+        List<GroupEntity> listByCondition = crudService.getListByCondition(groupEntity);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
+    }
+
 }

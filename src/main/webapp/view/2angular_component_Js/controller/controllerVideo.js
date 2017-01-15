@@ -1,14 +1,14 @@
 /**
- * Created by 【王耀冲】 on 【2017/1/7】 at 【18:10】.
+ * Created by wangy on 2017/1/15.
  */
-app.controller("controllerDocument",function ($scope,CRUDService,$timeout) {
-    $scope.documentList=[]
+app.controller("controllerVideo",function ($scope,CRUDService,$timeout) {
+    $scope.videoList=[]
     $scope.classGroupList=[]
     $scope.currentCollapse=-1;//初始没有打开的
     $scope.getAllAssignment=function () {
-        CRUDService.getMethod("ItemEntity/getCurrentUserDocument")
+        CRUDService.getMethod("ItemEntity/getCurrentUserVideo")
             .then(function (response) {
-                $scope.documentList=response.data;
+                $scope.videoList=response.data;
                 angular.forEach(response.data,function (row) {
                     //提取出所有的班级分组
                     var index=0;
@@ -30,8 +30,8 @@ app.controller("controllerDocument",function ($scope,CRUDService,$timeout) {
         return $("#collapse"+index).attr('class') == "panel-collapse collapsing" || $("#collapse"+index).attr('class') == "panel-collapse collapse in";
     }
     $timeout(function () {
-        var test=$(".documentCollapse");
-        $(".documentCollapse").each(function () {
+        var test=$(".videoCollapse");
+        $(".videoCollapse").each(function () {
             $(this).on('show.bs.collapse',function () {
                 var index=$(this).attr("id")
                 $scope.$apply(function () {

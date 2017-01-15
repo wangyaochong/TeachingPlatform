@@ -11,7 +11,8 @@ app.directive('directivePictureBlock', function () {
             $item: "=",
             $index: "=",
             $width: "=",
-            $padding: "="
+            $padding: "=",
+            $editable:"="
         },
         controller: function ($scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
 

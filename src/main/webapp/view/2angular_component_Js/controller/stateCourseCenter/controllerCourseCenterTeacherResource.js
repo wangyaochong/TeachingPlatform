@@ -11,6 +11,7 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
     $scope.videoList = [];
     $scope.currentClassGroup = {};
     $scope.newItemEntity = {}
+    $scope.hasPrivilege=angular.isUndefinedOrNull($stateParams.isStudent)?true:false;//是否是学生
     console.log("controllerCourseCenterTeacherResource")
 
 
@@ -133,9 +134,47 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
             }
             console.log(cancelResult)
         })
-
-
     }
+
+    $scope.addVideo = function () {//添加文档
+        var tmpMessage = {
+            id: "",
+            title: "",
+            createDate: new Date().getTime(),
+            type: ItemType.VIDEO,
+            isOpen: true,
+            classGroup: $scope.currentClassGroup,
+            isEditing: true,
+            dataCopy: {},
+            resources: []
+        }
+        angular.copy(tmpMessage,tmpMessage.dataCopy);
+
+        var modalInstance = $uibModal.open({
+            controller: "controllerModalNewResource",
+            templateUrl: templateHtmlUrl + "modal/controllerModalNewResource.html",
+            resolve: {
+                modalParam: function () {
+                    return {
+                        itemEntity: tmpMessage
+                    }
+                }
+            }
+        })
+        modalInstance.result.then(function (result) {
+            if(tmpMessage.resources.length!=0){
+                $scope.videoList.unshift(tmpMessage);
+            }
+            console.log(result)
+        },function (cancelResult) {
+            if(tmpMessage.resources.length!=0){
+                $scope.videoList.unshift(tmpMessage);
+            }
+            console.log(cancelResult)
+        })
+    }
+
+
 
     $scope.addFileToItem = function (item) {
         var modalInstance = $uibModal.open({
@@ -154,7 +193,6 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
         },function (cancelResult) {
             console.log(cancelResult)
         })
-
     }
 
     //传入的是item，然后根据index删除资源
@@ -180,11 +218,11 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
         $('#input-id').fileinput('clear');
         $(".fileUploadInput").fileinput("reset");
     }
-
-    $scope.initPosition = function () {//因为是使用collapse，所以宽度什么的需要等展开才能正确获取到
+    $scope.initPosition = function () {//因为是使用collapse，所以宽度需要等展开才能正确获取到
         $timeout(function () {
             $("#newRollPictureDiv").css("height",$("#newRollPictureDiv").width())
             $("#newDocumentDiv").css("height",$("#newDocumentDiv").width())
+            $("#newVideoDiv").css("height",$("#newVideoDiv").width())
         },0)
     }
 
@@ -195,6 +233,9 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
     $scope.isOpenCollapseFour=function () {
         var test = $("#collapseFour").attr('class');
         return $("#collapseFour").attr('class') == "panel-collapse collapsing" || $("#collapseFour").attr('class') == "panel-collapse collapse in";
+    }
+    $scope.isOpenCollapseFive=function () {
+        return $("#collapseFive").attr('class') == "panel-collapse collapsing" || $("#collapseFive").attr('class') == "panel-collapse collapse in";
     }
 
 
