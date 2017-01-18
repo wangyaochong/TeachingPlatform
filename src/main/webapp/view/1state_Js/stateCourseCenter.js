@@ -25,3 +25,40 @@ $stateProvider.state('courseCenter', {
         })
     }
 })
+
+$stateProvider.state('courseCenter.student',{
+    url: '/student',
+    templateUrl:templateUrls.controllerCourseCenterStudentUrl
+});
+
+
+$stateProvider.state('courseCenter.teacher',{
+    url: '/teacher',
+    templateUrl:templateUrls.controllerCourseCenterTeacherUrl
+});
+
+
+$stateProvider.state('courseCenter.teacherResource',{
+    url: '/teacherResource?groupId&isStudent',
+    templateUrl:templateUrls.controllerCourseCenterTeacherResourceUrl
+});
+
+
+$stateProvider.state('courseCenter.coursePerson',{
+    url: '/coursePerson?groupId',
+    templateUrl:templateUrls.controllerCourseCenterCoursePersonUrl
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

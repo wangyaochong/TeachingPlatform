@@ -1,0 +1,36 @@
+<div style="height: 10%;width: 100%"></div>
+<div style="float: left;width: 10%;height: 1px"></div>
+<div style="float: left;width:80%;">
+
+    <div class="panel panel-primary" ng-controller="controllerCourseCenterCoursePerson">
+        <div class="panel-heading">
+            <h3 class="panel-title">课程人员列表</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <col width="40%">
+                <col width="40%">
+                <col width="">
+                <thead>
+                <tr>
+                    <td>帐号</td>
+                    <td>姓名</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="s in  students">
+                    <td>{{s.number}}</td>
+                    <td>{{s.name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

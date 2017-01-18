@@ -33,7 +33,9 @@ app.directive('directiveCourseBlock', function () {
                 })
             }, 100)
 
-
+            $scope.coursePersonClick=function () {
+                $state.go("courseCenter.coursePerson",{groupId:$scope.$item.id})
+            }
             $scope.courseResourceClick = function () {
                 $state.go("courseCenter.teacherResource",{groupId:$scope.$item.id})
             }

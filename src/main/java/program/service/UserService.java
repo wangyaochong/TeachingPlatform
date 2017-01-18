@@ -1,5 +1,8 @@
 package program.service;
 
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +12,7 @@ import program.entity.GroupEntity;
 import program.entity.PersonEntity;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +42,28 @@ public class UserService {
         List<GroupEntity> groupEntityList = personEntity.getGroupEntityList();
         groupEntityList.add(groupEntity);
         genericDao.getCurrentSession().save(personEntity);
+    }
+    public List<PersonEntity> getUserFromGroup(GroupEntity groupEntity){
+
+        Session currentSession = genericDao.getCurrentSession();
+        String sql="select personentity.id from personentity_groupentity,personentity,groupentity where personentity.id=personentity_groupentity.personentity_id and groupentity.id=personentity_groupentity.groupEntityList_id and groupentity.id=:outId";
+        SQLQuery sqlQuery = currentSession.createSQLQuery(sql);
+        sqlQuery.setParameter("outId",groupEntity.getId());
+        List list = sqlQuery.list();//先将该组的所有用户的Id找到
+        if(list.size()==0){//如果没有用户，直接返回一个空的数组
+            return new ArrayList<>();
+        }
+
+
+        String hql="from program.entity.PersonEntity person where person in :personList";
+        List<PersonEntity> queryIds=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            PersonEntity personEntity=new PersonEntity();
+            personEntity.setId((String) list.get(i));
+            queryIds.add(personEntity);
+        }
+        Query query = currentSession.createQuery(hql);
+        query.setParameterList("personList",queryIds);
+        return query.list();
     }
 }

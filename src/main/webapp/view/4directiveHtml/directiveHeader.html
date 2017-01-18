@@ -15,7 +15,12 @@
             <ul class="nav navbar-nav">
                 <li ng-cloak="" ng-repeat="x in header.headerNavLeft" ><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
             </ul>
+            
+            
             <ul class="nav navbar-nav navbar-right">
+
+                <li ><a href="">Messages <span class="badge">4</span></a> </li>
+
                 <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
                 <li class="dropdown">
                     <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}} <span class="caret"></span></a>

@@ -9,16 +9,35 @@ function generateUrl(scope, type, nameList) {
     })
 }
 var controllerNames = [
+    //顶部菜单
     'HeaderMenu',
+
+    //滚动图片
     'RollPicture',
+
+    //首页消息
     'IndexMessage',
+
+    //用户信息
     'UserInformation',
+
+    //用户列表
     'UserList',
+
+    //学生课程中心
     'CourseCenterStudent',
+
+    //教师课程中心
     'CourseCenterTeacher',
+
+    //课程资源中心
     'CourseCenterTeacherResource',
+
+    //课程人员列表
+    'CourseCenterCoursePerson',
     'Assignment',
     'Document',
+    'Message',
     'Video',
     'VideoPlay',
 ];

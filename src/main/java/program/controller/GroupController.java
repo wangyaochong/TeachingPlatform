@@ -56,6 +56,7 @@ public class GroupController extends DataOperateBase {
         List<GroupEntity> listByCondition = crudService.getListByCondition(groupEntity);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
     }
+    //通过groupId获取group
     @RequestMapping("/getClassGroupById")
     @ResponseBody
     public ResponseInfo getClassGroupById(@RequestParam String id){
@@ -63,6 +64,7 @@ public class GroupController extends DataOperateBase {
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,groupEntity);
     }
 
+    //获取所有的班级，这个接口学生可以用到，因为学生需要获取所有的课程列表，然后选择是否加入
     @RequestMapping("/getAllClassGroup")
     @ResponseBody
     public ResponseInfo getAllClassGroup(){
@@ -71,5 +73,14 @@ public class GroupController extends DataOperateBase {
         List<GroupEntity> listByCondition = crudService.getListByCondition(groupEntity);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
     }
+
+    //传入groupId获取该group的所有同学
+    @RequestMapping("/getStudentsFromGroup")
+    @ResponseBody
+    public ResponseInfo getClassGroupStudents(@RequestParam String groupId){
+        List<PersonEntity> userFromGroup = userService.getUserFromGroup((GroupEntity) crudService.getOneById(GroupEntity.class, groupId));
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,userFromGroup);
+    }
+
 
 }
