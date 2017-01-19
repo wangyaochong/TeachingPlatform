@@ -5,5 +5,6 @@ package program.entity.type;
  */
 public class MessageType {
     public static final String APPLY_JOIN_CLASS="APPLY_JOIN_CLASS";
+    public static final String APPLY_JOIN_CLASS_REPLY="APPLY_JOIN_CLASS_REPLY";
     public static final String EMAIL="EMAIL";
 }
