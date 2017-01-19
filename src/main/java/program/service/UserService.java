@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import program.dao.GenericDao;
 import program.entity.GroupEntity;
 import program.entity.PersonEntity;
+import program.entity.entityInterface.IEntity;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ public class UserService {
         genericDao.getCurrentSession().save(personEntity);
     }
     public List<PersonEntity> getUserFromGroup(GroupEntity groupEntity){
-
         Session currentSession = genericDao.getCurrentSession();
         String sql="select personentity.id from personentity_groupentity,personentity,groupentity where personentity.id=personentity_groupentity.personentity_id and groupentity.id=personentity_groupentity.groupEntityList_id and groupentity.id=:outId";
         SQLQuery sqlQuery = currentSession.createSQLQuery(sql);
@@ -53,8 +53,6 @@ public class UserService {
         if(list.size()==0){//如果没有用户，直接返回一个空的数组
             return new ArrayList<>();
         }
-
-
         String hql="from program.entity.PersonEntity person where person in :personList";
         List<PersonEntity> queryIds=new ArrayList<>();
         for(int i=0;i<list.size();i++){
@@ -65,5 +63,11 @@ public class UserService {
         Query query = currentSession.createQuery(hql);
         query.setParameterList("personList",queryIds);
         return query.list();
+    }
+    public void removePersonFromGroup(PersonEntity personEntity, GroupEntity groupEntity){
+        List<GroupEntity> groupEntityList = personEntity.getGroupEntityList();
+        groupEntityList.remove(groupEntity);
+        personEntity.setGroupEntityList(groupEntityList);
+        genericDao.getCurrentSession().update(personEntity);
     }
 }

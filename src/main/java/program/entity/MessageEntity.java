@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import program.entity.entityInterface.IEntity;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,10 +27,13 @@ public class MessageEntity implements IEntity{
     @OneToOne(optional = false,fetch = FetchType.EAGER)
     ItemEntity itemEntity;//单项信息
 
-    Date sendingDateTime;//发送时间
+    Long sendingDateTime;//发送时间
     Boolean hasRead;//是否已经阅读
 
-    public MessageEntity(PersonEntity sender, List<PersonEntity> receiver, ItemEntity itemEntity, Date sendingDateTime, Boolean hasRead) {
+    public MessageEntity() {
+    }
+
+    public MessageEntity(PersonEntity sender, List<PersonEntity> receiver, ItemEntity itemEntity, Long sendingDateTime, Boolean hasRead) {
         this.sender = sender;
         this.receiver = receiver;
         this.itemEntity = itemEntity;
@@ -70,11 +72,11 @@ public class MessageEntity implements IEntity{
         this.itemEntity = itemEntity;
     }
 
-    public Date getSendingDateTime() {
+    public Long getSendingDateTime() {
         return sendingDateTime;
     }
 
-    public void setSendingDateTime(Date sendingDateTime) {
+    public void setSendingDateTime(Long sendingDateTime) {
         this.sendingDateTime = sendingDateTime;
     }
 

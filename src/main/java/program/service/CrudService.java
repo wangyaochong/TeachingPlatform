@@ -66,4 +66,6 @@ public class CrudService {
     public <T> List<T> getAll(Class<?> clazz){
         return genericDao.simpleGetAll(clazz);
     }
+
+
 }

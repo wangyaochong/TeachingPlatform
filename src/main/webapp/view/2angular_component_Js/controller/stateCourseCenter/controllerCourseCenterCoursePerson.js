@@ -9,4 +9,8 @@ app.controller("controllerCourseCenterCoursePerson",function (CRUDService,$scope
       console.log(response)
       $scope.students=response.data;
    });
+    $scope.removePersonFromGroup=function (person,index) {
+        CRUDService.getMethod("Group/removePersonFromGroup",{personId:person.id,groupId:$stateParams.groupId});
+        $scope.students.splice(index,1);
+    }
 })

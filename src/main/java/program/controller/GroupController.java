@@ -7,6 +7,7 @@ import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.entity.GroupEntity;
 import program.entity.PersonEntity;
+import program.entity.entityInterface.IEntity;
 import program.entity.type.GroupType;
 import program.service.UserService;
 
@@ -81,6 +82,12 @@ public class GroupController extends DataOperateBase {
         List<PersonEntity> userFromGroup = userService.getUserFromGroup((GroupEntity) crudService.getOneById(GroupEntity.class, groupId));
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,userFromGroup);
     }
-
-
+    @RequestMapping("/removePersonFromGroup")
+    @ResponseBody
+    public ResponseInfo removePersonFromGroup(@RequestParam String personId,@RequestParam String groupId){
+        IEntity personEntity = crudService.getOneById(PersonEntity.class, personId);
+        IEntity groupEntity = crudService.getOneById(GroupEntity.class, groupId);
+        userService.removePersonFromGroup((PersonEntity) personEntity,(GroupEntity) groupEntity);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,null);
+    }
 }

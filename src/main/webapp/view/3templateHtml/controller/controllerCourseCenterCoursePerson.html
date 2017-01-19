@@ -23,8 +23,8 @@
                     <td>{{s.number}}</td>
                     <td>{{s.name}}</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove"></span>
+                        <button type="button" class="btn btn-danger btn-sm" ng-click="removePersonFromGroup(s,$index)">
+                            <span class="glyphicon glyphicon-remove" ></span>
                         </button>
                     </td>
                 </tr>
