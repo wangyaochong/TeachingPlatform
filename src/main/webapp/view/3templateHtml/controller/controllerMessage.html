@@ -1,13 +1,46 @@
 <div style="height: 10%;width: 100%"></div>
 <div style="float: left;width: 10%;height: 1px"></div>
-<div style="float: left;width:80%;">
+<div style="float: left;width:80%;" ng-controller="controllerMessage">
 
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">消息列表</h3>
         </div>
         <div class="panel-body">
-            Panel body ...
+            <table class="table table-bordered">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <thead>
+                <tr>
+                    <td>时间</td>
+                    <td>发送人</td>
+                    <td>类型</td>
+                    <td>内容</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="m in messages">
+                    <td>{{m.sendingDateTime | date:"yyyy-MM-dd"}}</td>
+                    <td>{{(m.sender==null||m.sender==undefined)?'系统消息':m.sender}}</td>
+                    <td>{{getMessageType(m.itemEntity.title)}}</td>
+                    <td>{{m.itemEntity.description}}</td>
+                    <td ng-if="m.itemEntity.title=='APPLY_JOIN_CLASS' ">
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

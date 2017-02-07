@@ -30,12 +30,15 @@ public class MessageService {
         ItemEntity itemEntity = new ItemEntity();
         itemEntity.setTitle(MessageType.APPLY_JOIN_CLASS);
         itemEntity.setType(ItemType.EMAIL.toString());
-        itemEntity.setDescription(groupEntity.getId());//在描述里面放入要加入的班级的id
+        itemEntity.setClassGroup(groupEntity);//设置要加入的班级
         itemEntity.setCreator(applicant);
+        itemEntity.setCreateDate(new Date().getTime());
+        String applyMessage="【" +applicant.getName()+"】申请加入课程【"+groupEntity.getName()+"】";
+        itemEntity.setDescription(applyMessage);
         Serializable save = crudService.getCurrentSession().save(itemEntity);
         itemEntity.setId((String) save);
         MessageEntity messageEntity = new MessageEntity();
-        messageEntity.setSender(null);//发送人为空，则说明是系统发送的消息
+//        messageEntity.setSender(null);//发送人为空，则说明是系统发送的消息
         messageEntity.setSendingDateTime(new Date().getTime());
         messageEntity.setReceiver(Arrays.asList(groupEntity.getCreator()));
         messageEntity.setHasRead(false);//邮件一创建肯定是未读的

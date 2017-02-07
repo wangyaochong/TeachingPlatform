@@ -17,7 +17,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <li ><a ui-sref="message" >消息<span class="badge">0</span></a> </li>
+                <li ><a ui-sref="message" ng-click="clearUnreadMessage()">消息<span class="badge">{{unReadMessageCount}}</span></a> </li>
 
                 <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
                 <li class="dropdown">

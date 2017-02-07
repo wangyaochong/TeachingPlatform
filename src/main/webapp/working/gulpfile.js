@@ -56,6 +56,9 @@ var processPath = {
         '../raw/jslib/videojs-ie8.js',
 
 
+        '../raw/jslib/lodash.js',
+
+
         //侧边菜单插件
         // '../raw/jslib/slideout.js',
         //一个效果插件

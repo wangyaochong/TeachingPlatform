@@ -18,8 +18,8 @@ app.controller("controllerCourseCenterStudent",function (CRUDService,$scope,$q,$
     $q.all([qCurrent,qAll]).then(function (data) {
         removeUserCoursrFromAllCourse();
     })
-    $scope.addCurrentUserToGroup=function (groupId) {
-        CRUDService.getMethod("User/addCurrentUserToGroup",{groupId:groupId});
+    $scope.applyCurrentUserToGroup=function (groupId) {
+        CRUDService.getMethod("Message/sendGroupApplyMessage",{groupId:groupId});
     }
     $scope.goToCourseResource=function (group) {
         $state.go("courseCenter.teacherResource",{groupId:group.id,isStudent:true});

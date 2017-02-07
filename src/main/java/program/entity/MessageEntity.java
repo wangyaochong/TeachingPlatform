@@ -17,10 +17,10 @@ public class MessageEntity implements IEntity{
     @GenericGenerator(name = "generator", strategy = "org.hibernate.id.UUIDGenerator")
     @GeneratedValue(generator = "generator")
     String id;
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     PersonEntity sender;//发送者
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     List<PersonEntity> receiver;//接受者
 
