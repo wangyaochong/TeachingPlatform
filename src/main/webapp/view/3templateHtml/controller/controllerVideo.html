@@ -16,9 +16,9 @@
             </div>
             <div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
                 <div class="panel-body">
-                    <directive-video-block ng-if="currentCollapse==outIndex" $list="videoList"
+                    <directive-video-block ng-if="currentCollapse==outIndex && x.classGroup.id==classGroup.id" $list="videoList"
                                               ng-repeat="x in videoList" $item="x" $index="$index" $width="'12.5%'"
-                                              $padding="'1%'"></directive-video-block>
+                                              $padding="'1%'" ></directive-video-block>
 
 
 
