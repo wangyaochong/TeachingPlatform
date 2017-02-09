@@ -42,7 +42,7 @@ public class UserService {
     public void addUserToGroup(PersonEntity personEntity,GroupEntity groupEntity){
         List<GroupEntity> groupEntityList = personEntity.getGroupEntityList();
         groupEntityList.add(groupEntity);
-        genericDao.getCurrentSession().save(personEntity);
+        genericDao.getCurrentSession().update(personEntity);
     }
     public List<PersonEntity> getUserFromGroup(GroupEntity groupEntity){
         Session currentSession = genericDao.getCurrentSession();

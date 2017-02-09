@@ -17,6 +17,6 @@ app.controller("controllerHeaderMenu", function ($scope, $http,CRUDService) {
         console.log(countMap)
     });
     $scope.clearUnreadMessage=function () {
-        $scope.unReadMessageCount=0;
+        // $scope.unReadMessageCount=0;
     }
 })

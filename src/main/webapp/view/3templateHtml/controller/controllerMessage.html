@@ -29,14 +29,16 @@
                     <td>{{getMessageType(m.itemEntity.title)}}</td>
                     <td>{{m.itemEntity.description}}</td>
                     <td ng-if="m.itemEntity.title=='APPLY_JOIN_CLASS' ">
-                        <button type="button" class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </button>
+                        <div ng-if=" m.hasRead==false">
 
-                        <button type="button" class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
+                            <button type="button" class="btn btn-danger btn-sm"  ng-click="updateMessage(true,m)">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
 
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="updateMessage(false,m)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>

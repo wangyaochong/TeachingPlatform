@@ -38,13 +38,19 @@ public class GroupController extends DataOperateBase {
     @RequestMapping("/updateGroup")
     @ResponseBody
     public ResponseInfo updateGroup(@RequestBody GroupEntity groupEntity){
-        if(groupEntity.getCreateDate()==null){
-            groupEntity.setCreateDate(new Date().getTime());
-        }
+        Serializable serializable=null;
         if(groupEntity.getCreator()==null){
+            groupEntity.setCreateDate(new Date().getTime());
             groupEntity.setCreator(userService.getCurrentUser());
+            serializable = crudService.saveOrUpdateOne(groupEntity);
+
+// 不能给班级设置创建者的原因是，班级包含创建者，同时创建者又包含对应的班级，这样在进行将类转换成字符串时就会形成死循环
+//            groupEntity.setId((String) serializable);
+//            userService.getCurrentUser().getGroupEntityList().add(groupEntity);
+//            crudService.saveOrUpdateOne(userService.getCurrentUser());
+        }else{
+            serializable= crudService.saveOrUpdateOne(groupEntity);
         }
-        Serializable serializable = crudService.saveOrUpdateOne(groupEntity);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,serializable);
     }
     @RequestMapping("/getCurrentTeacherClassGroup")

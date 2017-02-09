@@ -68,7 +68,7 @@ public class MessageService {
 
     //获取一个用户下的所有信息
     public List<MessageEntity> getUserMessage(PersonEntity personEntity) {
-        String sql = "select messageentity.id from messageentity,personentity,messageentity_personentity where messageentity.id=messageentity_personentity.MessageEntity_id and messageentity_personentity.receiver_id = personentity.id and personentity.id=:personId ";
+        String sql = "select messageentity.id from messageentity,personentity,messageentity_personentity where messageentity.id=messageentity_personentity.MessageEntity_id and messageentity_personentity.receiver_id = personentity.id and personentity.id=:personId order by messageentity.sendingDateTime desc";
         SQLQuery sqlQuery = crudService.getCurrentSession().createSQLQuery(sql);
         sqlQuery.setParameter("personId", personEntity.getId());
         List<String> list = sqlQuery.list();

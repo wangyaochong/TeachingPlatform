@@ -1,6 +1,7 @@
 package program.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,5 +45,14 @@ public class MessageController extends DataOperateBase{
         IEntity oneById = crudService.getOneById(GroupEntity.class, groupId);
         messageService.sendGroupApplyMessage(userService.getCurrentUser(), (GroupEntity) oneById);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,"");
+    }
+    @RequestMapping("/updateMessage")
+    @ResponseBody
+    public ResponseInfo updateMessage(@RequestBody MessageEntity messageEntity){
+        if(messageEntity.getItemEntity().getDescription().indexOf("同意")!=-1){//如果同意，就把用户加入到课程中
+            userService.addUserToGroup(messageEntity.getItemEntity().getCreator(),messageEntity.getItemEntity().getClassGroup());
+        }
+        crudService.saveOrUpdateOne(messageEntity);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,"ok");
     }
 }
