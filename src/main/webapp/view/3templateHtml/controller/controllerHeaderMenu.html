@@ -8,7 +8,12 @@
                 <span class="icon-bar"></span>
             </button>
             <!--由于ui-sref不支持动态绑定，所以只能使用ng-href，使用全路径来进行路由切换-->
-            <a ng-cloak="" class="navbar-brand" ng-href="{{stateRootUrl+header.webTitle.href}}">{{header.webTitle.name}}</a>
+            <!--<a ng-cloak="" class="navbar-brand" ng-href="{{stateRootUrl+header.webTitle.href}}">{{header.webTitle.name}}</a>-->
+            <a ng-cloak="" class="navbar-brand" ui-sref="index" >{{'mainPage'|filterLocale}}</a>
+
+
+
+
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

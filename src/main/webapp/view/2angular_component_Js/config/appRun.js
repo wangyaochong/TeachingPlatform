@@ -12,6 +12,27 @@ var courseCenterStates=[
     'courseCenter.teacherResource',
 ]
 app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, CRUDService) {
+    // CRUDService.getMethod("Locale/getLocale",{}).then(function (response) {
+    //     $rootScope.localeLange=response.data;
+    // })
+    var language_en_us = "en-us";
+    var language_zh_cn = "zh-cn";
+    var currentLang;
+    currentLang = navigator.language;
+    if(!currentLang)
+        currentLang = navigator.browserLanguage;
+    if(currentLang.toLowerCase() == language_zh_cn)
+    {
+        $rootScope.localeLange="zh_CN"
+    }
+    else
+    {
+        $rootScope.localeLange="en_US"
+    }
+
+    
+
+
     $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams) {
             if (toState.name == "userCenter") {
