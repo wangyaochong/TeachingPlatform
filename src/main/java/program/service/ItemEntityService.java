@@ -10,6 +10,8 @@ import program.entity.PersonEntity;
 import program.entity.type.ItemType;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -42,8 +44,12 @@ public class ItemEntityService {
             listByCreator.addAll(listInGroup);
         }
 
-
-
+        Collections.sort(listByCreator, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                return -(int) (((ItemEntity)o1).getCreateDate()-((ItemEntity)o2).getCreateDate());
+            }
+        });
 
         return listByCreator;
     }
