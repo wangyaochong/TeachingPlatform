@@ -10,14 +10,14 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
     $scope.isSelf=false;
     $scope.privilegeCandidate=[]
     $scope.nameTranslation = {
-        number: "帐号",
-        name: "姓名",
-        gender: "性别",
-        birthDate: "出生日",
-        password: "密码",
-        phoneNumber: "手机",
-        email: "邮箱",
-        privilegeEntityList: "权限"
+        number: "locale.account",
+        name: "locale.name",
+        gender: "locale.gender",
+        birthDate: "locale.birthday",
+        password: "locale.password",
+        phoneNumber: "locale.cellPhone",
+        email: "locale.email",
+        privilegeEntityList: "locale.privilege"
     }
 
 

@@ -30,7 +30,11 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
         $rootScope.localeLange="en_US"
     }
 
-    
+    CRUDService.getMethod("Locale/getLocaleProperties",{}).then(function (response) {
+        $rootScope.localeProperties=response.data;
+    },function (error) {
+        console.log(error);
+    })
 
 
     $rootScope.$on('$stateChangeStart',

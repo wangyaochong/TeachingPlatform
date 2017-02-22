@@ -9,30 +9,46 @@
             </button>
             <!--由于ui-sref不支持动态绑定，所以只能使用ng-href，使用全路径来进行路由切换-->
             <!--<a ng-cloak="" class="navbar-brand" ng-href="{{stateRootUrl+header.webTitle.href}}">{{header.webTitle.name}}</a>-->
-            <a ng-cloak="" class="navbar-brand" ui-sref="index" >{{'mainPage'|filterLocale}}</a>
-
-
+            <!--<a ng-cloak="" class="navbar-brand" ui-sref="index" >{{'mainPage'|filterLocale}}</a>-->
+            <a ng-cloak="" class="navbar-brand" ui-sref="index" >{{localeProperties["locale.home"]}}</a>
 
 
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li ng-cloak="" ng-repeat="x in header.headerNavLeft"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
+                <!--<li ng-cloak="" ng-repeat="x in header.headerNavLeft"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>-->
+                <li ng-cloak="" > <a  ui-sref="assignment">{{localeProperties["locale.assignment"]}}</a> </li>
+                <li ng-cloak="" > <a  ui-sref="document">{{localeProperties["locale.document"]}}</a>  </li>
+                <li ng-cloak=""> <a  ui-sref="video">{{localeProperties["locale.video"]}}</a>  </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
-                <li ><a ui-sref="message" ng-click="clearUnreadMessage()">消息<span class="badge">{{unReadMessageCount}}</span></a> </li>
-
-                <li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>
+                <li ><a ui-sref="message" ng-click="clearUnreadMessage()">{{localeProperties["locale.message"]}}<span class="badge">{{unReadMessageCount}}</span></a> </li>
+                <!--<li ng-cloak="" ng-repeat="x in header.headerNavRight"><a ng-href="{{stateRootUrl+x.href}}">{{x.name}}</a></li>-->
+                <li ng-cloak=""><a ui-sref="logOut">{{localeProperties["locale.logOut"]}}</a></li>
+                <!--<li ng-cloak=""><a ui-sref="logOut">{{localeProperties["locale.logOut"]}}</a></li>-->
                 <li class="dropdown">
-                    <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{header.headerDropDownTitle.name}}
+                    <a ng-href="{{header.headerDropDownTitle.href}}" class="dropdown-toggle" data-toggle="dropdown">{{localeProperties["locale.more"]}}
                         <span class="caret"></span></a>
+                    <!--<ul class="dropdown-menu HeaderMenu" role="menu" style="width: 100px!important;">-->
+                        <!--<li ng-cloak=""-->
+                            <!--ng-repeat="x in header.headerDropDownList"-->
+                            <!--style="margin: 0px!important;">-->
+                            <!--<a ng-href="{{stateRootUrl+x.href}}" style="text-align: center;padding-left: 0px;padding-right:0px">{{x.name}}</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
                     <ul class="dropdown-menu HeaderMenu" role="menu" style="width: 100px!important;">
-                        <li ng-cloak=""
-                            ng-repeat="x in header.headerDropDownList"
-                            style="margin: 0px!important;">
-                            <a ng-href="{{stateRootUrl+x.href}}" style="text-align: center;padding-left: 0px;padding-right:0px">{{x.name}}</a>
+                        <li ng-cloak="" style="margin: 0px!important;">
+                            <a ui-sref="userCenter" style="text-align: center;padding-left: 0px;padding-right:0px">{{localeProperties["locale.userCenter"]}}</a>
+                        </li>
+                        <li ng-cloak="" style="margin: 0px!important;">
+                            <a ui-sref="courseCenter" style="text-align: center;padding-left: 0px;padding-right:0px">{{localeProperties["locale.courseCenter"]}}</a>
+                        </li>
+                        <li ng-cloak="" style="margin: 0px!important;" ng-click="">
+                            <a href="" ng-click="openLanguageSettingModal()" style="text-align: center;padding-left: 0px;padding-right:0px">{{localeProperties["locale.language"]}}</a>
+                        </li>
+                        <li ng-cloak="" style="margin: 0px!important;">
+                            <a ui-sref="search" style="text-align: center;padding-left: 0px;padding-right:0px">{{localeProperties["locale.search"]}}</a>
                         </li>
                     </ul>
                 </li>

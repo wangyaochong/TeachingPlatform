@@ -3,7 +3,7 @@
         <div class="panel-heading IndexMessage">
             <div class="page-header IndexMessage" width="100%">
                 <div style="display:inline-block;width: 87%;padding-left: 10px;padding-bottom: 10px;float: left">
-                    <h3 class="IndexMessage">公告</h3>
+                    <h3 class="IndexMessage">{{localeProperties["locale.announcement"]}}</h3>
                 </div>
                 <div style="display:inline-block;width: 3%;padding-left: 10px;padding-bottom: 10px;float: left"
                      class="hidden-xs"></div>
@@ -26,18 +26,18 @@
                     <!--pagelist{{pagelist}}-->
                     <table ng-table="frontMessageTableParams" class="table " show-filter="false">
                         <tr ng-repeat="item in $data">
-                            <td ng-cloak="" title="'时间'" width="10%" align="left" style="min-width: 50px;">
+                            <td ng-cloak="" title="localeProperties['locale.date']" width="10%" align="left" style="min-width: 50px;">
                                 {{item.createDate|date:"yyyy-MM-dd"}}
                             </td>
-                            <td ng-cloak="" title="'课程名'" width="10%"  align="left" >
+                            <td ng-cloak="" title="localeProperties['locale.courseName']" width="10%"  align="left" >
                                 {{item.classGroup.name}}
                             </td>
-                            <td ng-cloak="" title="'标题'" width="10%" align="left" style="min-width: 50px;">
+                            <td ng-cloak="" title="localeProperties['locale.title']" width="10%" align="left" style="min-width: 50px;">
                                 <textarea class="IndexMessage" ng-model="item.title" ng-disabled="!item.isEditing"
                                           width="100%"
                                           rows="1"></textarea>
                             </td>
-                            <td ng-cloak="" title="'内容'" align="left">
+                            <td ng-cloak="" title="localeProperties['locale.content']" align="left">
                                 <textarea class="IndexMessage" ng-model="item.description" ng-disabled="!item.isEditing"
                                           width="100%"
                                           rows="1"></textarea>
