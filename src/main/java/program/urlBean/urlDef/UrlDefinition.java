@@ -31,7 +31,7 @@ public class UrlDefinition {
         this.href = href;
         this.id = id;
         ResourceBundleMessageSource resourceBundleMessageSource=new ResourceBundleMessageSource();
-        resourceBundleMessageSource.setBasename("Url");
+        resourceBundleMessageSource.setBasename("locale");
         resourceBundleMessageSource.setUseCodeAsDefaultMessage(true);
         this.name= resourceBundleMessageSource.getMessage(id+".name", null, locale);
         this.description=resourceBundleMessageSource.getMessage(id+".desc",null,locale);
