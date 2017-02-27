@@ -44,6 +44,8 @@ var processPath = {
         '../raw/jslib/purify.js',
         '../raw/jslib/theme.js',
         '../raw/jslib/zh.js',
+
+
         //bootstrap-select插件
         // '../raw/jslib/bootstrap-select.js',
         // '../raw/jslib/defaults-zh_CN.js',
