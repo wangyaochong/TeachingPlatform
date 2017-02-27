@@ -15,6 +15,14 @@ app.directive('directivePictureBlock', function () {
             $editable:"="
         },
         controller: function ($scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
+            //传过来的是itementity，监听背景图片变化的消息
+            $scope.$on("pictureChange",function (event,data) {
+                if(data.id==$scope.$item.id){
+                    var htmlFilePath = data.resources[0].htmlAccessPath;
+                    htmlFilePath = htmlFilePath.replace(/\\/g, "/");
+                    $("#PictureBlockContent" + $scope.$index).css("background-image", "url(' " + htmlFilePath + " ')")
+                }
+            })
 
             $timeout(function () {
                 $(".PictureBlockPaddingWrapper").each(function () {

@@ -65,7 +65,7 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
                 data.id = response.data;
             }
-            $scope.initResourceList()
+            //$scope.initResourceList()
         })
     }
 
@@ -214,6 +214,7 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
         $('#input-id').fileinput('clear');
         $(".fileUploadInput").fileinput("reset");
     }
+
     $scope.closeRollPictureModal = function () {
         $('#input-id').fileinput('clear');
         $(".fileUploadInput").fileinput("reset");

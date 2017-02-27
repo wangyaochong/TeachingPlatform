@@ -27,7 +27,7 @@ public class CrudService {
         return genericDao.getCurrentSession().get(clazz, id);
     }
 
-    //如是一个没有保存过的entity就保存，否则只要不是null，就用新的属性值一一替换旧值
+    //如是一个没有保存过的entity就保存，不管是更新还是保存，都返回entity的id
     public Serializable saveOrUpdateOne(IEntity entity) {
         if (entity.getId() == null || entity.getId() == "") {
             Serializable save = genericDao.getCurrentSession().save(entity);
@@ -37,7 +37,7 @@ public class CrudService {
         EntityUtil.updateEntity(update, entity);
 
         genericDao.getCurrentSession().update(update);
-        return "";
+        return entity.getId();
     }
 
     public void deleteOneById(Class<?> clazz, String id) {

@@ -21,10 +21,7 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
         }).on('filebatchuploadsuccess', function (event, data, previewId, index) {
             // console.log(event);
             console.log('filebatchuploadsuccess', data.response);
-            var oneResource = {
-                id: data.response.data[0]
-            }
-            $scope.itemEntity.resources.push(oneResource);
+            $scope.itemEntity.resources.push(data.response.data[0]);
             $scope.updateItemEntity($scope.itemEntity);
         })
     }, 50);
@@ -37,7 +34,7 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
                 data.id = response.data;
             }
-            $rootScope.$broadcast("resourceUpdated",{});
+            // $rootScope.$broadcast("resourceUpdated",{});
         })
         $uibModalInstance.dismiss("cancel")
     }

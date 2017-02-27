@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.dao.PersonDao;
-import program.entity.FileEntity;
 import program.entity.GroupEntity;
 import program.entity.ItemEntity;
 import program.entity.PersonEntity;
@@ -16,9 +15,7 @@ import program.service.ItemEntityService;
 import program.service.UserService;
 import program.service.bean.PageBean;
 import program.service.PageListService;
-
 import javax.annotation.Resource;
-import java.io.File;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
@@ -74,8 +71,6 @@ public class ItemEntityController {
     }
 
 
-
-
     @RequestMapping("/updateItemEntity")
     @ResponseBody//update操作，如果不带id，那么就保存
     public ResponseInfo updateItemEntity(@RequestBody ItemEntity itemEntity) {
@@ -86,8 +81,8 @@ public class ItemEntityController {
             itemEntity.setCreator(currentUser);
         }
         Serializable serializable = crudService.saveOrUpdateOne(itemEntity);
-
-        return new ResponseInfo(ResponseFlag.STATUS_OK,null,serializable);
+        IEntity oneById = crudService.getOneById(ItemEntity.class, (String) serializable);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,oneById);
     }
 
     @RequestMapping("/deleteItemEntity")

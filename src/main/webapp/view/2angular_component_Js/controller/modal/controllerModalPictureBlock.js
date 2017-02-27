@@ -25,11 +25,9 @@ app.controller("controllerModalPictureBlock",function ($scope,$uibModalInstance,
         }).on('filebatchuploadsuccess', function (event, data, previewId, index) {
             // console.log(event);
             console.log('filebatchuploadsuccess', data.response);
-            var oneResource = {
-                id: data.response.data[0]
-            }
+
             $scope.itemEntity.resources=[];
-            $scope.itemEntity.resources.push(oneResource);
+            $scope.itemEntity.resources.push(data.response.data[0]);
             $scope.updateItemEntity($scope.itemEntity);
 
         })
@@ -42,12 +40,15 @@ app.controller("controllerModalPictureBlock",function ($scope,$uibModalInstance,
 
     $scope.updateItemEntity = function (data) {
         CRUDService.updateMethod("ItemEntity/updateItemEntity", data).then(function (response) {
-            console.log(response)
+
+            $rootScope.$broadcast("pictureChange",response.data);//发送图片更新消息
+
+            angular.copy(response.data,data);
+            // console.log(response)
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
                 data.id = response.data;
             }
-            $rootScope.$broadcast("resourceUpdated",{});
-
+            // $rootScope.$broadcast("resourceUpdated",{});
         })
         $uibModalInstance.dismiss("cancel")
     }
