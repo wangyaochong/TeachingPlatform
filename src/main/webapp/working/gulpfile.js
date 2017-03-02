@@ -6,7 +6,9 @@ var gulpModules = {
     gulpJshint: require('gulp-jshint'),
     gulpReplace: require('gulp-replace'),
     gulpHtml2jade: require('gulp-html2jade'),
-    gulpPlumber: require('gulp-plumber')
+    gulpPlumber: require('gulp-plumber'),
+    gulpNgAnnotate:require('gulp-ng-annotate'),
+    gulpUglify:require('gulp-uglify')
 }
 var processPath = {
     js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2angular_component_Js/**/*.js'],
@@ -103,13 +105,24 @@ var optionsForReplace = {
 var optionsForPlumber = {
     errorHandler: true
 }
-function many2one(jsPath, onePath, fileName) {
+function many2oneCSS(jsPath, onePath, fileName) {
     gulpModules.gulp.src(jsPath)
         .pipe(gulpModules.gulpPlumber(optionsForPlumber))
         .pipe(gulpModules.gulpConcat(fileName))
         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
         .pipe(gulpModules.gulp.dest(onePath))
+}
+function many2oneJS(jsPath, onePath, fileName) {
+    gulpModules.gulp.src(jsPath)
+        .pipe(gulpModules.gulpPlumber(optionsForPlumber))
+        .pipe(gulpModules.gulpConcat(fileName))
+        .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
+        .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
+        .pipe(gulpModules.gulpNgAnnotate())
+        .pipe(gulpModules.gulpUglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}}))
+        .pipe(gulpModules.gulp.dest(onePath))
+
 }
 // gulpModules.gulp.task(taskNames.replaceContent, function () {
 //     console.log('replaceContent')
@@ -120,10 +133,10 @@ function many2one(jsPath, onePath, fileName) {
 // })
 
 gulpModules.gulp.task(taskNames.many2one, function () {
-    many2one(processPath.js2oneSrcPath, processPath.js2onePath, 'app.js')//把多个js源码合成一个app.js
-    many2one(processPath.js2oneLibPath, processPath.js2onePath, 'lib.js')//把多个js库合成一个lib.js
-    many2one(processPath.css2oneSrcPath, processPath.css2onePath, 'app.css')//把多个css源码合成一个
-    many2one(processPath.css2oneLibPath, processPath.css2onePath, 'lib.css')//把多个css库合成一个
+    many2oneJS(processPath.js2oneSrcPath, processPath.js2onePath, 'app.js')//把多个js源码合成一个app.js
+    many2oneJS(processPath.js2oneLibPath, processPath.js2onePath, 'lib.js')//把多个js库合成一个lib.js
+    many2oneCSS(processPath.css2oneSrcPath, processPath.css2onePath, 'app.css')//把多个css源码合成一个
+    many2oneCSS(processPath.css2oneLibPath, processPath.css2onePath, 'lib.css')//把多个css库合成一个
 })
 
 gulpModules.gulp.task(taskNames.watch, function () {
