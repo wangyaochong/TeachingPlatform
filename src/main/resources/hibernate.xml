@@ -8,14 +8,28 @@
           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-    <!--数据源-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url"
+    <!--配置c3p0数据库连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl"
                   value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
-        <property name="username" value="wangyaochong"></property>
+        <property name="user" value="wangyaochong"></property>
         <property name="password" value="qwerqwer"></property>
+        <property name="maxPoolSize" value="5000"></property>
+        <property name="minPoolSize" value="5"></property>
+        <property name="acquireIncrement" value="5"></property>
+        <property name="loginTimeout" value="1200"></property>
     </bean>
+
+
+    <!--数据源-->
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>-->
+        <!--<property name="url"-->
+                  <!--value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>-->
+        <!--<property name="username" value="wangyaochong"></property>-->
+        <!--<property name="password" value="qwerqwer"></property>-->
+    <!--</bean>-->
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" scope="singleton">
         <property name="dataSource" ref="dataSource"></property>
@@ -57,9 +71,9 @@
             #..可以匹配任意个参数
             #在配置了transactionManager的条配件下，如果需要调用getCurrentSession，aop一定要配置到相关的方法
         -->
-                      <!--expression="execution(* program.controller.*.*(..)) or execution(* program.dao.*.*(..)) or execution(* program.service.*.*(..))"></aop:pointcut>-->
+                      <!--expression="execution(* program.dao.*.*(..)) or execution(* program.service.*.*(..))"></aop:pointcut>-->
         <aop:pointcut id="txAop"
-                      expression="execution(* program.dao.*.*(..)) or execution(* program.service.*.*(..))"></aop:pointcut>
+                      expression="execution(* program.controller.*.*(..)) or execution(* program.dao.*.*(..)) or execution(* program.service.*.*(..))"></aop:pointcut>
         <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="txAop"></aop:advisor>
     </aop:config>
 

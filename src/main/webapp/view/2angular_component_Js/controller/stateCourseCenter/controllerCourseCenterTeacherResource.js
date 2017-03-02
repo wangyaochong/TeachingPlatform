@@ -63,7 +63,7 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
         CRUDService.updateMethod("ItemEntity/updateItemEntity",data).then(function (response) {
             console.log(response)
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
-                data.id = response.data;
+                data.id = response.data.id;
             }
             //$scope.initResourceList()
         })
@@ -212,11 +212,15 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
             dataCopy: {}
         }
         $('#input-id').fileinput('clear');
+        $('#input-id').fileinput("reset");
+        $(".fileUploadInput").fileinput("clear");
         $(".fileUploadInput").fileinput("reset");
     }
 
     $scope.closeRollPictureModal = function () {
         $('#input-id').fileinput('clear');
+        $('#input-id').fileinput("reset");
+        $(".fileUploadInput").fileinput("clear");
         $(".fileUploadInput").fileinput("reset");
     }
     $scope.initPosition = function () {//因为是使用collapse，所以宽度需要等展开才能正确获取到
@@ -259,12 +263,12 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
             // console.log(event);
             console.log('filebatchuploadsuccess',data.response);
             $scope.newItemEntity.resources = [];
-            var oneResource = {
-                id: data.response.data[0]
-            }
-            $scope.newItemEntity.resources.push(oneResource);//文件只允许一次上传一张，返回的是一张张图片的id列表
+            // var oneResource = {
+            //     id: data.response.data[0]
+            // }
+            $scope.newItemEntity.resources.push(data.response.data[0]);//文件只允许一次上传一张，返回的是一张张图片的id列表
             $scope.updateItemEntity($scope.newItemEntity);
-            // $scope.rollPictureList.unshift($scope.newItemEntity);
+            $scope.rollPictureList.unshift($scope.newItemEntity);
         })
     },100);
 })

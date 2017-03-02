@@ -69,13 +69,9 @@ public class ItemEntityController {
         });
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
     }
-
-
     @RequestMapping("/updateItemEntity")
     @ResponseBody//update操作，如果不带id，那么就保存
     public ResponseInfo updateItemEntity(@RequestBody ItemEntity itemEntity) {
-
-
         if(itemEntity.getCreator()==null){
             PersonEntity currentUser = userService.getCurrentUser();
             itemEntity.setCreator(currentUser);

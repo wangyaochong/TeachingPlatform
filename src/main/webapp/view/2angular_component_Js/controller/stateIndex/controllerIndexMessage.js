@@ -1,6 +1,7 @@
 app.controller("controllerIndexMessage",function ($scope,NgTableParams,$filter,$timeout,UserService,ItemEntityService,CRUDService) {
     $scope.pageList = [];
     $scope.editable = false;
+
     CRUDService.getMethod("ItemEntity/getCurrentUserIndexMessage",{}).then(function (response) {
         angular.forEach(response.data,function (data) {
             data.isEditing = false;//是否正在编辑为假
