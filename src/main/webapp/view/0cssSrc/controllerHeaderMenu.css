@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
+* not input {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > td,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > thead > tr > th {
+  white-space: normal !important; }
+
+.navbar {
+  background-color: #337ab7; }
+
+div a.navbar-brand {
+  color: white !important;
+  font-size: 2em; }
+
+div a.navbar-brand:hover {
+  background-color: #2b659a !important; }
+
+div ul.nav li a {
+  color: white !important; }
+
+div ul.nav li a :hover {
+  background-color: #2b659a !important; }
+
+li ul.dropdown-menu, a.dropdown-toggle {
+  background-color: #337ab7 !important; }
+
+.dropdown-menu.HeaderMenu {
+  width: 100px !important; }
+
+li.dropdown ul li a:hover, a.dropdown-toggle:hover, div ul.nav li a:hover {
+  background-color: #2b659a !important; }
+
+button.navbar-toggle {
+  background-color: white; }
+
+span.icon-bar {
+  color: #337ab7 !important;
+  background-color: #337ab7 !important; }
