@@ -1,0 +1,17 @@
+@import "1global";
+input.UserInformation{
+  border-radius: 5px;
+  border: 1px dotted $basicColor;
+  width: 100%;
+}
+select.UserInformation{
+  border-radius: 5px;
+  border: 1px dotted $basicColor;
+  width: 100%;
+  height:35px;
+}
+div.UserInformation.PrivEdit{
+  border-radius: 5px;
+  border: 1px dotted $basicColor;
+  width: 100%;
+}

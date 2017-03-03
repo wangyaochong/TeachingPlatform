@@ -1,28 +1,41 @@
+@charset "UTF-8";
+/*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
+* not input {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > td,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > thead > tr > th {
+  white-space: normal !important; }
+
 textarea.rollPictureDes {
-    width: 80%;
-    resize: none;
-    overflow: hidden !important;
-    border-radius: 5px;
-    font-size: 1.5em;
-    background-color: var(--basic-color);
-    color: white;
-    text-indent: 2em;
-}
+  width: 80%;
+  resize: none;
+  overflow: hidden !important;
+  border-radius: 5px;
+  font-size: 1.5em;
+  background-color: #337ab7;
+  color: white;
+  text-indent: 2em; }
 
 textarea.rollPictureDes:disabled {
-    border: 0px;
-    color: white;
-    overflow: hidden !important;
-}
+  border: 0px;
+  color: white;
+  overflow: hidden !important; }
 
 textarea.rollPictureDes:enabled {
-    border: 1px dotted var(--white-color);
-}
+  border: 1px dotted white; }
 
 .carousel-control {
-    color: var(--hover-color) !important;
-    text-shadow: none !important;
-    background-image: none !important;
-    filter: alpha(opacity=100) !important;
-    opacity: 1 !important;
-}
+  color: #2b659a !important;
+  text-shadow: none !important;
+  background-image: none !important;
+  filter: alpha(opacity=100) !important;
+  opacity: 1 !important; }

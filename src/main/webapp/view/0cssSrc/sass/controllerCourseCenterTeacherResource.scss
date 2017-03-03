@@ -1,0 +1,15 @@
+@import "1global";
+textarea.CourseCenterTeacherResource {
+  width: 100%;
+  resize: none;
+  text-align: left;
+  overflow: hidden !important;
+  border-radius: 5px;
+  border: 1px dotted $basicColor;
+}
+
+
+textarea.CourseCenterTeacherResource:disabled {
+  border: 0px;
+  background-color: transparent;
+}

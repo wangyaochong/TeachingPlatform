@@ -1,5 +1,21 @@
-input.CourseCenterTeacher{
-    border-radius: 5px;
-    border: 1px dotted var(--basic-color);
-    width: 100%;
-}
+@charset "UTF-8";
+/*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
+* not input {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > td,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > thead > tr > th {
+  white-space: normal !important; }
+
+input.CourseCenterTeacher {
+  border-radius: 5px;
+  border: 1px dotted #337ab7;
+  width: 100%; }

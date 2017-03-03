@@ -8,7 +8,8 @@ var gulpModules = {
     gulpHtml2jade: require('gulp-html2jade'),
     gulpPlumber: require('gulp-plumber'),
     gulpNgAnnotate:require('gulp-ng-annotate'),
-    gulpUglify:require('gulp-uglify')
+    gulpUglify:require('gulp-uglify'),
+    gulpSass:require('gulp-sass')
 }
 var processPath = {
     js2oneSrcPath: ['../raw/js/begin.js', '../view/1state_Js/*.js', '../raw/js/end.js', '../view/2angular_component_Js/**/*.js'],
@@ -88,11 +89,14 @@ var processPath = {
     ],
     css2oneSrcPath: ['../view/0cssSrc/*.css'],
     css2onePath: '../view/css/',
+    sass2cssSrcPath:['../view/0cssSrc/sass/*.scss'],
+    sass2cssDestPath:'../view/0cssSrc/',
     appJsPath: "../view/js/*.js"
 }
 var taskNames = {
     watch: 'watch',
     many2one: 'many2one',
+    sass2css:'sass2css',
     replaceContent: 'replaceContent'
 }
 
@@ -105,6 +109,16 @@ var optionsForReplace = {
 var optionsForPlumber = {
     errorHandler: true
 }
+
+
+var needCompress=false;
+
+function sass2css(sassPath,cssPath) {
+    gulpModules.gulp.src(sassPath)
+        .pipe(gulpModules.gulpSass().on('error',gulpModules.gulpSass.logError))
+        .pipe(gulpModules.gulp.dest(cssPath));
+}
+
 function many2oneCSS(jsPath, onePath, fileName) {
     gulpModules.gulp.src(jsPath)
         .pipe(gulpModules.gulpPlumber(optionsForPlumber))
@@ -120,9 +134,8 @@ function many2oneJS(jsPath, onePath, fileName) {
         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
         .pipe(gulpModules.gulpNgAnnotate())
-        .pipe(gulpModules.gulpUglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}}))
+        .pipe(needCompress==true? gulpModules.gulpUglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}}):gulpModules.gulpUtil.noop() )
         .pipe(gulpModules.gulp.dest(onePath))
-
 }
 // gulpModules.gulp.task(taskNames.replaceContent, function () {
 //     console.log('replaceContent')
@@ -131,6 +144,10 @@ function many2oneJS(jsPath, onePath, fileName) {
 //         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
 //         .pipe(gulpModules.gulp.dest("../view/js/"))
 // })
+
+gulpModules.gulp.task(taskNames.sass2css,function () {
+    sass2css(processPath.sass2cssSrcPath,processPath.sass2cssDestPath);
+})
 
 gulpModules.gulp.task(taskNames.many2one, function () {
     many2oneJS(processPath.js2oneSrcPath, processPath.js2onePath, 'app.js')//把多个js源码合成一个app.js
@@ -141,13 +158,14 @@ gulpModules.gulp.task(taskNames.many2one, function () {
 
 gulpModules.gulp.task(taskNames.watch, function () {
     //监视源码是否有修改，并执行相应的任务
+    gulpModules.gulp.watch([processPath.sass2cssSrcPath],[taskNames.sass2css]);
     gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.js2oneLibPath, processPath.css2oneSrcPath, processPath.css2oneLibPath], [taskNames.many2one]);//js2one流程
     //如果是监听多个文件，使用一个数组就可以
-    gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.js2oneLibPath, processPath.css2oneSrcPath, processPath.css2oneLibPath], function (event) {
+    gulpModules.gulp.watch([processPath.js2oneSrcPath, processPath.js2oneLibPath, processPath.css2oneSrcPath, processPath.css2oneLibPath,processPath.sass2cssSrcPath], function (event) {
         //console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
         gulpModules.gulpUtil.log("File-->" + event.path);
         gulpModules.gulpUtil.log("Event:" + event.type);
     });
 })
-gulpModules.gulp.task('default', [taskNames.watch, taskNames.many2one]);
+gulpModules.gulp.task('default', [taskNames.watch, taskNames.sass2css, taskNames.many2one]);
 

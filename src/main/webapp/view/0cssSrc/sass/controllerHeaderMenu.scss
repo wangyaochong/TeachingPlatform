@@ -1,0 +1,34 @@
+@import "1global";
+.navbar {
+  background-color: $basicColor;
+}
+div a.navbar-brand {
+  color: white !important;
+  font-size: 2em;
+}
+div a.navbar-brand:hover {
+  background-color:  $hoverColor !important;
+}
+div ul.nav li a {
+  color: white !important;
+}
+div ul.nav li a :hover {
+  background-color:  $hoverColor !important;
+}
+li ul.dropdown-menu, a.dropdown-toggle {
+  background-color: $basicColor !important;
+}
+.dropdown-menu.HeaderMenu{
+  width: 100px!important;
+}
+li.dropdown ul li a:hover, a.dropdown-toggle:hover, div ul.nav li a:hover {
+  background-color:  $hoverColor !important;
+}
+
+button.navbar-toggle {
+  background-color: white;
+}
+span.icon-bar {
+  color: $basicColor !important;
+  background-color: $basicColor !important;
+}

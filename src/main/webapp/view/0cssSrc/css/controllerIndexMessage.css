@@ -1,0 +1,46 @@
+h3.IndexMessage {
+    margin: 10px 0 0 0;
+}
+
+.panel.IndexMessage {
+    margin: 1px;
+}
+
+.panel-heading.IndexMessage {
+    padding: 0px;
+}
+
+.panel-body.IndexMessage {
+    padding: 20px;
+}
+textarea.IndexMessage {
+    width: 100%;
+    resize: none;
+    text-align: left;
+    overflow: hidden !important;
+    border-radius: 5px;
+    border: 1px dotted #337ab7;
+}
+
+textarea.IndexMessage:disabled {
+    border: 0px;
+    background-color: transparent;
+}
+/*ng-table元素由于是动态生成的，无法加上IndexMessage标记*/
+.page-header.IndexMessage {
+    overflow: auto;
+    /*margin:0px;*/
+    margin: 0px 0px 0px 0px;
+    padding: 0px !important;
+    /*padding-left: 10px;*/
+    /*margin-left: 10px;*/
+}
+.ng-table-header {
+    text-align: left;
+    align: left;
+}
+.ng-table-pager,
+.pagination,
+.ng-table-pagination {
+    margin: 0;
+}

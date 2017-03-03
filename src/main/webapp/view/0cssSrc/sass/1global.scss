@@ -1,16 +1,23 @@
-@charset "UTF-8";
+
+$basicColor:#337ab7;
+$hoverColor: #2b659a;
+
 /*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
-* not input {
+* not input{
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
-  transition: all 0.5s; }
+  transition: all 0.5s;
+}
+
+
 
 .table-responsive > .table > tbody > tr > td,
 .table-responsive > .table > tbody > tr > th,
 .table-responsive > .table > tfoot > tr > td,
 .table-responsive > .table > tfoot > tr > th,
 .table-responsive > .table > thead > tr > td,
-.table-responsive > .table > thead > tr > th {
-  white-space: normal !important; }
+.table-responsive > .table > thead > tr > th{
+  white-space: normal!important;
+}

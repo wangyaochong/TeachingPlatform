@@ -1,0 +1,4 @@
+.kv-file-upload{
+    visibility: hidden!important;
+    /*去除fileinput单个文件的上传选项，也就是说一定要一起上传*/
+}

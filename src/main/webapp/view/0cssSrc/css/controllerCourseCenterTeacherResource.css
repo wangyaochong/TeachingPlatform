@@ -1,0 +1,14 @@
+
+textarea.CourseCenterTeacherResource {
+    width: 100%;
+    resize: none;
+    text-align: left;
+    overflow: hidden !important;
+    border-radius: 5px;
+    border: 1px dotted #337ab7;
+}
+
+textarea.CourseCenterTeacherResource:disabled {
+    border: 0px;
+    background-color: transparent;
+}

@@ -1,46 +1,58 @@
+@charset "UTF-8";
+/*因为ui.select如果用动画会计算错误的宽度，所以不适用动画效果*/
+* not input {
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > td,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > thead > tr > th {
+  white-space: normal !important; }
+
 h3.IndexMessage {
-    margin: 10px 0 0 0;
-}
+  margin: 10px 0 0 0; }
 
 .panel.IndexMessage {
-    margin: 1px;
-}
+  margin: 1px; }
 
 .panel-heading.IndexMessage {
-    padding: 0px;
-}
+  padding: 0px; }
 
 .panel-body.IndexMessage {
-    padding: 20px;
-}
+  padding: 20px; }
+
 textarea.IndexMessage {
-    width: 100%;
-    resize: none;
-    text-align: left;
-    overflow: hidden !important;
-    border-radius: 5px;
-    border: 1px dotted var(--basic-color);
-}
+  width: 100%;
+  resize: none;
+  text-align: left;
+  overflow: hidden !important;
+  border-radius: 5px;
+  border: 1px dotted #337ab7; }
 
 textarea.IndexMessage:disabled {
-    border: 0px;
-    background-color: transparent;
-}
+  border: 0px;
+  background-color: transparent; }
+
 /*ng-table元素由于是动态生成的，无法加上IndexMessage标记*/
 .page-header.IndexMessage {
-    overflow: auto;
-    /*margin:0px;*/
-    margin: 0px 0px 0px 0px;
-    padding: 0px !important;
-    /*padding-left: 10px;*/
-    /*margin-left: 10px;*/
-}
+  overflow: auto;
+  /*margin:0px;*/
+  margin: 0px 0px 0px 0px;
+  padding: 0px !important;
+  /*padding-left: 10px;*/
+  /*margin-left: 10px;*/ }
+
 .ng-table-header {
-    text-align: left;
-    align: left;
-}
+  text-align: left;
+  align: left; }
+
 .ng-table-pager,
 .pagination,
 .ng-table-pagination {
-    margin: 0;
-}
+  margin: 0; }
