@@ -8,7 +8,7 @@
                         <div class="carousel-picture" ng-class="{true:'item active',false:'item'}[$index==0]"
                              ng-repeat="item in pictures"
                              width="100%">
-                            <img ng-src="{{item.resources[0].htmlAccessPath}}" ng-alt="" width="100%" height="100%">
+                            <img ng-src="{{item.resources[0].htmlAccessPath}}" ng-alt="" >
                             <div ng-if="item.resources==undefined" class="bg-danger" width="100%">
                                 <br>
                                 <br>

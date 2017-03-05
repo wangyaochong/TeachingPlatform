@@ -22,15 +22,25 @@ app.directive('directiveCourseBlock', function () {
                     $(this).width($scope.$width);
                     $(this).height($(this).width());//让高度等于宽度
                 })
+
                 $(".courseblockcontent").each(function () {
-                    var r=(Math.random()*1000%100+150);
-                    r=parseInt(r);
-                    var g=(Math.random()*1000%100+150);
-                    g=parseInt(g);
-                    var b=(Math.random()*1000%100+150);
-                    b=parseInt(b);
-                    $(this).css("background-color", "rgb("+r+","+g+","+b+")");
+                    //设置为一张固定图片
+                    var backImageBaseUrl='/TeachingPlatform/view/img/courseBlockBackground.png';
+                    $(this).css("background-image", "url(' "+ backImageBaseUrl+" ')");
+                    var selfWidth = $("#DocumentBlockWrapper" + $scope.$index).width();
+                    $(this).css("background-size", selfWidth + "px " + selfWidth + "px");
+
+                    //设置随机颜色
+                    // var r=(Math.random()*1000%100+150);
+                    // r=parseInt(r);
+                    // var g=(Math.random()*1000%100+150);
+                    // g=parseInt(g);
+                    // var b=(Math.random()*1000%100+150);
+                    // b=parseInt(b);
+                    // $(this).css("background-color", "rgb("+r+","+g+","+b+")");
                 })
+
+
             }, 100)
 
             $scope.coursePersonClick=function () {

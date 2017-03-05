@@ -129,14 +129,15 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
             $scope.isSelf=true;
         }
     });
+    $scope.getChinesePrivilege=function(privilegeName) {
+        var privilegeMap = {};
+        privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
+        privilegeMap[PrivilegeType.ASSIGNMENT] = "作业管理";
+        privilegeMap[PrivilegeType.DOCUMENT] = "文档管理";
+        privilegeMap[PrivilegeType.FRONT_MESSAGE] = "首页消息管理";
+        privilegeMap[PrivilegeType.GROUP_EDIT] = "班级管理";
+        privilegeMap[PrivilegeType.SUPER] = "超级权限";
+        privilegeMap[PrivilegeType.VIDEO] = "视频管理";
+        return privilegeMap[privilegeName];
+    }
 })
-function getChinesePrivilege(privilegeName) {
-    var privilegeMap = {};
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-    privilegeMap[PrivilegeType.USER_MANAGEMENT] = "用户管理";
-}

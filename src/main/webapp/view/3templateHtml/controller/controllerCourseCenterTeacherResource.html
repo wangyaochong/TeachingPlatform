@@ -166,7 +166,7 @@
                                           ng-disabled="!x.isEditing"></textarea></td>
                             <td>
                                 <div ng-repeat="resource in x.resources" style="height: 30px;">
-                                    <a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>
+                                    <a ng-href="{{resource.htmlAccessPath}}" download="{{resource.originName}}">{{resource.originName}}</a>
                                     <button class="btn btn-sm btn-danger pull-right" ng-click="deleteFileFromItem(x,$index)" ng-if="hasPrivilege"><span
                                             class="glyphicon glyphicon-remove"></span></button>
                                 </div>

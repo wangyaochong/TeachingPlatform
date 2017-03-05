@@ -12,7 +12,7 @@ app.controller("controllerVideoPlay",function ($scope,CRUDService,$timeout,$stat
             //这个地方需要根据class获取对象初始化，如果根据id初始化，等第二次进入时会导致重复初始化。
             var player = videojs($(".video-js")[0], {
                 "class":"video-js vjs-big-play-centered",
-                // "techOrder":["flash","html5"],
+                 "techOrder":["flash","html5"],//优先使用flash
                 // "playbackRates": [0.5, 1, 1.5, 2]
             }, function() {});
         },50)

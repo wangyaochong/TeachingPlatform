@@ -27,9 +27,9 @@ app.directive('directiveDocumentBlock', function () {
                 var htmlFilePath;
                 if(!angular.isUndefinedOrNull($scope.$item.resources[0].htmlAccessPath)){
                     htmlFilePath = $scope.$item.resources[0].htmlAccessPath;
-                    htmlFilePath = htmlFilePath.replace(/\\/g, "/");
+                    htmlFilePath = htmlFilePath.replace(/\\/g, "/");//数据库存储的路径斜杠和前端的不一致
                     var postfix=htmlFilePath.split(".");
-                    var type=postfix[postfix.length-1];
+                    var type=postfix[postfix.length-1].toLowerCase();
                     var backImageBaseUrl='/TeachingPlatform/view/img/';
                     $("#DocumentBlockContent" + $scope.$index).css("background-image", "url(' " + backImageBaseUrl+type+".png" + " ')")
                     var selfWidth = $("#DocumentBlockWrapper" + $scope.$index).width();

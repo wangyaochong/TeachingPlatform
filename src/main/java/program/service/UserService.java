@@ -40,6 +40,8 @@ public class UserService {
         genericDao.getCurrentSession().save(currentUser);
     }
     public void addUserToGroup(PersonEntity personEntity,GroupEntity groupEntity){
+        //因为这是从前台传过来的entity，有可能在前台数据会发生变化，这时不能直接使用前台传过来的creator的groupEntityList
+        personEntity=genericDao.getCurrentSession().get(PersonEntity.class,personEntity.getId());
         List<GroupEntity> groupEntityList = personEntity.getGroupEntityList();
         groupEntityList.add(groupEntity);
         genericDao.getCurrentSession().update(personEntity);

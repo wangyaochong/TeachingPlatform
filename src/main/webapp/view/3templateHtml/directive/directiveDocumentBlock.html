@@ -9,12 +9,12 @@
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </div>
-                <h3 style="margin: 0px;color:white">{{$item.name}}</h3>
+                <h3 style="margin: 0px;color:white" >{{$item.name}}</h3>
                 <div class="bg-info">{{$item.resources[0].originName}}</div>
 
-                <div style="width: 100%;top: 90%; position: absolute">
+                <div style="width: 100%;top: 80%; position: absolute">
                     <div style="width: 100%;padding-right: 5%;padding-left: 5%">
-                        <button class="btn-block btn btn-xs btn-primary"><a class="btn-block" href="{{$item.resources[0].htmlAccessPath}}" download=""
+                        <button class="btn-block btn btn-xs btn-primary"><a class="btn-block" href="{{$item.resources[0].htmlAccessPath}}" download="{{$item.resources[0].originName}}"
                                                                             style="color:white;width: 100%">下载</a></button>
                     </div>
                 </div>

@@ -26,13 +26,13 @@
                     <!--pagelist{{pagelist}}-->
                     <table ng-table="frontMessageTableParams" class="table " show-filter="false">
                         <tr ng-repeat="item in $data">
-                            <td ng-cloak="" title="localeProperties['locale.date']" width="10%" align="left" style="min-width: 50px;">
+                            <td ng-cloak="" title="localeProperties['locale.date']" width="20%" align="left" style="min-width: 50px;">
                                 {{item.createDate|date:"yyyy-MM-dd"}}
                             </td>
-                            <td ng-cloak="" title="localeProperties['locale.courseName']" width="10%"  align="left" >
+                            <td ng-cloak="" title="localeProperties['locale.courseName']" width="20%"  align="left" >
                                 {{item.classGroup.name}}
                             </td>
-                            <td ng-cloak="" title="localeProperties['locale.title']" width="10%" align="left" style="min-width: 50px;">
+                            <td ng-cloak="" title="localeProperties['locale.title']" width="20%" align="left" style="min-width: 50px;">
                                 <textarea class="IndexMessage" ng-model="item.title" ng-disabled="!item.isEditing"
                                           width="100%"
                                           rows="1"></textarea>

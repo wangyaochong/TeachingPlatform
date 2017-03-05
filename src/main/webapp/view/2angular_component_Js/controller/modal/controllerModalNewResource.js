@@ -21,6 +21,9 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
         }).on('filebatchuploadsuccess', function (event, data, previewId, index) {
             // console.log(event);
             console.log('filebatchuploadsuccess', data.response);
+            if($scope.itemEntity.resources==undefined){
+                $scope.itemEntity.resources=[];
+            }
             $scope.itemEntity.resources.push(data.response.data[0]);
             $scope.updateItemEntity($scope.itemEntity);
         })
@@ -32,7 +35,7 @@ app.controller("controllerModalNewResource",function ($scope,$uibModalInstance,$
         CRUDService.updateMethod("ItemEntity/updateItemEntity", data).then(function (response) {
             console.log(response)
             if (angular.isUndefinedOrNull(data.id) || data.id == "") {
-                data.id = response.data;
+                data.id = response.data.id;
             }
             // $rootScope.$broadcast("resourceUpdated",{});
         })

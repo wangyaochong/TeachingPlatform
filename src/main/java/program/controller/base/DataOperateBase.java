@@ -16,4 +16,9 @@ public class DataOperateBase {
     protected CrudService crudService;
     @Resource
     protected PageListService<PersonEntity> pageListService;
+    static int initCount=0;
+    public DataOperateBase(){//这里可以说明，作为基类，这个类会被初始化多少次
+        initCount++;
+        System.out.println("DataOperateBase initializing count: "+initCount);
+    }
 }
