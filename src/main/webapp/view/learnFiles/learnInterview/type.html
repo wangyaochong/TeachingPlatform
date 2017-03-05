@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function testNew() {
+        console.log("testNew Method Called...")
+    }
+    var fun=new testNew();
+    console.log(fun);
+    console.log(fun instanceof  Object);
+    console.log(fun instanceof String);
+    console.log('newFun [typeof]-->',fun);
+    var directString="directString";
+    var newString=new String('newString');
+    console.log(directString instanceof String);
+    console.log(newString instanceof String);
+    console.log(directString+" [typeof]-->", typeof (directString));
+    console.log(newString+" [typeof]-->",typeof(newString));
+    console.log(typeof([1,2,4]));
+    console.log(typeof(new Object()));
+    console.log([1,2] instanceof  Array);
+    var i;
+    console.log(i)
+</script>
+</html>

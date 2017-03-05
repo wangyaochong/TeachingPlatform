@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='outerDiv' style="width: 200px;height: 200px;background-color: #00c0ef;position: relative;padding: 25px;box-sizing: border-box"
+     >
+    <div id='innerDiv' style="width: 100px;height: 100px;background-color: red;position: relative" ></div>
+</div>
+</body>
+<script>
+    window.onload=function () {
+       var outerDiv= document.getElementById('outerDiv');
+       console.log(outerDiv)
+        var innerDiv= document.getElementById('innerDiv');
+        console.log(innerDiv)
+
+//        outerDiv.addEventListener('click',MyClick,true);
+//        innerDiv.addEventListener('click',MyClick,true);
+//        outerDiv.addEventListener('click',MyClick,true);
+//        innerDiv.addEventListener('click',MyClick,true);
+        outerDiv.addEventListener('click',myClick,false);
+        innerDiv.addEventListener('click',myClick,false);
+        outerDiv.addEventListener('click',myClick2,false);
+        innerDiv.addEventListener('click',myClick2,false);
+
+        document.getElementById('outerDiv').onclick=function () {
+            console.log('outerDiv clicked')
+        }
+        document.getElementById('innerDiv').onclick=function () {
+            console.log('innerDiv clicked')
+        }
+        document.getElementById('outerDiv').onclick=function () {
+            console.log('outerDiv clicked 2')
+        }
+        document.getElementById('innerDiv').onclick=function () {
+            console.log('innerDiv clicked 2')
+        }
+
+    }
+    function myClick2(event) {
+        console.log(this.id,2)
+//        console.log(event)
+    }
+    function myClick(event) {
+        console.log(this.id)
+//        console.log(event)
+//        stopBubble(event)
+        return true;
+    }
+
+    function stopBubble(e)
+    {
+        if (e && e.stopPropagation)
+            e.stopPropagation()
+        else
+            window.event.cancelBubble=true
+    }
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function getRequest() {
+        var xmlHttp = null;
+        try {// Chrome, Firefox, Opera, Safari
+            xmlHttp = new XMLHttpRequest();
+        } catch (e) {
+            try {// Internet Explorer
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {// Internet Explorer
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    alert("your browser not support ajax!");
+                }
+            }
+        }
+
+        return xmlHttp;
+    }
+
+    var request=getRequest();
+    request.open('post','https://www.zhihu.com');
+    request.setRequestHeader('Access-Control-Allow-Origin','*');
+    request.setRequestHeader('Access-Control-Allow-Headers','Content-Type');
+    request.setRequestHeader('Access-Control-Allow-Methods','GET, POST, PUT, DELETE');
+    request.setRequestHeader('Content-Type','text/html; charset=UTF-8');
+
+    request.send();
+    request.onreadystatechange =function () {
+        if(request.readyState == 4 && request.status == 200) {
+            var result = request.responseText;
+            alert(result);
+        }
+    }
+</script>
+</body>
+</html>

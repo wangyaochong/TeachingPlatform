@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    Object.prototype.test='test'
+    var obj={name:'hello',age:18};
+    for(var key in obj){
+        console.log(key,obj[key])
+    }
+    for(var key in obj){
+        if(obj.hasOwnProperty(key)){
+            console.log(key,obj[key])
+        }
+    }
+    var arr=[1,2,3,4,5];
+    for(var index in arr){
+        console.log(arr[index]);
+    }
+</script>
+</body>
+</html>
