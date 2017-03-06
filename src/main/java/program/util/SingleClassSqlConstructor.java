@@ -18,6 +18,7 @@ public class SingleClassSqlConstructor {//单表sql语句构造器
     }
 
     //在传入condition时，如果是null，则不加入查询条件，要查属性为null的表，需要另外使用criteria
+    //这个位置其实可以给为null的属性进行初始化，比如String形式初始化为空字符串，数字型初始化为最大或者最小。
     public static <T> Pair<String, Map<String, Object>> createQuestionMarkHql_and(T condition, String operateType) {//返回的是sql字符串以及依次的值
         Field[] declaredFields = condition.getClass().getDeclaredFields();
         Map<String, Object> valueMap = new HashMap<String, Object>();
