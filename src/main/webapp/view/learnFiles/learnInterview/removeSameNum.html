@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var nums=[1,2,3,5,6,1,2,3,8,7]
+    function removeSame(arr) {
+        var flag={};
+        var result=[];
+        for(var index in arr){
+            if(flag[arr[index]]==undefined){
+                flag[arr[index]]=arr[index];
+                result.push(arr[index]);
+            }
+        }
+        return result;
+    }
+    var result=removeSame(nums);
+    console.log(result);
+</script>
+</html>

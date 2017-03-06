@@ -9,9 +9,28 @@
      >
     <div id='innerDiv' style="width: 100px;height: 100px;background-color: red;position: relative" ></div>
 </div>
+<a id="bA" href="https://www.baidu.com" >百度</a>
 </body>
 <script>
+
+    function preventDefaultClick(event) {
+        if (event.preventDefault) {
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+        console.log('a tag clicked')
+    }
+
     window.onload=function () {
+        document.getElementById('bA').addEventListener('click',function (event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+            console.log('a tag clicked in eventListener')
+        })
        var outerDiv= document.getElementById('outerDiv');
        console.log(outerDiv)
         var innerDiv= document.getElementById('innerDiv');

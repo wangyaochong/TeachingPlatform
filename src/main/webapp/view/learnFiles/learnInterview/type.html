@@ -27,5 +27,13 @@
     console.log([1,2] instanceof  Array);
     var i;
     console.log(i)
+    if(typeof Array.isArray==="undefined")
+    {
+        Array.isArray = function(arg){
+            return Object.prototype.toString.call(arg)==="[object Array]"
+        };
+    }
+
+    console.log(Array.isArray([1,2,3]))
 </script>
 </html>

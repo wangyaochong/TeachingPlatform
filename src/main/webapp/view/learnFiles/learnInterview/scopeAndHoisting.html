@@ -40,5 +40,17 @@
     }
     foo();
 
+    var User = {
+        count: 1,
+        getCount: function() {
+            return this.count;
+        }
+    };
+
+    console.log(User.getCount());  // 1
+
+    var func = User.getCount;
+    console.log(func());  // undefined
+    console.log(User.prototype)
 </script>
 </html>
