@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function add(a,b) {
+        if(b){
+            return a+b;
+        }else{
+            return function (x) {
+                return a+x;
+            }
+        }
+    }
+    console.log(add(1,2))
+    console.log(add(1)(2))
+</script>
+</html>
