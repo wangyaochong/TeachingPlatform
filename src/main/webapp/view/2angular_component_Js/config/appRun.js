@@ -6,12 +6,12 @@ var userCenterStates = [
     'userCenter.userInformation',
 
 ]
-var courseCenterStates=[
+var courseCenterStates = [
     'courseCenter.teacher',
     'courseCenter.student',
     'courseCenter.teacherResource',
 ]
-app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, CRUDService) {
+app.run(function ($rootScope,ItemEntityService,UserService,CRUDHtmlService,CRUDService,$http) {
     // CRUDService.getMethod("Locale/getLocale",{}).then(function (response) {
     //     $rootScope.localeLange=response.data;
     // })
@@ -19,32 +19,58 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
     var language_zh_cn = "zh-cn";
     var currentLang;
     currentLang = navigator.language;
-    if(!currentLang)
+    if (!currentLang)
         currentLang = navigator.browserLanguage;
-    if(currentLang.toLowerCase() == language_zh_cn)
-    {
-        $rootScope.localeLange="zh_CN"
+    if (currentLang.toLowerCase() == language_zh_cn) {
+        $rootScope.localeLange = "zh_CN"
     }
-    else
-    {
-        $rootScope.localeLange="en_US"
+    else {
+        $rootScope.localeLange = "en_US"
     }
 
     CRUDService.getMethod("Locale/getLocaleProperties",{}).then(function (response) {
-        $rootScope.localeProperties=response.data;
+        $rootScope.localeProperties = response.data;
     },function (error) {
         console.log(error);
     })
 
 
+    var itemEntityTest = {
+        id: "test",//id
+        title: "test",//标题
+        description: 'testDescription',//描述
+        type: "type",//类型
+        isOpen: false,//是否公开
+        createDate: 9999999//生成的时间
+    }//requestBody可以直接使用一个对象进行参数传递
+    $http({
+        url: "/TeachingPlatform/testRequestBody",
+        data: itemEntityTest,
+        method:"post"
+    }).then(function (response) {
+        console.log("testRequestBody",response);
+    })
+
+    $http({
+        url: "/TeachingPlatform/testRequestBodyAndRequestParam",
+        data: 'firstParam',
+        params:{
+           queryParam:'queryParam'
+        },
+        method:"post"
+    }).then(function (response) {
+        console.log("testRequestBodyAndRequestParam",response);
+    })
+
+
     $rootScope.$on('$stateChangeStart',
-        function (event, toState, toParams, fromState, fromParams) {
+        function (event,toState,toParams,fromState,fromParams) {
             if (toState.name == "userCenter") {
                 if (userCenterStates.indexOf(fromState.name) != -1) {
                     event.preventDefault();//禁止切换
                 }
             }
-            if (toState.name=="courseCenter") {
+            if (toState.name == "courseCenter") {
                 if (courseCenterStates.indexOf(fromState.name) != -1) {
                     event.preventDefault();//禁止切换
                 }
@@ -55,8 +81,8 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
     //每一个controllerXXX对应一个controllerXXX.html页面
     //directive也是类似的
 
-    generateUrl($rootScope, "controller", controllerNames);
-    generateUrl($rootScope, "directive", directiveNames);
+    generateUrl($rootScope,"controller",controllerNames);
+    generateUrl($rootScope,"directive",directiveNames);
 
     //注册模版路径，比如$rootScope.controllerRollPictureUrl
     //="/TeachingPlatform/view/3templateHtml/controllerRollPicture.html
@@ -66,31 +92,30 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
     $rootScope.screenHeight = window.screen.height;
 
 
-
     //定义全局变量，后续会用得到
-    $rootScope.ItemType=ItemType;
-    $rootScope.PrivilegeType=PrivilegeType;
-    $rootScope.PrivilegeMap=PrivilegeMap;
+    $rootScope.ItemType = ItemType;
+    $rootScope.PrivilegeType = PrivilegeType;
+    $rootScope.PrivilegeMap = PrivilegeMap;
 
 
     // $timeout(function () {//触发一下滚动大屏
     //     $('.carousel').carousel('next')
     // },5000)
-    $rootScope.revertItemEntity = function (data, list) {
-        CRUDHtmlService.revertObject(data, list);
+    $rootScope.revertItemEntity = function (data,list) {
+        CRUDHtmlService.revertObject(data,list);
     }
     $rootScope.saveItemEntity = function (data) {
         //保存编辑的内容到副本
         var response = ItemEntityService.updateItemEntity(data)
-        CRUDHtmlService.saveObject(data, response);
+        CRUDHtmlService.saveObject(data,response);
     }
 
-    $rootScope.deleteItemEntity = function (data, index, list) {
-        CRUDHtmlService.deleteObject(index, list);
+    $rootScope.deleteItemEntity = function (data,index,list) {
+        CRUDHtmlService.deleteObject(index,list);
         ItemEntityService.deleteItemEntity(data);
     }
 
-    $rootScope.addItemEntity = function (list, type) {
+    $rootScope.addItemEntity = function (list,type) {
         var itemEntity = {
             id: "",//id
             title: "",//标题
@@ -102,7 +127,7 @@ app.run(function ($rootScope, ItemEntityService, UserService, CRUDHtmlService, C
             isEditing: true
         }
         if (type != ItemType.ANNOUNCEMENT) {//首页消息可以直接添加，但是带有附件的不能，需要上传附件才行
-            CRUDHtmlService.addObject(itemEntity, list)
+            CRUDHtmlService.addObject(itemEntity,list)
         }
         list.unshift(itemEntity);
         // console.log("screenWidth:"+$rootScope.screenWidth);
