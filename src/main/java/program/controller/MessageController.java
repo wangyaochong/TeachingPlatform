@@ -34,7 +34,7 @@ public class MessageController extends DataOperateBase{
 
     @RequestMapping("/getCurrentUserMessage")
     @ResponseBody
-    public ResponseInfo getUnReadMessageCount(){
+    public ResponseInfo getCurrentUserMessage(){
         List<MessageEntity> userMessage = messageService.getUserMessage(userService.getCurrentUser());
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,userMessage);
     }

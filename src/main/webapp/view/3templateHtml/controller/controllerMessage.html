@@ -7,43 +7,69 @@
             <h3 class="panel-title">消息列表</h3>
         </div>
         <div class="panel-body">
-            <table class="table table-bordered">
-                <col width="20%">
-                <col width="20%">
-                <col width="20%">
-                <col width="20%">
-                <col width="20%">
-                <thead>
-                <tr>
-                    <td>时间</td>
-                    <td>发送人</td>
-                    <td>类型</td>
-                    <td>内容</td>
-                    <td>操作</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="m in messages">
-                    <td>{{m.sendingDateTime | date:"yyyy-MM-dd"}}</td>
-                    <td>{{(m.sender==null||m.sender==undefined)?'系统消息':m.sender}}</td>
-                    <td>{{getMessageType(m.itemEntity.title)}}</td>
-                    <td>{{m.itemEntity.description}}</td>
-                    <td ng-if="m.itemEntity.title=='APPLY_JOIN_CLASS' ">
-                        <div ng-if=" m.hasRead==false">
+            <!--<table class="table table-bordered">-->
+            <!--<col width="20%">-->
+            <!--<col width="20%">-->
+            <!--<col width="20%">-->
+            <!--<col width="20%">-->
+            <!--<col width="20%">-->
+            <!--<thead>-->
+            <!--<tr>-->
+            <!--<td>时间</td>-->
+            <!--<td>发送人</td>-->
+            <!--<td>类型</td>-->
+            <!--<td>内容</td>-->
+            <!--<td>操作</td>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr ng-repeat="m in messages">-->
+            <!--<td>{{m.sendingDateTime | date:"yyyy-MM-dd"}}</td>-->
+            <!--<td>{{(m.sender==null||m.sender==undefined)?'系统消息':m.sender}}</td>-->
+            <!--<td>{{getMessageType(m.itemEntity.title)}}</td>-->
+            <!--<td>{{m.itemEntity.description}}</td>-->
+            <!--<td ng-if="m.itemEntity.title=='APPLY_JOIN_CLASS' ">-->
+            <!--<div ng-if=" m.hasRead==false">-->
 
-                            <button type="button" class="btn btn-danger btn-sm"  ng-click="updateMessage(true,m)">
+            <!--<button type="button" class="btn btn-danger btn-sm"  ng-click="updateMessage(true,m)">-->
+            <!--<span class="glyphicon glyphicon-ok"></span>-->
+            <!--</button>-->
+
+            <!--<button type="button" class="btn btn-primary btn-sm" ng-click="updateMessage(false,m)">-->
+            <!--<span class="glyphicon glyphicon-remove"></span>-->
+            <!--</button>-->
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--</table>-->
+            <table class="table table-bordered" ng-table="messageTableParams" show-filter="false">
+                <tr ng-repeat="item in $data">
+                    <td ng-cloak="" title=" '时间'  " width="20%" align="left" style="min-width: 50px;">
+                        {{item.sendingDateTime | date:"yyyy-MM-dd"}}
+                    </td>
+                    <td ng-cloak="" title="'发送人' " width="20%" align="left">
+                        {{(item.sender==null||item.sender==undefined)?'系统消息':item.sender}}
+                    </td>
+                    <td ng-cloak="" title="'类型' " width="20%" align="left">
+                        {{getMessageType(item.itemEntity.title)}}
+                    </td>
+                    <td ng-cloak="" title="'内容' " width="20%" align="left">
+                        {{item.itemEntity.description}}
+                    </td>
+                    <td ng-cloak="" title="'操作' " width="20%" align="left">
+                        <div ng-if=" item.hasRead==false&& item.itemEntity.title=='APPLY_JOIN_CLASS' ">
+                            <button type="button" class="btn btn-danger btn-sm" ng-click="updateMessage(true,m)">
                                 <span class="glyphicon glyphicon-ok"></span>
                             </button>
-
                             <button type="button" class="btn btn-primary btn-sm" ng-click="updateMessage(false,m)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
                     </td>
+
                 </tr>
-                </tbody>
             </table>
         </div>
     </div>
-
 </div>

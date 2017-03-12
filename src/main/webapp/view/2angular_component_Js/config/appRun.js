@@ -35,32 +35,31 @@ app.run(function ($rootScope,ItemEntityService,UserService,CRUDHtmlService,CRUDS
     })
 
 
-    var itemEntityTest = {
-        id: "test",//id
-        title: "test",//标题
-        description: 'testDescription',//描述
-        type: "type",//类型
-        isOpen: false,//是否公开
-        createDate: 9999999//生成的时间
-    }//requestBody可以直接使用一个对象进行参数传递
-    $http({
-        url: "/TeachingPlatform/testRequestBody",
-        data: itemEntityTest,
-        method:"post"
-    }).then(function (response) {
-        console.log("testRequestBody",response);
-    })
-
-    $http({
-        url: "/TeachingPlatform/testRequestBodyAndRequestParam",
-        data: 'firstParam',
-        params:{
-           queryParam:'queryParam'
-        },
-        method:"post"
-    }).then(function (response) {
-        console.log("testRequestBodyAndRequestParam",response);
-    })
+    // var itemEntityTest = {
+    //     id: "test",//id
+    //     title: "test",//标题
+    //     description: 'testDescription',//描述
+    //     type: "type",//类型
+    //     isOpen: false,//是否公开
+    //     createDate: 9999999//生成的时间
+    // }//requestBody可以直接使用一个对象进行参数传递
+    // $http({
+    //     url: "/TeachingPlatform/testRequestBody",
+    //     data: itemEntityTest,
+    //     method:"post"
+    // }).then(function (response) {
+    //     console.log("testRequestBody",response);
+    // })
+    // $http({
+    //     url: "/TeachingPlatform/testRequestBodyAndRequestParam",
+    //     data: 'firstParam',
+    //     params:{
+    //        queryParam:'queryParam'
+    //     },
+    //     method:"post"
+    // }).then(function (response) {
+    //     console.log("testRequestBodyAndRequestParam",response);
+    // })
 
 
     $rootScope.$on('$stateChangeStart',

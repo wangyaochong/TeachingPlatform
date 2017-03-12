@@ -1,17 +1,28 @@
 /**
  * Created by 【王耀冲】 on 【2017/2/7】 at 【18:57】.
  */
-app.controller('controllerMessage',function ($scope,CRUDService) {
+app.controller('controllerMessage',function ($scope,CRUDService,NgTableParams) {
     console.log('controllerMessage');
     CRUDService.getMethod("Message/getCurrentUserMessage",{}).then(function (response) {
         console.log(response)
         $scope.messages = response.data;
+
+        $scope.messageTableParams = new NgTableParams({
+            count: 10
+        },{
+            counts: [],
+            paginationMaxBlocks: 10,//最多显示的按钮
+            paginationMinBlocks: 5,//最少显示的按钮
+            dataset: $scope.messages
+        })
+
         var countMap = _.countBy($scope.messages,function (row) {
             return row.hasRead;
         })
         $scope.unReadMessageCount = countMap['false'];
         console.log(countMap)
     });
+
 
     $scope.getMessageType = function (string) {
         var messageMap = {};
@@ -30,6 +41,4 @@ app.controller('controllerMessage',function ($scope,CRUDService) {
         CRUDService.updateMethod("ItemEntity/updateItemEntity",message.itemEntity);
         CRUDService.updateMethod("Message/updateMessage",message);
     }
-
-
 })
