@@ -32,7 +32,7 @@
                             <td>{{x.description}}</td>
                             <td>
                                 <div ng-repeat="resource in x.resources" style="height: 30px;">
-                                    <a ng-href="{{resource.htmlAccessPath}}" download="">{{resource.originName}}</a>
+                                    <a ng-href="{{resource.htmlAccessPath}}" download="{{resource.originName}}">{{resource.originName}}</a>
                                 </div>
                             </td>
                         </tr>
