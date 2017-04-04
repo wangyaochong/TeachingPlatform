@@ -46,9 +46,13 @@ public class UserController  extends DataOperateBase{
     //使用post请求直接发送一个发个对象，可以使用RequestBody注解获取，否则有可能会报错
     public ResponseInfo updateUser(@RequestBody PersonEntity personEntity) {
         Serializable serializable = crudService.saveOrUpdateOne(personEntity);//serializable是id
+        if(personEntity.getPrivilegeEntityList()==null||personEntity.getPrivilegeEntityList().size()==0){
+            PersonEntity oneById = (PersonEntity) crudService.getOneById(PersonEntity.class, (String) serializable);
+            oneById.setPrivilegeEntityList(null);
+            crudService.getCurrentSession().update(oneById);
+        }
         return new ResponseInfo("ok", null, serializable);
     }
-
     @RequestMapping("/getUser")
     @ResponseBody
     public PersonEntity getUser(@RequestParam String id) {

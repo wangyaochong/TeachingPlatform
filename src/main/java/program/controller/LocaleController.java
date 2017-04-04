@@ -31,7 +31,6 @@ public class LocaleController {
     @RequestMapping("getLocale")
     @ResponseBody
     public ResponseInfo getLocale(HttpServletRequest request, HttpServletResponse response){
-        Locale locale1 = request.getLocale();
         for (Cookie cookie : request.getCookies()) {
             if(cookie.getName().equals("CookieLanguage")){
                 Locale locale=new Locale(cookie.getValue());
@@ -39,8 +38,13 @@ public class LocaleController {
             }
         }
         //如果前面没有找到，则添加cookie
-        response.addCookie(new Cookie("CookieLanguage",request.getLocale().toString()));
-        return new ResponseInfo(ResponseFlag.STATUS_OK,null,request.getLocale()) ;
+        Locale locale = RequestContextUtils.getLocale(request);
+        String localeString=locale.getLanguage()+"_"+locale.getCountry();
+        Cookie cookieLanguage = new Cookie("CookieLanguage", localeString);
+        cookieLanguage.setMaxAge(60*60*24*7);
+        cookieLanguage.setPath("/");//设置cookie的存储位置
+        response.addCookie(cookieLanguage);
+        return new ResponseInfo(ResponseFlag.STATUS_OK,null,localeString) ;
     }
     public void deleteCookie(Cookie cookie){
         cookie.setValue(null);
@@ -53,7 +57,7 @@ public class LocaleController {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
             if(cookie.getName().equals("CookieLanguage")){
-                deleteCookie(cookie);//删除旧的，然后更新
+//                deleteCookie(cookie);//删除旧的，然后更新
                 Cookie cookie1=new Cookie("CookieLanguage",localeLanguage);
                 cookie1.setValue(localeLanguage);
                 cookie1.setMaxAge(60*60*24*7);//一个星期内登录有效

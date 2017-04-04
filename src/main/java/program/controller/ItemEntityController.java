@@ -64,7 +64,8 @@ public class ItemEntityController {
         Collections.sort(listByCondition, new Comparator<ItemEntity>() {
             @Override
             public int compare(ItemEntity o1, ItemEntity o2) {//按照时间创建顺序排序
-                return (int) (o2.getCreateDate()-o1.getCreateDate());
+                if(o2.getCreateDate()>o1.getCreateDate())return 1;//由于返回值是int型，而使用long型计算，有可能会溢出
+                return -1;
             }
         });
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,listByCondition);
@@ -77,6 +78,12 @@ public class ItemEntityController {
             itemEntity.setCreator(currentUser);
         }
         Serializable serializable = crudService.saveOrUpdateOne(itemEntity);
+        if(itemEntity.getResources()==null||itemEntity.getResources().size()==0){
+            ItemEntity oneById = (ItemEntity) crudService.getOneById(ItemEntity.class, (String) serializable);
+            oneById.setResources(null);
+            crudService.getCurrentSession().update(oneById);
+        }
+
         IEntity oneById = crudService.getOneById(ItemEntity.class, (String) serializable);
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,oneById);
     }

@@ -47,10 +47,10 @@ public class ItemEntityService {
         Collections.sort(listByCreator, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
-                return -(int) (((ItemEntity)o1).getCreateDate()-((ItemEntity)o2).getCreateDate());
+                if(((ItemEntity) o2).getCreateDate()>((ItemEntity)o1).getCreateDate())return 1;//由于返回值是int型，而使用long型计算，有可能会溢出
+                return -1;
             }
         });
-
         return listByCreator;
     }
 }
