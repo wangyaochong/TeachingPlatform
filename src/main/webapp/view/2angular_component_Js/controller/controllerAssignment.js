@@ -2,10 +2,8 @@
  * Created by 【王耀冲】 on 【2017/1/7】 at 【18:10】.
  */
 app.controller("controllerAssignment",function ($scope,CRUDService) {
-
     $scope.assignmentList=[]
     $scope.classGroupList=[]
-
     $scope.getAllAssignment=function () {
         CRUDService.getMethod("ItemEntity/getCurrentUserAssignment")
             .then(function (response) {
