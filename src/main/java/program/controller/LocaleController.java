@@ -22,13 +22,13 @@ import java.util.Locale;
  * Created by 【王耀冲】 on 【2017/2/13】 at 【19:55】.
  */
 @Controller
-@RequestMapping("Locale")
+@RequestMapping("/Locale")
 public class LocaleController {
 
     @Resource
     LocaleService localeService;
 
-    @RequestMapping("getLocale")
+    @RequestMapping("/getLocale")
     @ResponseBody
     public ResponseInfo getLocale(HttpServletRequest request, HttpServletResponse response){
         for (Cookie cookie : request.getCookies()) {
@@ -51,7 +51,7 @@ public class LocaleController {
         cookie.setMaxAge(0);//一个星期内登录有效
         cookie.setPath("/");//设置cookie的存储位置
     }
-    @RequestMapping("updateLocale")
+    @RequestMapping("/updateLocale")
     @ResponseBody
     public ResponseInfo updateLocale(HttpServletRequest request, HttpServletResponse response, @RequestParam String localeLanguage){
         Cookie[] cookies = request.getCookies();
@@ -68,7 +68,7 @@ public class LocaleController {
         }
         return new ResponseInfo(ResponseFlag.STATUS_OK,null,"ok");
     }
-    @RequestMapping("getLocaleProperties")
+    @RequestMapping("/getLocaleProperties")
     @ResponseBody
     public ResponseInfo getLocaleProperties(HttpServletRequest request){
         Locale locale=null;
