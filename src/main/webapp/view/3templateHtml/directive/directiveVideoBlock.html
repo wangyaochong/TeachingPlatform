@@ -15,8 +15,8 @@
                 <div style="width: 100%;top: 70%;position: absolute" >
                     <div style="width: 100%;padding-right: 5%;padding-left: 5%">
                         <button class="btn-block btn btn-xs btn-primary" >  <a class="btn-block" ui-sref="videoPlay({itemId:$item.id})"
-                                                                               style="color:white;width: 100%">播放</a></button>
-                        <button class="btn-block btn btn-xs btn-primary" >  <a class="btn-block" href="{{$item.resources[0].htmlAccessPath}}" download="{{$item.resources[0].originName}}" style="color:white;width: 100%">下载</a></button>
+                                                                               style="color:white;width: 100%">{{localeProperties["locale.play"]}}</a></button>
+                        <button class="btn-block btn btn-xs btn-primary" >  <a class="btn-block" href="{{$item.resources[0].htmlAccessPath}}" download="{{$item.resources[0].originName}}" style="color:white;width: 100%">{{localeProperties["locale.download"]}}</a></button>
                     </div>
                 </div>
             </div>

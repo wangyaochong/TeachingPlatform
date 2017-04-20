@@ -5,24 +5,24 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">添加新课程</h4>
+                    <h4 class="modal-title">{{localeProperties["locale.addNewCourse"]}}</h4>
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered">
                         <tbody>
                         <tr>
-                            <td width="25%" class="bg-primary">课程名</td>
+                            <td width="25%" class="bg-primary">{{localeProperties["locale.courseName"]}}</td>
                             <td><input type="text" class="CourseCenterTeacher" ng-model="newCourse.name"></td>
                         </tr>
                         <tr>
-                            <td width="25%" class="bg-primary">课程描述</td>
+                            <td width="25%" class="bg-primary">{{localeProperties["locale.courseDescription"]}}</td>
                             <td ><input type="text" class="CourseCenterTeacher" ng-model="newCourse.description"></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" ng-click="createNewCourse()">确定</button>
+                    <button type="button" class="btn btn-primary" ng-click="createNewCourse()">{{localeProperties["locale.yes"]}}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -38,7 +38,7 @@
     <div style="width: 10%;height: 1px;float: left"></div>
     <div class="panel panel-primary" style="float: left;width: 80%">
         <div class="panel-heading">
-            <h3 class="panel-title">我创建的课程</h3>
+            <h3 class="panel-title">{{localeProperties["locale.createdCourse"]}}</h3>
         </div>
         <div class="panel-body" style="width:100%;padding-bottom:50px ">
             <div style="float: left;width: 20%;" id="newCourseButtonDiv">

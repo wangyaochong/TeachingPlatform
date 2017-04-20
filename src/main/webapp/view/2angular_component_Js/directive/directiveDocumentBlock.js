@@ -14,7 +14,12 @@ app.directive('directiveDocumentBlock', function () {
             $padding: "=",
             $editable:"="
         },
-        controller: function ($scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
+        controller: function ($rootScope,$scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
+            $rootScope.$watch("localeProperties",function () {
+                $scope.localeProperties=$rootScope.localeProperties;
+            },true)
+            $scope.localeProperties=$rootScope.localeProperties;
+
             $timeout(function () {
                 $(".DocumentBlockPaddingWrapper").each(function () {
                     $(this).css("padding", $scope.$padding);

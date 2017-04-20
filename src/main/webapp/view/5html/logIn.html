@@ -8,27 +8,38 @@
     <link rel="icon" href="/TeachingPlatform/view/img/favico.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/TeachingPlatform/view/css/lib.css">
     <link rel="stylesheet" href="/TeachingPlatform/view/css/app.css">
+    <script src="/TeachingPlatform/view/js/lib.js"></script>
+    <script src="/TeachingPlatform/view/js/app.js"></script>
 </head>
 <body>
-<div class="logInContent">
+<div class="logInContent" ng-controller="controllerLogIn">
     <form action="/TeachingPlatform/logIn" method="post" role="form" autocomplete="off">
-        <legend>登录</legend>
+        <legend ng-cloak="">{{localeProperties["locale.logIn"]}}</legend>
         <div class="form-groupEdit">
             <input type="text" style="display:none">
-            <input type="text" class="form-control" name="username" placeholder="请输入用户名" autocomplete="off">
+            <input ng-cloak="" type="text" class="form-control" name="username" placeholder="{{localeProperties['locale.pleaseInputUserName']}}" autocomplete="off">
             <br>
             <input type="password" style="display:none">
-            <input type="password" class="form-control" name="password" placeholder="请输入密码" autocomplete="new-password">
+            <input type="password" ng-cloak="" class="form-control" name="password" placeholder="{{localeProperties['locale.pleaseInputPassword']}}"
+                   autocomplete="new-password">
             <br>
-            <button type="submit" class="btn btn-primary btn-block">提交</button>
+            <button type="submit" ng-cloak=""   class="btn btn-primary btn-block">{{localeProperties["locale.submit"]}}</button>
         </div>
     </form>
 </div>
+<!--<script src="/TeachingPlatform/view/js/lib.js"></script>-->
+<!--<script src="/TeachingPlatform/view/js/app.js"></script>-->
 <script>
-    console.log("index")
-    console.log("index")
+//    console.log("index")
+//    console.log("index")
+//    $.ajax({
+//        url:webRootUrl+"Locale/getLocaleProperties",
+//        success:function (response) {
+//            $rootScope.localeProperties=response.data;
+//            $rootScope.$apply();
+//        },
+//        async:false
+//    })
 </script>
 </body>
 </html>
-<script src="/TeachingPlatform/view/js/lib.js"></script>
-<script src="/TeachingPlatform/view/js/app.js"></script>

@@ -1,9 +1,9 @@
 /**
  * Created by wangy on 2016/12/24.
  */
-app.controller("controllerUserInformation", function ($scope, UserService, $stateParams, CRUDService, $timeout, $filter) {
-    $scope.passwordCheck = "";
-    $scope.passwordCheckModalCaption = "请输入用户密码"
+app.controller("controllerUserInformation", function ($rootScope, $scope, UserService, $stateParams, CRUDService, $timeout, $filter) {
+
+
     $scope.userInformation = {};
     $scope.userInformation.privilegeSelected = [];
     $scope.editType = $stateParams.editType;
@@ -91,11 +91,13 @@ app.controller("controllerUserInformation", function ($scope, UserService, $stat
             $scope.userInformation.isEditing = true;
             $scope.userInformation.password = "";
         } else {
-            $scope.passwordCheckModalCaption = "密码错误，请重新输入"
+            $scope.passwordCheckModalCaption = $rootScope.localeProperties['locale.wrongPasswordPleaseTryAgain'];
         }
         $scope.passwordCheck = "";
     }
     $scope.showPassCheckModal = function () {
+        $scope.passwordCheck = "";
+        $scope.passwordCheckModalCaption =   $rootScope.localeProperties['locale.pleaseInputPassword'];
         //当是自己修改密码时需要确认密码
         if($scope.editType=="editPass"){
             $("#passwordCheckModel").modal("show");

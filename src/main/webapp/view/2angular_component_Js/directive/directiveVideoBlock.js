@@ -12,9 +12,13 @@ app.directive('directiveVideoBlock', function () {
             $index: "=",
             $width: "=",
             $padding: "=",
-            $editable:"="
+            $editable:"=",
         },
-        controller: function ($scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
+        controller: function ($rootScope,$scope, $timeout, CRUDService, CRUDHtmlService, $uibModal) {
+            $rootScope.$watch("localeProperties",function () {
+                $scope.localeProperties=$rootScope.localeProperties;
+            },true)
+            $scope.localeProperties=$rootScope.localeProperties;
             $timeout(function () {
                 $(".VideoBlockPaddingWrapper").each(function () {
                     $(this).css("padding", $scope.$padding);

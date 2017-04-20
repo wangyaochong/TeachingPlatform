@@ -13,7 +13,11 @@ app.directive('directiveCourseBlock', function () {
             $width: "=",
             $padding: "="
         },
-        controller: function ($scope, $timeout,CRUDService,CRUDHtmlService,$state) {
+        controller: function ($rootScope,$scope, $timeout,CRUDService,CRUDHtmlService,$state,ConfirmModalService) {
+            $rootScope.$watch("localeProperties",function () {
+                $scope.localeProperties=$rootScope.localeProperties;
+            },true)
+            $scope.localeProperties=$rootScope.localeProperties;
             $timeout(function () {
                 $(".courseblockpaddingwrapper").each(function () {
                     $(this).css("padding", $scope.$padding);
@@ -50,6 +54,7 @@ app.directive('directiveCourseBlock', function () {
                 $state.go("courseCenter.teacherResource",{groupId:$scope.$item.id})
             }
             $scope.editCourse=function () {
+
                 $scope.$item.dataCopy={};
                 angular.copy($scope.$item,$scope.$item.dataCopy);
                 $("#editCourseModal"+$scope.$index).modal("show");
@@ -62,6 +67,10 @@ app.directive('directiveCourseBlock', function () {
             }
 
             $scope.deleteCourse=function () {
+                ConfirmModalService.showModal("","content",function () {
+                    console.log("callback");
+                })
+                return ;
                 CRUDService.updateMethod("Group/deleteGroup",$scope.$item).then(function (response) {
                     console.log("deleteGroup",response)
                     CRUDHtmlService.deleteObject($scope.$index,$scope.$list);

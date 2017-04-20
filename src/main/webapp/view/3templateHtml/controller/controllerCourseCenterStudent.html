@@ -3,7 +3,7 @@
 <div ng-controller="controllerCourseCenterStudent" style="float: left;width: 80%">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">已选课程</h3>
+            <h3 class="panel-title">{{localeProperties["locale.chosenCourse"]}}</h3>
         </div>
         <div class="panel-body">
             <button style="margin-right: 10px;" class="btn btn-sm btn-primary" ng-repeat="x in currentUser.groupEntityList"
@@ -12,16 +12,16 @@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">所有课程</h3>
+            <h3 class="panel-title">{{localeProperties["locale.allCourse"]}}</h3>
         </div>
         <div class="panel-body">
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <td>课程名</td>
-                    <td>课程描述</td>
-                    <td>课程老师</td>
-                    <td>操作</td>
+                    <td>{{localeProperties["locale.courseName"]}}</td>
+                    <td>{{localeProperties["locale.courseDescription"]}}</td>
+                    <td>{{localeProperties["locale.teacher"]}}</td>
+                    <td>{{localeProperties["locale.option"]}}</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,8 @@
                     <td>{{x.name}}</td>
                     <td>{{x.description}}</td>
                     <td>{{x.creator.name}}</td>
-                    <td> <button class="btn btn-sm btn-primary" ng-click="applyCurrentUserToGroup(x.id)">申请加入该课程</button>  </td>
+                    <td> <button class="btn btn-sm btn-primary" ng-click="applyCurrentUserToGroup(x.id)">{{localeProperties["locale.applyToJoin"]}}</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
