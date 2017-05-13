@@ -382,6 +382,7 @@ function forEach(obj, iterator, context) {
   }
   return obj;
 }
+
 function forEachSorted(obj, iterator, context) {
   var keys = Object.keys(obj).sort();
   for (var i = 0; i < keys.length; i++) {
