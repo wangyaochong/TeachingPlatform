@@ -19,7 +19,7 @@ $stateProvider.state('courseCenter', {
                     $state.go("courseCenter.teacher");
                 }
                 else {
-                    $state.go("courseCenter.student",{editType:"editPass"})//对于自己就只能编辑密码，如果是教师要编辑同学的权限，那也是通过不同的入口
+                    $state.go("courseCenter.student")//对于自己就只能编辑密码，如果是教师要编辑同学的权限，那也是通过不同的入口
                 }
             }
         })
