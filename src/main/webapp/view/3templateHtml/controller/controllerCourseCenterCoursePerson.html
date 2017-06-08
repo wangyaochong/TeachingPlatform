@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="s in  students">
-                    <td>{{s.number}}</td>
+                    <td><a ui-sref="userCenter.userInformation({id:s.id,editType:'look'})"  ng-click="">{{s.number}} </a></td>
                     <td>{{s.name}}</td>
                     <td>
                         <button type="button" class="btn btn-danger btn-sm" ng-click="removePersonFromGroup(s,$index)">

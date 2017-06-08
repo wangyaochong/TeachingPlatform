@@ -26,17 +26,48 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title" style="display: inline-block;width: 50%">{{localeProperties["locale.personalInformation"]}}</h3>
-                <div style="float: right;background-color: white; padding: 3px;margin-top:-5px;border-radius: 5px">
+                <div style="float: right;background-color: white; padding: 3px;margin-top:-5px;border-radius: 5px" ng-if="editType!='look'">
                     <!--编辑按钮指令-->
                     <directive-edit $item="userInformation" before-callback="showPassCheckModal()"
                                     save-callback="updateUser()"></directive-edit>
                 </div>
-                <span style="float: right;margin-right: 5px">{{localeProperties["locale.option"]}}</span>
+                <span style="float: right;margin-right: 5px" ng-if="editType!='look'">{{localeProperties["locale.option"]}}</span>
             </div>
             <div class="panel-body">
                 <ul class="list-groupEdit">
                     <table class="table table-bordered">
                         <tbody>
+
+                        <tr ng-repeat="(key,value) in userInformation"
+                            ng-if="nameTranslation[key]&&editType=='look'">
+                            <!--前半部分的提示框-->
+                            <td class="bg-primary" width="25%">{{localeProperties[nameTranslation[key]]}}</td>
+
+                            <!--后半部分编辑框-->
+                            <td ng-if="key!='password' &&key!='birthDate' &&key!='privilegeEntityList' ">{{value}}</td>
+                            <td ng-if="key!='password' && key=='birthDate'  &&key!='' ">{{value|date:"yyyy-MM-dd"}}</td>
+                            <td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">
+                                ******
+                            </td>
+                            <td ng-if="userInformation.isEditing==true && key=='password'">
+                                <input class="UserInformation" type="password" ng-model="userInformation.password">
+                            </td>
+                            <td ng-if="key=='privilegeEntityList' ">
+                                <div class="UserInformation PrivEdit" id="PrivEditPass" ng-disabled="true">
+                                    <ui-select multiple ng-model="userInformation.privilegeEntityList"
+                                               close-on-select="false" ng-disabled="true">
+                                        <ui-select-match placeholder="无">{{getChinesePrivilege( $item.type)}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="privilege in rootPriv | filter: $select.search track by $index">
+                                            <span ng-bind="getChinesePrivilege(privilege.type)"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
 
 <!----------------------------------------------------如果是修改密码----------------------------------------------------------->
                         <tr ng-repeat="(key,value) in userInformation"
@@ -102,8 +133,6 @@
 
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{localeProperties[nameTranslation[key]]}}</td>
-
-
 
                             <td>
                                 <input ng-if="key!='birthDate'&&key!='gender' &&key!='privilegeEntityList'"

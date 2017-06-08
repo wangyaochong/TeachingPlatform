@@ -22,7 +22,7 @@
                             <tr ng-repeat="item in $data">
                                 <td ng-cloak="" title="localeProperties['locale.account']" filter="{ number: 'text'}" width="20%" align="left"
                                     style="min-width: 50px;">
-                                    {{item.number}}
+                                    <a ui-sref="userCenter.userInformation({id:item.id,editType:'look'})"  ng-click="">{{item.number}}</a>
                                 </td>
                                 <td ng-cloak="" title="localeProperties['locale.name']" filter="{ name: 'text'}" width="20%" align="left" style="min-width: 50px;">
                                     {{item.name}}

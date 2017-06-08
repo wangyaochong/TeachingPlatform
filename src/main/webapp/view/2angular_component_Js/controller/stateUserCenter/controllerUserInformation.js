@@ -67,7 +67,6 @@ app.controller("controllerUserInformation", function ($rootScope, $scope, UserSe
         UserService.getUser({id: $stateParams.id}).then(function (result) {
             $scope.userInformation = result;
             $scope.userInformation.isEditing = true;
-
         }, function (error) {
             console.log(error);
         })
@@ -80,8 +79,14 @@ app.controller("controllerUserInformation", function ($rootScope, $scope, UserSe
     }else if($scope.editType=="editPriv"){
     //如果是教师编辑同学权限
 
+    }else if($scope.editType=="look"){
+        UserService.getUser({id: $stateParams.id}).then(function (result) {
+            $scope.userInformation = result;
+            $scope.userInformation.isEditing = false;
+        }, function (error) {
+            console.log(error);
+        })
     }
-
 
 
 
