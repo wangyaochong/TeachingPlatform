@@ -13,18 +13,18 @@ $stateProvider.state('userCenter', {
                     if (privilege.type == PrivilegeType.SUPER) {
                         $rootScope.HasSuperPriv = true;
                     }
-                    // if (privilege.type == PrivilegeType.USER_MANAGEMENT) {
-                    //     $rootScope.HasPersonalInformationtPriv = true;
-                    // }
                 })
                 //仅有超级用户可以查看所有用户列表，用来修改用户权限或者密码或者新建用户
                 //教师点击班级查看对应用户列表
+
                 if ($rootScope.HasSuperPriv ) {
                     $state.go("userCenter.userList");
                 }
                 else {
-                    $state.go("userCenter.userInformation",{editType:"editPass"})//对于自己就只能编辑密码，如果是教师要编辑同学的权限，那也是通过不同的入口
+                    $state.go("userCenter.userInformation",{editType:"editPass"})
                 }
+
+                //对于自己就只能编辑密码，如果是教师要编辑同学的权限，那也是通过不同的入口
             }
         })
     }

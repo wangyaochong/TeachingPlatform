@@ -34,7 +34,12 @@ app.controller("controllerUserInformation", function ($rootScope, $scope, UserSe
         //如果是管理员新建用户
         CRUDService.getMethod("Privilege/getPrivByGroupId").then(function (response) {
             console.log(response)
-            $scope.privilegeCandidate=response.data;
+            response.data.forEach(function (p) {
+                if(p.type=='SUPER'||p.type=='GROUP_EDIT'){
+                    $scope.privilegeCandidate.push(p);
+                }
+            })
+            // $scope.privilegeCandidate=response.data;
         });
         $scope.userInformation = {
             number: "",
@@ -66,6 +71,9 @@ app.controller("controllerUserInformation", function ($rootScope, $scope, UserSe
         //管理员修改用户密码，或者修改权限
         UserService.getUser({id: $stateParams.id}).then(function (result) {
             $scope.userInformation = result;
+            // var date=new Date();
+            // date.setTime($scope.birthDate);
+            // $scope.birthDate=date;
             $scope.userInformation.isEditing = true;
         }, function (error) {
             console.log(error);
@@ -75,6 +83,20 @@ app.controller("controllerUserInformation", function ($rootScope, $scope, UserSe
             console.log(response)
             $scope.privilegeCandidate=response.data;
         });
+
+        $timeout(function () {
+            $("#UserInfoDatePicker").datepicker({
+                maxViewMode: 2,//设置最多可以从月开始设置
+                language: "zh-CN",//设置语言为中文
+                autoclose: true,//设置选择日期后自动关闭
+                todayHighlight: true,//设置高亮今日
+                todayBtn: true,//显示今日按钮
+            })
+
+            $("#UserInfoDatePicker").datepicker("update", new Date())//传入当前日期
+
+            $("#PrivEditNew").children("div").removeClass("form-control")
+        }, 100)
 
     }else if($scope.editType=="editPriv"){
     //如果是教师编辑同学权限

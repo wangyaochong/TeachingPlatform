@@ -118,7 +118,6 @@ function sass2css(sassPath,cssPath) {
         .pipe(gulpModules.gulpSass().on('error',gulpModules.gulpSass.logError))
         .pipe(gulpModules.gulp.dest(cssPath));
 }
-
 function many2oneCSS(jsPath, onePath, fileName) {
     gulpModules.gulp.src(jsPath)
         .pipe(gulpModules.gulpPlumber(optionsForPlumber))
@@ -134,16 +133,11 @@ function many2oneJS(jsPath, onePath, fileName) {
         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
         .pipe(gulpModules.gulpNgAnnotate())
-        .pipe(needCompress==true? gulpModules.gulpUglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}}):gulpModules.gulpUtil.noop() )
+        .pipe(needCompress==true?
+            gulpModules.gulpUglify({mangle: {except: ['require' ,'exports' ,'module' ,'$']}}):gulpModules.gulpUtil.noop() )
         .pipe(gulpModules.gulp.dest(onePath))
 }
-// gulpModules.gulp.task(taskNames.replaceContent, function () {
-//     console.log('replaceContent')
-//     gulpModules.gulp.src(processPath.appJsPath)
-//         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
-//         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
-//         .pipe(gulpModules.gulp.dest("../view/js/"))
-// })
+
 
 gulpModules.gulp.task(taskNames.sass2css,function () {
     sass2css(processPath.sass2cssSrcPath,processPath.sass2cssDestPath);
@@ -169,3 +163,10 @@ gulpModules.gulp.task(taskNames.watch, function () {
 })
 gulpModules.gulp.task('default', [taskNames.watch, taskNames.sass2css, taskNames.many2one]);
 
+// gulpModules.gulp.task(taskNames.replaceContent, function () {
+//     console.log('replaceContent')
+//     gulpModules.gulp.src(processPath.appJsPath)
+//         .pipe(gulpModules.gulpReplace(optionsForReplace.beginToReplace, optionsForReplace.beginAfterReplace))
+//         .pipe(gulpModules.gulpReplace(optionsForReplace.endToReplace, optionsForReplace.endAfterReplace))
+//         .pipe(gulpModules.gulp.dest("../view/js/"))
+// })

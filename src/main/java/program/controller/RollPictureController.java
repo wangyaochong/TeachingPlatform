@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import program.urlBean.RollPictureUrl;
+import program.util.urlBean.RollPictureUrl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;

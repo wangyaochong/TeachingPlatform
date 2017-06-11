@@ -1,7 +1,7 @@
 /**
  * Created by wangy on 2017/1/1.
  */
-app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$scope,$stateParams,$timeout,$uibModal) {
+app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$scope,$stateParams,$timeout,$uibModal,$http) {
     $scope.isRollPicturePanelOpen = false;
     $scope.positionInited = false;//位置没有更新
     $scope.indexMessageList = [];
@@ -58,6 +58,14 @@ app.controller("controllerCourseCenterTeacherResource",function (CRUDService,$sc
         $scope.currentClassGroup = response.data;
     })
 
+    $scope.deleteItemEntity=function (data) {
+        var url="ItemEntity/deleteItemEntity";
+        $http({
+            url:webRootUrl+url+"?id="+data.id
+        }).then(function (response) {
+
+        })
+    }
 
     $scope.updateItemEntity = function (data) {
         CRUDService.updateMethod("ItemEntity/updateItemEntity",data).then(function (response) {

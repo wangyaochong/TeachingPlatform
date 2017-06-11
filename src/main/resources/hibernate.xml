@@ -12,7 +12,8 @@
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
         <property name="jdbcUrl"
-                  value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"></property>
+        value="jdbc:mysql://127.0.0.1/teachingplatform?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8">
+        </property>
         <property name="user" value="wangyaochong"></property>
         <property name="password" value="qwerqwer"></property>
         <property name="maxPoolSize" value="5000"></property>
@@ -43,16 +44,19 @@
             </props>
         </property>
         <property name="packagesToScan" value="program.entity"></property>
-        <!--packagesToScan可以代替annotateClasses属性-->
-        <!--<property name="annotatedClasses">-->
-        <!--&lt;!&ndash;说明使用注解的entity，不写此属性会导致无法识别对应的表&ndash;&gt;-->
-        <!--<list>-->
-        <!--<value>program.entity.PersonEntity</value>-->
-        <!--<value>program.entity.PrivilegeEntity</value>-->
-        <!--</list>-->
-        <!--</property>-->
-        <!--<property name="annotatedPackages" value="program.entity"></property>-->
     </bean>
+
+
+    <!--packagesToScan可以代替annotateClasses属性-->
+    <!--<property name="annotatedClasses">-->
+    <!--&lt;!&ndash;说明使用注解的entity，不写此属性会导致无法识别对应的表&ndash;&gt;-->
+    <!--<list>-->
+    <!--<value>program.entity.PersonEntity</value>-->
+    <!--<value>program.entity.PrivilegeEntity</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="annotatedPackages" value="program.entity"></property>-->
+
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
@@ -63,6 +67,8 @@
         </tx:attributes>
     </tx:advice>
     <aop:config>
+
+
         <!--注意，此处需要配置aspectJ的pom依赖，不然会报错：提示找不到aspectJweaver-->
         <!--<aop:pointcut id="txAop" expression="execution(* program.dao.*.*(*)) or execution(* program.util.*.*(*)) "></aop:pointcut>-->
         <!--

@@ -7,36 +7,25 @@
     <!--<http security="none" pattern="">-->
         <!--<intercept-url pattern="/TeachingPlatform/view/5html/logIn.html"  access="permitAll"></intercept-url>-->
     <!--</http>-->
-    <http auto-config="true" use-expressions="true">
-        <session-management invalid-session-url="/view/5html/toLogin.html" session-fixation-protection="newSession"  ></session-management>
+        <!--<session-management invalid-session-url="/view/5html/toLogin.html" session-fixation-protection="newSession"  ></session-management>-->
         <!--<intercept-url pattern="/view/5html/logIn.html" access="permitAll"></intercept-url>-->
+
+    <http auto-config="true" use-expressions="true">
+        <session-management invalid-session-url="/view/5html/toLogin.html"></session-management>
         <intercept-url pattern="/view/**" access="permitAll"></intercept-url>
         <!--允许在登陆前拿到国际化信息-->
         <intercept-url pattern="/Locale/getLocaleProperties" access="permitAll"></intercept-url>
-        <!---->
-
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-        <!--<intercept-url pattern="/**" access="permitAll"/>-->
         <form-login login-page="/view/5html/logIn.html"
                     login-processing-url="/logIn"
                     username-parameter="username"
                     password-parameter="password"
                     authentication-success-handler-ref="authSuccessHandlerImpl"
                     authentication-failure-handler-ref="authFailureHandlerImpl"/>
-
-        <!--<session-management invalid-session-url="/session-timeout.jsp">-->
-        <!--<concurrency-control max-sessions="1" expired-url="/session-expired.jsp"/>-->
-        <!--</session-management>-->
         <logout logout-url="/logOut" logout-success-url="/view/5html/logIn.html" delete-cookies="JSESSIONID" invalidate-session="true"/>
         <csrf disabled="true"/>
-                <!--session-authentication-strategy-ref="sessionAuthStrategyImpl"-->
-                <!--invalid-session-strategy-ref="invalidSessionStrategyImpl"-->
-        <!--<session-management-->
-                <!--invalid-session-url="/invalidateSession"-->
-                            <!--session-fixation-protection="newSession"   >-->
-            <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />-->
-        <!--</session-management>-->
     </http>
+
     <!--<security:http auto-config="true">-->
     <!--<security:intercept-url pattern="/**" access="ROLE_USER"/>-->
     <!--</security:http>-->

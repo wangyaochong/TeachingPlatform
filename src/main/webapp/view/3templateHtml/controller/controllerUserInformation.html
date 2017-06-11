@@ -103,28 +103,66 @@
 
                             <!--前半部分的提示框-->
                             <td class="bg-primary" width="25%">{{localeProperties[nameTranslation[key]]}}</td>
-                            <!--后半部分编辑框-->
 
-                            <td ng-if="key!='password' &&key!='birthDate' &&key!='privilegeEntityList' ">{{value}}</td>
-                            <td ng-if="key!='password' && key=='birthDate'  &&key!='' ">{{value|date:"yyyy-MM-dd"}}</td>
-                            <td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">
-                                ******
-                            </td>
-                            <td ng-if="userInformation.isEditing==true && key=='password'">
-                                <input class="UserInformation" type="password" ng-model="userInformation.password">
-                            </td>
-
-                            <td ng-if=" key=='privilegeEntityList' ">
-                                <ui-select multiple ng-model="userInformation.privilegeEntityList"
-                                           close-on-select="false" ng-disabled="isSelf">
-                                    <ui-select-match placeholder="  请编辑内容">{{getChinesePrivilege( $item.type)}}</ui-select-match>
-                                    <ui-select-choices
-                                            repeat="privilege in privilegeCandidate | filter: $select.search track by $index">
-                                        <span ng-bind="getChinesePrivilege(privilege.type)"></span>
-                                    </ui-select-choices>
-                                </ui-select>
+                            <td>
+                                <input ng-if="key!='birthDate'&&key!='gender' &&key!='privilegeEntityList'"
+                                       ng-disabled="!userInformation.isEditing"
+                                       class="UserInformation form-control" type="text"
+                                       ng-model="userInformation[key]" placeholder="请编辑内容">
+                                <select class="UserInformation form-control" ng-if="key=='gender' "
+                                        ng-disabled="!userInformation.isEditing" name=""
+                                        ng-model="userInformation.gender">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                                <input ng-if="key=='birthDate' " ng-disabled="!userInformation.isEditing"
+                                       class="UserInformation form-control" id="UserInfoDatePicker"
+                                       type="text" ng-model="userInformation.birthDate">
+                                <div ng-if=" key=='privilegeEntityList' " class="UserInformation PrivEdit" id="PrivEditNew">
+                                    <ui-select multiple ng-model="userInformation.privilegeEntityList"
+                                               close-on-select="false">
+                                        <ui-select-match placeholder="  请编辑内容">{{getChinesePrivilege( $item.type)}}</ui-select-match>
+                                        <ui-select-choices
+                                                repeat="privilege in privilegeCandidate | filter: $select.search track by $index">
+                                            <span ng-bind="getChinesePrivilege(privilege.type)"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
                             </td>
                         </tr>
+
+
+
+
+
+
+                        <!--<tr ng-repeat="(key,value) in userInformation"-->
+                            <!--ng-if="nameTranslation[key]&&editType=='editPassAndPriv'">-->
+
+                            <!--&lt;!&ndash;前半部分的提示框&ndash;&gt;-->
+                            <!--<td class="bg-primary" width="25%">{{localeProperties[nameTranslation[key]]}}</td>-->
+                            <!--&lt;!&ndash;后半部分编辑框&ndash;&gt;-->
+
+                            <!--<td ng-if="key!='password' &&key!='birthDate' &&key!='privilegeEntityList' ">{{value}}</td>-->
+                            <!--<td ng-if="key!='password' && key=='birthDate'  &&key!='' ">{{value|date:"yyyy-MM-dd"}}</td>-->
+                            <!--<td ng-if="(userInformation.isEditing==false||userInformation.isEditing==undefined) && key=='password'">-->
+                                <!--******-->
+                            <!--</td>-->
+                            <!--<td ng-if="userInformation.isEditing==true && key=='password'">-->
+                                <!--<input class="UserInformation" type="password" ng-model="userInformation.password">-->
+                            <!--</td>-->
+
+                            <!--<td ng-if=" key=='privilegeEntityList' ">-->
+                                <!--<ui-select multiple ng-model="userInformation.privilegeEntityList"-->
+                                           <!--close-on-select="false" ng-disabled="isSelf">-->
+                                    <!--<ui-select-match placeholder="  请编辑内容">{{getChinesePrivilege( $item.type)}}</ui-select-match>-->
+                                    <!--<ui-select-choices-->
+                                            <!--repeat="privilege in privilegeCandidate | filter: $select.search track by $index">-->
+                                        <!--<span ng-bind="getChinesePrivilege(privilege.type)"></span>-->
+                                    <!--</ui-select-choices>-->
+                                <!--</ui-select>-->
+                            <!--</td>-->
+                        <!--</tr>-->
 
 
 <!---------------------------------如果是添加新用户---------------------------------------------------->

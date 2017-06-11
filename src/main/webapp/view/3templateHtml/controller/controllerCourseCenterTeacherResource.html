@@ -80,7 +80,7 @@
                                           ng-disabled="!x.isEditing"></textarea></td>
                             <td ng-if="hasPrivilege">
                                 <directive-edit $list="indexMessageList" $item="x" $index="$index"
-                                                save-callback="updateItemEntity(x)"></directive-edit>
+                                                save-callback="updateItemEntity(x)" delete-callback="deleteItemEntity(x)"></directive-edit>
                             </td>
                         </tr>
                         </tbody>
@@ -176,7 +176,7 @@
                             </td>
                             <td ng-if="hasPrivilege">
                                 <directive-edit $list="assignmentList" $item="x" $index="$index"
-                                                save-callback="updateItemEntity(x)"></directive-edit>
+                                                save-callback="updateItemEntity(x)" delete-callback="deleteItemEntity(x)"></directive-edit>
                             </td>
                         </tr>
                         </tbody>

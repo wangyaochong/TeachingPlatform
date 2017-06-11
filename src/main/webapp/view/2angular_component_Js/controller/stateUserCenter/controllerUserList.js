@@ -7,6 +7,7 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
         paginationMaxBlocks: 10,//最多显示的按钮
         paginationMinBlocks: 5,//最少显示的按钮
         getData: function (params) {
+            var filter= params.filter();
             var thisOrderBy;
             if (params.orderBy().length == 0) {
                 thisOrderBy = null;
@@ -15,7 +16,11 @@ app.controller("controllerUserList",function ($scope,UserService,NgTableParams,$
             }
             return  UserService.getUserPage({
                 pageCurrentIndex:params.page(),
-                pageRowSize:params.count()
+                pageRowSize:params.count(),
+                number:filter.number==undefined?"":filter.number,
+                name:filter.name==undefined?"":filter.name,
+                phoneNumber:filter.phoneNumber==undefined?"":filter.phoneNumber,
+                email:filter.email==undefined?"":filter.email
             })
                 .then(function (data) {
                     params.total(data.totalRowCount)

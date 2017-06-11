@@ -17,26 +17,24 @@
         <!--文件大小最大为1000MB-->
         <property name="maxUploadSizePerFile" value="1048576000"></property>
     </bean>
-
-    <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">-->
-        <!--<property name="cookieMaxAge" value="604800"/>-->
-        <!--<property name="defaultLocale" value="zh_CN"/>-->
-        <!--<property name="cookieName" value="Language"></property>-->
-    <!--</bean>-->
-
-
-
     <context:component-scan base-package="program"></context:component-scan>
     <context:property-placeholder file-encoding="UTF-8" location="classpath:*.properties"></context:property-placeholder>
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>-->
-            <!--<bean class="util.JsonConverter"></bean>-->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                <!--&lt;!&ndash;设置为utf-8的编码格式&ndash;&gt;-->
+                <!--设置为utf-8的编码格式-->
                 <constructor-arg value="utf-8"></constructor-arg>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+
 </beans>
+
+
+        <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">-->
+        <!--<property name="cookieMaxAge" value="604800"/>-->
+        <!--<property name="defaultLocale" value="zh_CN"/>-->
+        <!--<property name="cookieName" value="Language"></property>-->
+        <!--</bean>-->

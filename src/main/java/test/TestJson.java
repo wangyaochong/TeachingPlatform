@@ -2,7 +2,7 @@ package test;
 
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import program.urlBean.HeaderUrl;
+import program.util.urlBean.HeaderUrl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
