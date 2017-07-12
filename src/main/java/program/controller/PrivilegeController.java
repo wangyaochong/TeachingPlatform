@@ -8,15 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import program.controller.base.DataOperateBase;
 import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
-import program.entity.GroupEntity;
 import program.entity.PrivilegeEntity;
-import program.entity.entityInterface.IEntity;
-import program.entity.wrapper.PrivilegeWrapper;
 import program.service.PrivilegeService;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

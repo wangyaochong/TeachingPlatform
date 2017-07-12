@@ -6,18 +6,13 @@ import program.controller.base.DataOperateBase;
 import program.controller.util.ResponseFlag;
 import program.controller.util.ResponseInfo;
 import program.entity.GroupEntity;
-import program.entity.PrivilegeEntity;
 import program.entity.entityInterface.IEntity;
 import program.service.UserService;
 import program.entity.PersonEntity;
 import program.service.bean.PageBean;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by【王耀冲】on 【2016/12/15】 at 【1:13】.
